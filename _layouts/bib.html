@@ -2,17 +2,20 @@
 ---
 
 <div class="row">
-  <div class="col-sm-2 abbr">
-  {% if entry.abbr %}
+  <div class="col-sm-4 abbr">
+  <!-- {% if entry.abbr %}
     {% if site.data.venues[entry.abbr] %}
-    <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}">{{entry.abbr}}</a></abbr>
+    <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}" target="_blank">{{entry.abbr}}</a></abbr>
     {% else %}
     <abbr class="badge">{{entry.abbr}}</abbr>
     {% endif %}
+  {% endif %} -->
+  {% if entry.img %}
+    <img src="{{ entry.img | relative_url }}" width="220" height="140">
   {% endif %}
   </div>
 
-  <div id="{{entry.key}}" class="col-sm-8">
+  <div id="{{entry.key}}" class="col-sm-7">
     {% if entry.type == "thesis" %}
       {{reference}}
     {% else %}
@@ -34,7 +37,7 @@
               {% endif %}
             {% endfor %}
           {% endif %}
-          
+
           {% if forloop.length == 1 %}
             {% if author_is_self %}
               <em>{{author.last}}, {{author.first}}</em>

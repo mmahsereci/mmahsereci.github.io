@@ -1,72 +1,128 @@
 ---
 ---
 
-@string{aps = {American Physical Society,}}
-
-@book{einstein1956investigations,
-  bibtex_show={true},
-  title={Investigations on the Theory of the Brownian Movement},
-  author={Einstein, Albert},
-  year={1956},
-  publisher={Courier Corporation,}
+@inproceedings{Siems21,
+    title = {Dynamic Pruning of a Neural Network via Gradient Signal-to-Noise Ratio},
+    author = {J.N. Siems and A. Klein and C. Archambeau and M. Mahsereci},
+    booktitle = {8th ICML Workshop on Automated Machine Learning (AutoML) },
+    year = {2021},
+    pdf = {https://openreview.net/pdf?id=34awaeWZgya},
+    slides = {https://slideslive.com/38962446/dynamic-pruning-of-a-neural-network-via-gradient-signaltonoise-ratio?ref=speaker-37497-latest},
+    abstract = {While training highly overparameterized neural networks is common practice in deep learning, research into post-hoc weight-pruning suggests that more than 90% of parameters can be removed without loss in predictive performance. To save resources, zero-shot and one-shot pruning attempt to find such a sparse representation at initialization or at an early stage of training. Though efficient, there is no justification, why the sparsity structure should not change during training. Dynamic sparsity pruning undoes this limitation and allows to adapt the structure of the sparse neural network during training. In this work we propose to use the gradient noise to make pruning decisions. The procedure enables us to automatically adjust the sparsity during training without imposing a hand-designed sparsity schedule, while at the same time being able to recover from previous pruning decisions by unpruning connections as necessary. We evaluate our method on image and tabular datasets and demonstrate that we reach similar performance as the dense model from which the sparse network is extracted, while exposing less hyperparameters than other dynamic sparsity methods.},
+    img = {/assets/img/paper_thumbnails/Siems21.jpg},
+    bibtex_show = {true}
 }
 
-@article{einstein1950meaning,
-  abbr={AJP},
-  bibtex_show={true},
-  title={The meaning of relativity},
-  author={Einstein, Albert and Taub, AH},
-  journal={American Journal of Physics,},
-  volume={18},
-  number={6},
-  pages={403--404},
-  year={1950},
-  publisher={American Association of Physics Teachers,}
+@inproceedings{KerstingMahsereci20,
+    author = {Kersting, H. and Mahsereci, M.},
+    title = {A {Fourier} State Space Model for {Bayesian} {ODE} Filters},
+    year = {2020},
+    booktitle = {Workshop on Invertible Neural Networks, Normalizing Flows, and Explicit Likelihood Models, ICML},
+    pdf = {https://arxiv.org/pdf/2007.09118.pdf},
+    slides = {https://slideslive.com/38931446/a-fourier-state-space-model-for-bayesian-ode-filters},
+    abstract = {Gaussian ODE filtering is a probabilistic numerical method to solve ordinary differential equations (ODEs). It computes a Bayesian posterior over the solution from evaluations of the vector field defining the ODE. Its most popular version, which employs an integrated Brownian motion prior, uses Taylor expansions of the mean to extrapolate forward and has the same convergence rates as classical numerical methods. As the solution of many important ODEs are periodic functions (oscillators), we raise the question whether Fourier expansions can also be brought to bear within the framework of Gaussian ODE filtering. To this end, we construct a Fourier state space model for ODEs and a ‘hybrid’ model that combines a Taylor (Brownian motion) and Fourier state space model. We show by experiments how the hybrid model might become useful in cheaply predicting until the end of the time domain.},
+    img={/assets/img/paper_thumbnails/Kersting20.png},
+    bibtex_show = {true}
 }
 
-@article{PhysRev.47.777,
-  abbr={PhysRev},
-  title={Can Quantum-Mechanical Description of Physical Reality Be Considered Complete?},
-  author={Einstein, A. and Podolsky, B. and Rosen, N.},
-  abstract={In a complete theory there is an element corresponding to each element of reality. A sufficient condition for the reality of a physical quantity is the possibility of predicting it with certainty, without disturbing the system. In quantum mechanics in the case of two physical quantities described by non-commuting operators, the knowledge of one precludes the knowledge of the other. Then either (1) the description of reality given by the wave function in quantum mechanics is not complete or (2) these two quantities cannot have simultaneous reality. Consideration of the problem of making predictions concerning a system on the basis of measurements made on another system that had previously interacted with it leads to the result that if (1) is false then (2) is also false. One is thus led to conclude that the description of reality as given by a wave function is not complete.},
-  journal={Phys. Rev.,},
-  volume={47},
-  issue={10},
-  pages={777--780},
-  numpages={0},
-  year={1935},
-  month={May},
-  publisher=aps,
-  doi={10.1103/PhysRev.47.777},
-  url={http://link.aps.org/doi/10.1103/PhysRev.47.777},
-  html={https://journals.aps.org/pr/abstract/10.1103/PhysRev.47.777},
-  pdf={example_pdf.pdf},
-  selected={true}
+ @inproceedings{Paleyes19,
+    author = {Paleyes, A. and Pullin, M. and Mahsereci, M. and Lawrence, N. and Gonzalez, J.},
+    title = {Emulation of physical processes with Emukit},
+    booktitle = {Second Workshop on Machine Learning and the Physical Sciences, NeurIPS},
+    year = {2019},
+    pdf={https://ml4physicalsciences.github.io/2019/files/NeurIPS_ML4PS_2019_113.pdf},
+    abstract={Decision making in uncertain scenarios is an ubiquitous challenge in real world systems. Tools to deal with this challenge include simulations to gather information and statistical emulation to quantify uncertainty. The machine learning community has developed a number of methods to facilitate decision making, but so far they are scattered in multiple different toolkits, and generally rely on a fixed backend. In this paper, we present Emukit, a highly adaptable Python toolkit for enriching decision making under uncertainty. Emukit allows users to: (i) use state of the art methods including Bayesian optimization, multi-fidelity emulation, experimental design, Bayesian quadrature and sensitivity analysis; (ii) easily prototype new decision making methods for new problems. Emukit is agnostic to the underlying modeling framework and enables users to use their own custom models. We show how Emukit can be used on three exemplary case studies.},
+    html = {https://emukit.github.io/},
+    code = {https://github.com/EmuKit/emukit},
+    img = {/assets/img/paper_thumbnails/Paleyes19.png},
+    bibtex_show = {true}
 }
 
-@article{einstein1905molekularkinetischen,
-  title={{\"U}ber die von der molekularkinetischen Theorie der W{\"a}rme geforderte Bewegung von in ruhenden Fl{\"u}ssigkeiten suspendierten Teilchen},
-  author={Einstein, A.},
-  journal={Annalen der physik,},
-  volume={322},
-  number={8},
-  pages={549--560},
-  year={1905},
-  publisher={Wiley Online Library}
+ @inproceedings{Gessner19,
+    title = {Active Multi-Information Source Bayesian Quadrature},
+    author = {Gessner, A. and Gonzalez, J. and Mahsereci, M.},
+    booktitle = {Proceedings of The 35th Uncertainty in Artificial Intelligence Conference},
+    pages = {712--721},
+    year = {2020},
+    editor = {Adams, Ryan P. and Gogate, Vibhav},
+    volume = {115},
+    series = {Proceedings of Machine Learning Research},
+    month = {22--25 Jul},
+    publisher = {PMLR},
+    abstract = {Bayesian quadrature (BQ) is a sample-efficient probabilistic numerical method to solve integrals of expensive-to-evaluate black-box functions, yet so far, active BQ learning schemes focus merely on the integrand itself as information source, and do not allow for information transfer from cheaper, related functions. Here, we set the scene for active learning in BQ when multiple related information sources of variable cost (in input and source) are accessible. This setting arises for example when evaluating the integrand requires a complex simulation to be run that can be approximated by simulating at lower levels of sophistication and at lesser expense. We construct meaningful cost-sensitive multi-source acquisition-rates as an extension to common utility functions from vanilla BQ (VBQ), and discuss pitfalls that arise from blindly generalizing. In proof-of-concept experiments we scrutinize the behavior of our generalized acquisition functions. On an epidemiological model, we demonstrate that active multi-source BQ (AMS-BQ) is more cost-efficient than VBQ in learning the integral to a good accuracy. },
+    pdf ={http://proceedings.mlr.press/v115/gessner20a.html},
+    img={/assets/img/paper_thumbnails/Gessner19.png},
+    bibtex_show={true}
 }
 
-@article{einstein1905movement,
-  abbr={Ann. Phys.},
-  title={Un the movement of small particles suspended in statiunary liquids required by the molecular-kinetic theory 0f heat},
-  author={Einstein, A.},
-  journal={Ann. Phys.,},
-  volume={17},
-  pages={549--560},
-  year={1905}
+ @inproceedings{Gessner18,
+    author = {Gessner, A. and Gonzalez, J. and Mahsereci, M.},
+    title = {On Acquisition Functions for Active Multi-Source Bayesian Quadrature},
+    booktitle = {All of Bayesian Nonparametrics Workshop, NeuIPS},
+    year = {2018},
+    abstract={Bayesian quadrature (bq) is the method of choice for solving integrals of expensive-to-evaluate black-box functions. Active learning schemes so far only focus on the integrand itself, and do not allow for incorporation of cheaper, related information sources. Here, we set the scene for active learning in Bayesian quadrature when multiple related information sources of variable cost (in input and source) are accessible. In vanilla-bq (vbq) the same active learning scheme is induced by several measures of gain on the integral estimation. We show that this degeneracy is lifted in the multi-source setting, in which the previously interchangeably used vbq utilities yield different active learning schemes. In proof-of-concept experiments we scrutinize the behavior of our generalized acquisition functions.},
+    pdf ={https://d39w7f4ix9f5s9.cloudfront.net/aa/b2/50a316984beab1dd39244efc1f7d/scipub-272.pdf},
+    img={/assets/img/paper_thumbnails/Gessner18.png},
+    bibtex_show={true}
 }
 
-@article{einstein1905electrodynamics,
-  title={On the electrodynamics of moving bodies},
-  author={Einstein, A.},
-  year={1905}
+ @phdthesis{Mahsereci18,
+    title = {Probabilistic Approaches to Stochastic Optimization},
+    author = {Mahsereci, M.},
+    school = {Eberhard Karls Universit{\"a}t T{\"u}bingen, Germany},
+    year = {2018},
+    doi = {http://dx.doi.org/10.15496/publikation-26116},
+    html = {https://publikationen.uni-tuebingen.de/xmlui/handle/10900/84726},
+    img={/assets/img/paper_thumbnails/Mahsereci18.png},
+    bibtex_show={true}
+}
+
+ @article{Mahsereci17b,
+    author = {M. Mahsereci and P. Hennig},
+    title = {Probabilistic Line Searches for Stochastic Optimization},
+    journal = {Journal of Machine Learning Research},
+    year = {2017},
+    volume = {18},
+    number = {119},
+    pages = {1-59},
+    html = {http://jmlr.org/papers/v18/17-049.html},
+    pdf = {https://jmlr.csail.mit.edu/papers/volume18/17-049/17-049.pdf},
+    abstract = {In deterministic optimization, line searches are a standard tool ensuring stability and efficiency. Where only stochastic gradients are available, no direct equivalent has so far been formulated, because uncertain gradients do not allow for a strict sequence of decisions collapsing the search space. We construct a probabilistic line search by combining the structure of existing deterministic methods with notions from Bayesian optimization. Our method retains a Gaussian process surrogate of the univariate optimization objective, and uses a probabilistic belief over the Wolfe conditions to monitor the descent. The algorithm has very low computational cost, and no user- controlled parameters. Experiments show that it effectively removes the need to define a learning rate for stochastic gradient descent. },
+    img={/assets/img/paper_thumbnails/Mahsereci17b.png},
+    bibtex_show={true}
+}
+
+ @article{Mahsereci17a,
+    title = {Early Stopping Without a Validation Set},
+    author = {Mahsereci, M. and Balles, L. and Lassner, C. and Hennig, P.},
+    arxiv = {1703.09580},
+    year = {2017},
+    abstract = {},
+    img={/assets/img/paper_thumbnails/Mahsereci17a.png},
+    bibtex_show={true}
+}
+
+ @article{Balles17,
+    author = {Balles, L. and Mahsereci, M. and Hennig, P.},
+    title = {Automating Stochastic Optimization with Gradient Variance Estimates},
+    journal = {AutoML Workshop, ICML},
+    year = {2017},
+    abstract = {One reason optimization methods might have to expose free parameters to the user, rather than to set them internally, is that these parameters are not identifiable given the “observations” available to the method. We discuss the use of gradient variance estimates as an additional source of information allowing for automation of stochastic optimization algorithms. We review several recent results that use such estimates to eliminate (i.e., determine internally, without user intervention) hyper-parameters of stochastic optimizers and contribute a detailed discussion of the efficient implementation of gradient variance estimates for neural networks. },
+    pdf = {https://7bce9816-a-62cb3a1a-s-sites.googlegroups.com/site/automl2017icml/accepted-papers/AutoML_2017_paper_6.pdf?attachauth=ANoY7cq6kv_KSergf07tEvRAgtMZxioI5VJzpW0RCbX73jdWHIJi9UVTpkLufRzx8cgpYUi3rrrvT6gNHohQ7dHZv6duOYUjrPSNSDK_EpskgjtOxAA4nlEY48Sy2v_QsfEaFatZmdXfP-M43RzAWEE4rB8qq5sE-Q0mfA89auEEeHknxHbcsqPjX_zi8bDI_oEs5XpzDZsUpw8tK9FvKsPRixHMUEaQR3Yvj1NVk9yWcPua7gzBIcsebE8DGhnRhDZ-NC2-4Onu&attredirects=0},
+    img={/assets/img/paper_thumbnails/Balles17.png},
+    bibtex_show={true}
+}
+
+ @inproceedings{Mahsereci15,
+    title = {Probabilistic Line Searches for Stochastic Optimization},
+    author = {Mahsereci, M. and Hennig, P.},
+    booktitle = {Advances in Neural Information Processing Systems 28},
+    pages = {181--189},
+    editors = {C. Cortes, N.D. Lawrence, D.D. Lee, M. Sugiyama and R. Garnett},
+    publisher = {Curran Associates, Inc.},
+    year = {2015},
+    abstract = {In deterministic optimization, line searches are a standard tool ensuring stability and efficiency. Where only stochastic gradients are available, no direct equivalent has so far been formulated, because uncertain gradients do not allow for a strict sequence of decisions collapsing the search space. We construct a probabilistic line search by combining the structure of existing deterministic methods with notions from Bayesian optimization. Our method retains a Gaussian process surrogate of the univariate optimization objective, and uses a probabilistic belief over the Wolfe conditions to monitor the descent. The algorithm has very low computational cost, and no user-controlled parameters. Experiments show that it effectively removes the need to define a learning rate for stochastic gradient descent.},
+    pdf = {http://papers.nips.cc/paper/5753-probabilistic-line-searches-for-stochastic-optimization.pdf},
+    img={/assets/img/paper_thumbnails/Mahsereci15.png},
+    bibtex_show={true}
 }
