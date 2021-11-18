@@ -17,4 +17,11 @@ I am a postdoctoral researcher at the
 <a href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/methoden-des-maschinellen-lernens/personen/">
   University of T&uuml;bingen.
 </a>
-Previously I have been at:
+Previously I have been at Amazon Web Services (AWS) Berlin and
+Amazon Retail (AMZN) Cambridge as Machine Learning Scientist. I graduated from
+the Max-Planck Institute for Intelligent Systems (MPI) T&uuml;bingen.
+
+My research interests are stochastic optimization, 
+numerical integration, 
+probabilistic numerics, and statistic emulation. I am also an active contributor nd maintainer of 
+open source software projects.

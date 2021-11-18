@@ -27,7 +27,7 @@ pagination:
       <h3><a class="post-title" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}</a>
       </h3>
       <p>{{ post.description }}</p>
-      <p class="post-meta"> {{read_time}} min read &nbsp; &middot; &nbsp;
+      <p class="post-meta">
         {{ post.date | date: '%B %-d, %Y' }}
       </p>
       <p class="post-tags">
@@ -50,6 +50,9 @@ pagination:
               {% endfor %}
           {% endif %}
     </p>
+    <!-- <p>
+      {{ post.snippet }}
+    </p> -->
     </li>
 
     {% endfor %}

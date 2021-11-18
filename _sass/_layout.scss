@@ -44,3 +44,33 @@
 *****************************************************************************/
 
 // TODO: redefine projects layout.
+
+
+/*****************************************************************************
+* About
+*****************************************************************************/
+
+// Background section
+.about-bg-container{
+    width: 100%;
+    overflow: auto;
+    vertical-align: middle;
+    margin-left: 0;
+
+    img {
+    }
+}
+
+.about-bg-img {
+    float: left;
+    width: 5%;  // 5%
+    margin: 0px 0px 0 0;
+
+    img {
+      display: block;
+    }
+}
+
+.about-bg-text{
+  margin-left: 8%;
+}
