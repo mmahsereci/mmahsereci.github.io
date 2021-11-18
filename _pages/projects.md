@@ -2,9 +2,9 @@
 layout: page
 title: projects
 permalink: /projects/
-description: A growing collection of your cool projects.
+description: These are the research areas, and software projects I am mainly involved in.
 nav: true
-display_categories: [work, fun]
+display_categories: [research, software]
 horizontal: false
 ---
 <div class="projects">
