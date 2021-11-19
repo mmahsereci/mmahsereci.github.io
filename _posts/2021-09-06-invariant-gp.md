@@ -2,11 +2,16 @@
 layout:     post
 title:      "Invariant Gaussian Processes"
 author:     mmahsereci
-snippet:    ""
+description:    ""
 date:       2021-09-06
 thumbnail-small:  "/img/2021-09-06-invariant-gp/thumbnail.png"
 category:   techblog
-tags:       [Gaussian processes, Machine learning]
+tags:       [gaussianprocesses, machinelearning]
+description: >
+  Gaussian processes can be understood as "distributions over functions" providing prior models for
+  unknown functions. The kernel which identifies the GP can be used to encode known properties of the function such 
+  as smoothness or stationarity. A somewhat more exotic characteristic is invariance to input transformations
+  which we'll explore here.
 
 authors:
   - name: mmahsereci
@@ -17,7 +22,7 @@ authors:
 
 Gaussian processes can be understood as "distributions over functions" providing prior models for
 unknown functions. The kernel which identifies the GP can be used to encode known properties of the function such 
-as smoothness or stationarity. A somewhat more exotic charcateristic is *invariance to input transformations* 
+as smoothness or stationarity. A somewhat more exotic characteristic is *invariance to input transformations* 
 which we'll explore here.
 
 ## What is an invariant function?
@@ -28,19 +33,18 @@ under a finite set of input transformations.
 Let's first see what an invariant function is: A function $$f:\mathcal{X} \rightarrow \mathbb{R}$$ on the domain $$\mathcal{X}\subseteq\mathbb{R}^D$$
 is said to be invariant under a bijective transformation 
 $$T:\mathcal{X}\rightarrow \mathcal{X}$$ if 
-$$f(T(\mathbf{x})) = f(\mathbf{x})$$ holds for all $$\mathbf{x}$$ in $$\mathcal{X}$$.
-This simply means that the function $$f$$ takes the same value at $$\mathbf{x}$$ and $$T(\mathbf{x})$$ for all $$\mathbf{x}$$.
+$$f(T(x)) = f(x)$$ holds for all $$x$$ in $$\mathcal{X}$$.
+This simply means that the function $$f$$ takes the same value at $$x$$ and $$T(x)$$ for all $$x$$.
 
 > Simple 1D example: $$f(x) = x^2$$ is invariant under flipping the x-axis, i.e., $$f(x) = f(-x)$$ with $$T(x) = -x $$, 
 > and $$x\in\mathbb{R}$$.
 
-
 ### Invariance groups and orbits
 
 Consider now a function that is invariant under a finite set of $$J$$ transformations $$T_i$$, $$i=1, ..., J$$.
-As the invariance under each $$T_i$$ holds for any input $$\mathbf{x}$$ (also those that have been transformed), 
+As the invariance under each $$T_i$$ holds for any input $$x$$ (also those that have been transformed), 
 the $$T_i$$ must form the group 
-$$G_f:=\{T | f(\mathbf{x}) = f(T(\mathbf{x})) \text{ for all } \mathbf{x} \in\mathcal{X}\}$$. 
+$$G_f:=\{T | f(x) = f(T(x)) \text{ for all } x \in\mathcal{X}\}$$. 
 That is, $$G_f$$ contains arbitrary concatenations $$T_i\circ T_j\circ \dots$$, the identity transform $$T=I$$,
 the inverses $$T_i^{-1}$$, and the $$T_i$$ obey associativity. 
 There may be several groups associated with a function $$f$$, depending on which invariances are considered.
@@ -51,7 +55,7 @@ There may be several groups associated with a function $$f$$, depending on which
 > collapse back to $$T_0$$ or $$T_1$$ and are thus already in $$G_f$$ (Examples: $$T_1^{-1} = T_1$$, or $$T_1\circ (T_1 \circ T_1) = T_1\circ T_0 = T_1$$ etc). 
 
 
-Given $$G_f$$, the set $$\mathcal{A}(\mathbf{x}):=\{T(\mathbf{x}) | \text{ for all } T\in G_f\}$$ 
+Given $$G_f$$, the set $$\mathcal{A}(x):=\{T(x) | \text{ for all } T\in G_f\}$$ 
 is called an *orbit* of $$x$$ and is the set of invariant locations induced by $$x$$.
 
 > In our 1D example $$f(x) = x^2$$ with $$G_f$$ containing $$T_0$$ and $$T_1$$, consider an arbitrary point 
@@ -62,17 +66,17 @@ is called an *orbit* of $$x$$ and is the set of invariant locations induced by $
 Given $$G_f$$ and $$\mathcal{A}(x)$$, we can now introduce a latent function $$g: \mathcal{X} \rightarrow \mathbb{R}$$ such that
 
 $$
-f(\mathbf{x}) = \sum_{\tilde{\mathbf{x}}\in \mathcal{A}(\mathbf{x})}g(\tilde{\mathbf{x}}).
+f(x) = \sum_{\tilde{x}\in \mathcal{A}(x)}g(\tilde{x}).
 $$
 
 The latent function $$g$$ is not necessarily invariant, but the function $$f$$ is by construction.
-This is because any point $$\tilde{\mathbf{x}}\in \mathcal{A}(\mathbf{x})$$ induces the identical set 
-$$\mathcal{A}(\tilde{\mathbf{x}}) = \mathcal{A}(\mathbf{x})$$, hence $$f(\tilde{\mathbf{x}}) = f(\mathbf{x})$$ 
-for all $$\tilde{\mathbf{x}}\in A(\mathbf{x})$$.
+This is because any point $$\tilde{x}\in \mathcal{A}(x)$$ induces the identical set 
+$$\mathcal{A}(\tilde{x}) = \mathcal{A}(x)$$, hence $$f(\tilde{x}) = f(x)$$ 
+for all $$\tilde{x}\in A(x)$$.
 (notice that $$G_f$$ includes the identity transform, the trivial invariance for all functions).
 
-We see from the above equation that we do not need to know the form of $$f(\mathbf{x})$$ in order to encode the 
-invariance property, simple knowing the set $$G_f$$ is enough. In that sense, $$f(\mathbf{x})$$ can be a black-box function.
+We see from the above equation that we do not need to know the form of $$f(x)$$ in order to encode the 
+invariance property, simple knowing the set $$G_f$$ is enough. In that sense, $$f(x)$$ can be a black-box function.
 
 ### Making it probabilistic (An invariant Gaussian process prior)
 
@@ -90,8 +94,8 @@ It turns out that then, $$f$$ is also a Gaussian process $$f\sim\mathcal{G}(m_f,
 The mean function $$m_f$$ and kernel function $$k_f$$ can be easily derived:
 
 $$
-    m_f(\mathbf{x}) =\sum_{\tilde{\mathbf{x}}\in \mathcal{A}(\mathbf{x})}m_g(\tilde{\mathbf{x}}),\qquad
-    k_f(\mathbf{x}, \mathbf{x}') = \sum_{\tilde{\mathbf{x}}', \tilde{\mathbf{x}}\in \mathcal{A}(\mathbf{x})}  k_g(\tilde{\mathbf{x}}, \tilde{\mathbf{x}}').
+    m_f(x) =\sum_{\tilde{x}\in \mathcal{A}(x)}m_g(\tilde{x}),\qquad
+    k_f(x, x') = \sum_{\tilde{x}', \tilde{x}\in \mathcal{A}(x)}  k_g(\tilde{x}, \tilde{x}').
 $$
 
 GP regression on $$f$$ is straightforward, too, as the above equation simply defines another positive definite kernel $$k_f$$.
