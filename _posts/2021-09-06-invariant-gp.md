@@ -11,7 +11,7 @@ description: >
   Gaussian processes can be understood as "distributions over functions" providing prior models for
   unknown functions. The kernel which identifies the GP can be used to encode known properties of the function such 
   as smoothness or stationarity. A somewhat more exotic characteristic is invariance to input transformations
-  which we'll explore here.
+  which we'll explore here. 
 
 authors:
   - name: mmahsereci
