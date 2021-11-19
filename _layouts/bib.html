@@ -82,6 +82,9 @@
       {% if entry.year %}
         {{entry.year}}
       {% endif %}
+      {% if entry.info %}
+        <br><b>{{entry.info}}</b>
+      {% endif %}
       </div>
     {% endif %}
 
@@ -147,7 +150,8 @@
     <!-- Hidden bibtex block -->
     {% if entry.bibtex_show %}
     <div class="bibtex hidden">
-      {% highlight bibtex %}{{ entry.bibtex }}{% endhighlight %}
+      {% assign bibtext_str = entry.bibtex | regex_replace: "( )*((html)|(code)|(selected)|(bibtex_show)|(abbr)|(abstract)|(blog)|(poster)|(slides)|(website)|(supp)|(img)|(info)|(arxiv))+(.)*(\n)*(\r)*", "" %}
+      {% highlight bibtex %}{{ bibtext_str }}{% endhighlight %}
     </div>
     {% endif %}
   </div>

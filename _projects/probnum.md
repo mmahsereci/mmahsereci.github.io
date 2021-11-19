@@ -3,7 +3,7 @@ layout: page
 title: probnum
 description: >
   ProbNum provides numerical solvers for linear systems, intractable integrals and ordinary differential equations.
-img: assets/img/project_thumbnails/probnum-0.png
+img: assets/img/project_thumbnails/probnum.png
 importance: 10
 category: software
 ---
