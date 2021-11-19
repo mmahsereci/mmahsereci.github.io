@@ -23,5 +23,5 @@ the Max-Planck Institute for Intelligent Systems (MPI) T&uuml;bingen.
 
 My research interests are stochastic optimization, 
 numerical integration, 
-probabilistic numerics, and statistic emulation. I am also an active contributor nd maintainer of 
-open source software projects.
+probabilistic numerics, and statistical emulation. I am also an active contributor and maintainer of 
+open source software projects on GitHub.
