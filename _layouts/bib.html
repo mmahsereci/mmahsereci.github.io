@@ -2,20 +2,13 @@
 ---
 
 <div class="row">
-  <div class="col-sm-4 abbr">
-  <!-- {% if entry.abbr %}
-    {% if site.data.venues[entry.abbr] %}
-    <abbr class="badge"><a href="{{site.data.venues[entry.abbr].url}}" target="_blank">{{entry.abbr}}</a></abbr>
-    {% else %}
-    <abbr class="badge">{{entry.abbr}}</abbr>
+  <div class="col-sm-2 abbr">
+    {% if entry.img %}
+      <img src="{{ entry.img | relative_url }}">
     {% endif %}
-  {% endif %} -->
-  {% if entry.img %}
-    <img src="{{ entry.img | relative_url }}" width="220" height="140">
-  {% endif %}
   </div>
 
-  <div id="{{entry.key}}" class="col-sm-7">
+  <div id="{{entry.key}}" class="col-sm-8">
     {% if entry.type == "thesis" %}
       {{reference}}
     {% else %}

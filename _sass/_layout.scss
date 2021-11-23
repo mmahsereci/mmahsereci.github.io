@@ -38,6 +38,21 @@
 
 // TODO: redefine publications layout.
 
+.publications{
+  @media (max-width:576px) {
+    img {
+      display: none;
+    }
+  }
+
+  @media (min-width:576px) {
+    img {
+      width: 100%;
+    }
+  }
+
+}
+
 
 /*****************************************************************************
 * Projects
