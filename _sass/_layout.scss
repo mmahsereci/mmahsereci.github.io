@@ -39,20 +39,18 @@
 // TODO: redefine publications layout.
 
 .publications{
-  @media (max-width:576px) {
-    img {
+  @media screen and (max-width:576px) {
+    img.bib {
       display: none;
     }
   }
 
-  @media (min-width:576px) {
-    img {
+  @media screen and (min-width:576px) {
+    img.bib {
       width: 100%;
     }
   }
-
 }
-
 
 /*****************************************************************************
 * Projects
