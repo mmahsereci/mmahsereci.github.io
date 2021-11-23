@@ -18,14 +18,14 @@ such as the ones mentioned.
 Some aspects of stochastic optimization can be seen as methods of
 [probabilistic numerics](https://en.wikipedia.org/wiki/Probabilistic_numerics).
 
-### Related open source projects:
+### related open source projects
 
 ---
 
 - tbd
 
-### Papers
+### publications
 
 ---
-- [Publication page]({{ site.baseurl }}{% link _pages/publications.md %})
+- [publication page]({{ site.baseurl }}{% link _pages/publications.md %})
 - [PhD thesis](https://publikationen.uni-tuebingen.de/xmlui/handle/10900/84726)

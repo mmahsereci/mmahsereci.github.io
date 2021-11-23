@@ -19,12 +19,12 @@ Lower level structure of ProbNum includes: A module for random variables and ran
 (memory-)efficient and lazy implementation of linear operators that integrate with random variables;
 filtering and smoothing for probabilistic state-space models, mostly variants of Kalman filters.
 
-### Resources
+### resources
 
 - [GitHub page](https://github.com/probabilistic-numerics/probnum) 
-- [Webpage](http://pobnum.org) 
+- [webpage](http://pobnum.org) 
 
 
-### Citation
+### citation
 
 tbd

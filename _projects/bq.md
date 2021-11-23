@@ -12,19 +12,19 @@ category: research
 Bayesian quadrature is a [probabilistic numerical](https://en.wikipedia.org/wiki/Probabilistic_numerics#Integration) 
 method as it yields a posterior over the integral value, possibly a richer quantity than a point estimate.
 
-### Related open source projects:
+### related open source projects
 
 ---
 
 #### emukit
-- [Project page]({{ site.baseurl }}{% link _projects/emukit.md %})
+- [project page]({{ site.baseurl }}{% link _projects/emukit.md %})
 - [GitHub page](https://github.com/EmuKit/emukit) 
 
 #### probnum
-- [Project page]({{ site.baseurl }}{% link _projects/probnum.md %})
+- [project page]({{ site.baseurl }}{% link _projects/probnum.md %})
 - [GitHub page](https://github.com/probabilistic-numerics/probnum)
 
-### Papers
+### publications
 
 ---
-- [Publication page]({{ site.baseurl }}{% link _pages/publications.md %})
+- [publication page]({{ site.baseurl }}{% link _pages/publications.md %})

@@ -16,19 +16,19 @@ are high-dimensional stochastic optimization for non-convex continuous functions
 and integration routines (quadrature).
 The general idea of PN is that the numerical quantity of interest is seen as a latent variable that is to be inferred.
 
-### Related open source projects:
+### related open source projects
 
 ---
 
 #### emukit
-- [Project page]({{ site.baseurl }}{% link _projects/emukit.md %})
+- [project page]({{ site.baseurl }}{% link _projects/emukit.md %})
 - [GitHub page](https://github.com/EmuKit/emukit) 
 
 #### probnum
-- [Project page]({{ site.baseurl }}{% link _projects/probnum.md %})
+- [project page]({{ site.baseurl }}{% link _projects/probnum.md %})
 - [GitHub page](https://github.com/probabilistic-numerics/probnum) 
 
-### Papers
+### publications
 
 ---
-- [Publication page]({{ site.baseurl }}{% link _pages/publications.md %})
+- [publication page]({{ site.baseurl }}{% link _pages/publications.md %})

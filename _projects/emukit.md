@@ -21,14 +21,14 @@ the code quickly. Read more on EmuKit's structure
 [here](https://emukit.github.io/about/) or check it out on [GitHub](https://github.com/EmuKit/emukit).
 
 
-### Resources
+### resources
 
 - [GitHub page](https://github.com/EmuKit/emukit) 
-- [Webpage](https://emukit.github.io/) 
-- [Paper](https://ml4physicalsciences.github.io/2019/files/NeurIPS_ML4PS_2019_113.pdf)
+- [webpage](https://emukit.github.io/) 
+- [paper](https://ml4physicalsciences.github.io/2019/files/NeurIPS_ML4PS_2019_113.pdf)
 
 
-### Citation
+### citation
 
 If you used EmuKit in you published work, please cite as:
 
