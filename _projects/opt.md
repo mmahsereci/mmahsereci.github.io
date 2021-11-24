@@ -12,7 +12,7 @@ I was involved in several aspects of stochastic optimization, such as line-searc
 filtering for noise-reduced search directions, generalization and overfitting, and dynamic pruning during network training.
 There are two related questions: How do we design better optimizers? And, what does better even mean?
 Further, the model, the optimization landscape and the data interact, and it is unclear yet how to best retrieve 
-and use the and information contained in optimization steps to solve other simultaneous, related tasks
+and use the information contained in optimization steps to simultaneously solve related tasks
 such as the ones mentioned.
 
 Some aspects of stochastic optimization can be seen as methods of

@@ -171,4 +171,4 @@ that are invariant to observed points under the model). I may also discuss algor
     Advances in Neural Information Processing Systems 31, pages 9938–9948.
 
 [2] Rasmussen and Williams 2006. *Gaussian Processes for Machine Learning.* Adaptive Computation and Machine Learning. 
-MIT Press, Cambridge, MA, USA.
+    MIT Press, Cambridge, MA, USA.

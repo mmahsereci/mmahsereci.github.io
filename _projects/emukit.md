@@ -30,7 +30,7 @@ the code quickly. Read more on EmuKit's structure
 
 ### citation
 
-If you used EmuKit in you published work, please cite as:
+If you used EmuKit in your published work, please cite as:
 
 ```buildoutcfg
 @inproceedings{Paleyes19,
