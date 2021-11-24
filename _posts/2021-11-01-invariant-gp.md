@@ -3,8 +3,8 @@ layout:     post
 title:      "Invariant Gaussian Processes"
 author:     mmahsereci
 description:    ""
-date:       2021-09-06
-thumbnail-small:  "/img/2021-09-06-invariant-gp/thumbnail.png"
+date:       2021-11-01
+thumbnail-small:  "/img/2021-11-01-invariant-gp/thumbnail.png"
 category:   techblog
 tags:       [gaussianprocesses, machinelearning]
 description: >
