@@ -30,10 +30,10 @@ the code quickly. Read more on EmuKit's structure
 
 ### citation
 
-If you used EmuKit in your published work, please cite as:
+If you use EmuKit in your work, please cite as:
 
 ```buildoutcfg
-@inproceedings{Paleyes19,
+@inproceedings{emukit19,
   author = {Paleyes, A. and Pullin, M. and Mahsereci, M. and Lawrence, N. and Gonzalez, J.},
   title = {Emulation of physical processes with Emukit},
   booktitle = {Second Workshop on Machine Learning and the Physical Sciences, NeurIPS},

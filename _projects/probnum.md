@@ -27,4 +27,15 @@ filtering and smoothing for probabilistic state-space models, mostly variants of
 
 ### citation
 
-tbd
+If you use ProbNum in your work, please cite as:
+
+```buildoutcfg
+@misc{probnum21,
+    title={ProbNum: Probabilistic Numerics in Python},
+    author={J. Wenger and N. Krämer and M. Pf{\"o}rtner and J. Schmidt and N. Bosch and N. Effenberger and J. Zenn and A. Gessner and T. Karvonen and F-X Briol and M. Mahsereci and P. Hennig},
+    year = {2021},
+    eprint={2112.02100},
+    archivePrefix={arXiv},
+    primaryClass={cs.MS}
+}
+```
