@@ -8,7 +8,7 @@ importance: 10
 category: software
 ---
 
-I am one of the original authors and co-maintainer of the 
+I am one of the original authors and a co-maintainer of the 
 [EmuKit](https://github.com/EmuKit/emukit) Python library. 
 
 EmuKit is a highly adaptable Python toolkit for decision-making under uncertainty. Its core components is an 

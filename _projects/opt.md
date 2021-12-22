@@ -8,12 +8,14 @@ importance: 29
 category: research
 ---
 
-I was involved in several aspects of stochastic optimization, such as line-searches, 
-filtering for noise-reduced search directions, generalization and overfitting, and dynamic pruning during network training.
-There are two related questions: How do we design better optimizers? And, what does better even mean?
-Further, the model, the optimization landscape and the data interact, and it is unclear yet how to best retrieve 
-and use the information contained in optimization steps to simultaneously solve related tasks
-such as the ones mentioned.
+Large datasets yield stochasticity in optimization since only a fraction of the data can be processed at a time.
+This yields challenges such as choosing appropriate hyperparameters, a well known one being the learning rate, 
+but also finding viable search directions, e.g, by filtering stochastic gradients. 
+Additionally, modern optimizers are required to solve talks beyond simply minimizing a given function such as
+controlling the generalization gap, or choosing the model itself e.g., via weight pruning. 
+It is therefore less clear how the "goodness" of an optimizer can be quantified these days.
+In any case, it is still unclear how to best design, retrieve and use the information contained locally at each 
+optimization step to simultaneously solve related tasks such as the ones mentioned.
 
 Some aspects of stochastic optimization can be seen as methods of
 [probabilistic numerics](https://en.wikipedia.org/wiki/Probabilistic_numerics).
