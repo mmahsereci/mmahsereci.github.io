@@ -16,7 +16,7 @@ by switching out or adding new components (plug-and-play).
 Further, EmuKit provides an interface for the surrogate model, such that custom models can be integrated into
 the code quickly. 
 
-I am one of the original authors and a co-maintainer EmuKit.
+I am one of the original authors and a co-maintainer of EmuKit.
 
 
 ### Resources
