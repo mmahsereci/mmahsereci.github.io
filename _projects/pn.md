@@ -1,6 +1,6 @@
 ---
 layout: page
-title: probabilistic numerics
+title: Probabilistic numerics
 description: >
   Probabilistic numerics is a scientific field at the intersection of statistics, machine learning 
   and applied mathematics, where tasks in numerical analysis are seen as problems of statistical, 
@@ -11,24 +11,25 @@ category: research
 ---
 
 
-[Probabilistic numerics](https://en.wikipedia.org/wiki/Probabilistic_numerics) (PN) is the overarching research topic I am interested in. Sub-topics I have worked on
-are high-dimensional stochastic optimization for non-convex continuous functions, ordinary differential equation (ODE) solvers 
-and integration routines (quadrature).
+[Probabilistic numerics](https://en.wikipedia.org/wiki/Probabilistic_numerics) (PN) 
+is concerned with solving numerical tasks using probabilistic inference. 
+This includes (stochastic) optimization, ordinary differential equation (ODE) solvers, 
+integration routines (quadrature) and others.
 The general idea of PN is that the numerical quantity of interest is seen as a latent variable that is to be inferred.
 
 ### related open source projects
 
 ---
 
-#### emukit
-- [project page]({{ site.baseurl }}{% link _projects/emukit.md %})
+#### EmuKit
+- [Project page]({{ site.baseurl }}{% link _projects/emukit.md %})
 - [GitHub page](https://github.com/EmuKit/emukit) 
 
-#### probnum
-- [project page]({{ site.baseurl }}{% link _projects/probnum.md %})
+#### ProbNum
+- [Project page]({{ site.baseurl }}{% link _projects/probnum.md %})
 - [GitHub page](https://github.com/probabilistic-numerics/probnum) 
 
-### publications
+### Publications
 
 ---
-- [publication page]({{ site.baseurl }}{% link _pages/publications.md %})
+- [Publication page]({{ site.baseurl }}{% link _pages/publications.md %})

@@ -7,8 +7,9 @@ date:       2021-10-31
 category:   techblog
 tags:       [machinelearning, statistics]
 description: >
-  Distinguishing data-distributions is a central topic of statistics. There were several attempts to categorize the 
-  different ways and causes to why two data-distributions, in particular the training and test distribution, may differ. 
+  Distinguishing data-distributions is a central topic of statistics. There exist several approaches 
+  to categorize data-distribution shift, often with particular emphasis on the difference between the 
+  training and test distribution. 
   Here, I collect some thoughts on the issue.
 
 authors:
@@ -18,8 +19,9 @@ authors:
       name: University of T&uuml;bingen
 ---
 
-Distinguishing data-distributions is a central topic of statistics. There were several attempts to categorize the 
-different ways and causes to why two data-distributions, in particular the training and test distribution, may differ. 
+Distinguishing data-distributions is a central topic of statistics. There exist several approaches 
+to categorize data-distribution shift, often with particular emphasis on the difference between the 
+training and test distribution. 
 Here, I collect some thoughts on the issue.
 
 The term *dataset shift* was probably coined by [Storkey 2009](#references) and means that the training and 
@@ -28,9 +30,9 @@ but also due to the test and
 training data-distribution having different sample space and/or probability of events. 
 Thus, dataset shifts occur when models are fitted to training data that does not reflect the data-distribution they 
 encounter once deployed.
-Two of the most frequent reasons for dataset shifts are:
+Two of the most frequent reasons for dataset shift are:
 
-- *Sample selection bias*: Samples may be discarded from the training with a certain, possibly unknown probability, 
+- *Sample selection bias*: Samples may be discarded from the training with a certain, possibly unknown probability.
 - *Changing environments*: The mechanism that produces the data changes between collecting 
   the training data and deployment.
 
@@ -55,7 +57,7 @@ identical, in which case we can assess generalisation performance at training ti
 a test set from $$\mathcal{D}_{tr}$$ and witholding it during training.
 In practical applications, the implicit assumption of $$P_{tr}\equiv P_{ts}$$ may be violated, and the distribution 
 $$P_{ts}$$ at deployment time may be arbitrarily different to the distribution $$P_{tr}$$ at fitting time. 
-This 'difference in data-distribution' is often referred to as *dataset shift*. There are 
+This 'difference in data-distribution' is referred to as *dataset shift*. There are 
 *4 types of shifts* which each describe a special case where one distribution of the data-generating process 
 stays fixed, and the other one changes. The following table summarises those shifts. 
 
@@ -190,7 +192,7 @@ know does that information provide any benefit? I guess it's not entirely clear,
   
 - *The type of shift should matter:* It is often not clear
   or easily interpretable how a trained machine learning model reacts to dataset shift. Hence, if we want to 
-  use models in the real world, we should care. Possibly increasingly in benchmarks, where shifts are 
+  use models in the real world, we should care. For example artificial shifts in benchmark datasets are 
   often ad-hoc and definitions are not provided or incorporated in the analysis. Sometimes there are even discrepancies 
   between shifts used in toy-examples that are meant to build intuition and so-called real world applications 
   which makes interpretation of experimental results even harder.
@@ -247,9 +249,8 @@ Hence, the score $$S$$ needs to be computed on $$P_{ts}(x)$$ only.
 Covariate shift, inverse concept shift and to some degree also prior probability shift all 
 will have a detectable effect on the statistics of $$P_{ts}(x)$$. If targets $$y$$ are 
 not available in a new dataset however, and forward concept shift occurs ($$P(y|x)$$ is intervened on), then no 
-shift will be detected, but generalisation performance will drop. This scenario is not too unrealistic: A root cause
-example are changes in the environment where users start to like or not like a feature anymore due to some outer 
-influence.
+shift will be detected, but generalisation performance will drop. This scenario is quite realistic: For example 
+users may start to like or not like a feature anymore due to some outer influence which affects $$P(y|x)$$ only.
 
 *Model assumptions:* There is an interplay between dataset, shift appearance, and machine learning model. 
 A relatively small shift may have a larger effect on generalisation performance, e.g., swapping pixels in an image, than 
