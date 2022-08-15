@@ -1,8 +1,8 @@
 ---
 layout: page
-title: projects
+title: Projects
 permalink: /projects/
-description: These are the research areas, and software projects I am mainly involved in.
+description: 
 nav: true
 display_categories: [research, software]
 horizontal: false
