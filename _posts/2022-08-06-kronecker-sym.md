@@ -122,7 +122,7 @@ The closest symmetric Kronecker product $$\tilde{A}^*\circledast\tilde{B}^*$$ un
 $$
 \begin{equation}
 \label{eq:argmin-sym}
-\tilde{A}^*, \tilde{B}^* = \operatorname{arg\,min}_{A, B}\|C-A\circledast B\|_F^2.
+\tilde{A}^*, \tilde{B}^* = \operatorname*{arg\,min}_{A, B}\|C-A\circledast B\|_F^2.
 \end{equation}
 $$
 
@@ -131,7 +131,7 @@ such that (with slight abuse of notation)
 
 $$
 \begin{equation*}
-\tilde{A}^*, \tilde{B}^*  = \operatorname{arg\,min}_{A, B}\|\mathcal{T}[C-A\otimes B]\|_F^2.
+\tilde{A}^*, \tilde{B}^*  = \operatorname*{arg\,min}_{A, B}\|\mathcal{T}[C-A\otimes B]\|_F^2.
 \end{equation*}
 $$
 

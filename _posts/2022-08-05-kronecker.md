@@ -258,7 +258,7 @@ The closest Kronecker product $$A^*\otimes B^*$$ under the Frobenius norm is giv
 $$
 \begin{equation}
 \label{eq:argmin}
-A^*, B^* = \operatorname{arg\,min}_{A, B}\|C-A\otimes B\|_F^2.
+A^*, B^* = \operatorname*{arg\,min}_{A, B}\|C-A\otimes B\|_F^2.
 \end{equation}
 $$
 
@@ -275,7 +275,7 @@ $$n_1n_2\times m_1m_2$$ dimensional space
 $$
 \begin{equation*}
 \label{eq:argmin-R}
-\overrightarrow{A^*}, \overrightarrow{B^*} = \operatorname{arg\,min}_{A, B}\|\mathcal{R}(C)-\overrightarrow{A} \overrightarrow{B}\|_F^2.
+\overrightarrow{A^*}, \overrightarrow{B^*} = \operatorname*{arg\,min}_{A, B}\|\mathcal{R}(C)-\overrightarrow{A} \overrightarrow{B}\|_F^2.
 \end{equation*}
 $$
 
@@ -364,7 +364,7 @@ where $$\alpha_t$$ is the step size found by a line search and
 $$B_t$$ is the analytic solution to the minimization problem
 
 $$
-B_t = \operatorname{arg\,min}_B \|B_{t-1} - B\|_{F, W}^2
+B_t = \operatorname*{arg\,min}_B \|B_{t-1} - B\|_{F, W}^2
 \quad\text{ s.t. the secant equation}\quad Bs_t = \Delta y_t
 $$
 
@@ -377,7 +377,7 @@ minimization of a square form, weighted with the Kronecker product $$W \otimes W
 
 $$
 \overrightarrow{B}_t = 
-\operatorname{arg\,min}_{\overrightarrow{B}}
+\operatorname*{arg\,min}_{\overrightarrow{B}}
 (\overrightarrow{B} - \overrightarrow{B}_{t-1})^{\intercal}
 (W\otimes W)
 (\overrightarrow{B} - \overrightarrow{B}_{t-1})
