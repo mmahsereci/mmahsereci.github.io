@@ -389,7 +389,7 @@ $$
 (I\otimes s_t^{\intercal})\overrightarrow{B} = \Delta y_t.
 $$
 
-In quasi-Newton methods that enfornce symmetry of $$B_t$$, we will encounter the 
+In quasi-Newton methods that enforce symmetry of $$B_t$$, we will encounter the 
 [*symmetric* Kronecker product]({% link _posts/2022-08-06-kronecker-sym.md %}) 
 product in a similar way. 
 

@@ -214,7 +214,7 @@ p(X; V, \nu) = \det(X)^{\frac{\nu-n-1}{2}}
 \frac{e^{-\frac{1}{2}\operatorname{tr}[V^{-1}X]}}{2^{\frac{\nu n}{2}}\det(V)^{\frac{\nu}{2}}\Gamma_n(\frac{\nu}{2})},
 $$
 
-that is parametrized by the scalar degrees of freedom $$\nu>n-1$$ and a symmetric positive definite matrix $$V$$.
+that is parametrized by the degrees of freedom $$\nu>n-1$$ and a symmetric positive definite matrix $$V$$.
 Further, $$\Gamma_n$$ is the multivariate Gamma function. Then, it can be shown straightforwardly that
 the covariance (centered second moment) of $$X$$ is given by the elemetns of the symmetric Kronecker product 
 of $$V$$ scaled with a constant factor of $$2\nu$$ 
