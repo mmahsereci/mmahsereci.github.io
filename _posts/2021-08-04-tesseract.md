@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "The Tessearct"
+title:      "The Tesseract"
 author:     mmahsereci
 description:    ""
 date:       2021-08-04
