@@ -5,12 +5,13 @@ author:     mmahsereci
 description:    ""
 date:       2021-08-04
 category:   techblog
-tags:       [machinelearning]
+tags:       []
 description: >
     The tesseract is a 4-dimensional hyper-cube which is fun to animate by rotating it around 
     one or more planes and projecting it onto 3-dimensional space.
     The post also contains animations of a rotating 4-dimensional sphere
     (which may sound boring at first, but projected onto 3d looks quite cool).
+    We end with some thoughts.
 
 authors:
   - name: mmahsereci
@@ -23,6 +24,7 @@ The [tesseract](https://en.wikipedia.org/wiki/Tesseract)
 is a 4-dimensional hyper-cube which is fun to animate by rotating it around 
 one or more planes and projecting it onto 3-dimensional space.
 The post also contains animations of a rotating 4-dimensional sphere.
+We end with [some thoughts](#some-thoughts).
 
 The analogue to the tesseract in 3d is the cube, and in 2d the square.
 
@@ -211,3 +213,35 @@ axis, the dots representing the surface of the sphere move in, or outwards in th
   <img src="{{ site.baseurl }}/img/2021-08-04-tesseract/sphere-x-y-and-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
+
+## Some thoughts
+
+The rotating tesseract and the hyper-sphere are simple enough to animate. 
+In 4 dimensions all you need are some vectors and a rotation matrix.
+There are little things more simple to write in code than a matrix-vector multiplication
+which is effectively what this boils down to. The projection into 3d is simple, too.
+
+In 3 dimensions, however, the movement of the object looks more involved, and perhaps even 
+complicated. The dynamics are not as easy to understand and harder to describe mathematically.
+
+In other words, for the animations here, we went the route of describing something 
+mathematically simple in higher dimensions to make it look complicated in lower dimensions.
+
+In machine learning, we often go the route other way round. Meaning that we aim to describe
+something complicated looking in lower dimension, with something simple looking in higher 
+dimensions that we can then understand and solve. 
+The difficulty then is to find the map to the higher dimension, which, in our analogy, would be 
+the "inverse" projection, that makes the problem look easy. 
+
+An example is 
+[linear feature regression](https://en.wikipedia.org/wiki/Linear_regression), 
+which, as the name says, is linear, and thus easy to solve in 
+the high dimensional feature space for example with 
+[linear least squares](https://en.wikipedia.org/wiki/Linear_least_squares). 
+The difficulty is only to find the appropriate feature map 
+that projects the given, usually lower dimensional features, into a high-dimensional feature space
+such that the resulting function looks simple (linear) enough.
+
+As the feature map is a projection into an unknown higher dimensional space, we can already guess that it may be
+ill-defined, non-unique, or ambiguous is some other way, which is why assumptions play a huge
+but often underappreciated role in machine learning. 
