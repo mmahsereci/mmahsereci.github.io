@@ -5,7 +5,7 @@ author:     mmahsereci
 description:    ""
 date:       2021-08-04
 category:   techblog
-tags:       []
+tags:       [machinelearning]
 description: >
     The tesseract is a 4-dimensional hyper-cube which is fun to animate by rotating it around 
     one or more planes and projecting it onto 3-dimensional space.
@@ -244,4 +244,4 @@ such that the resulting function looks simple (linear) enough.
 
 As the feature map is a projection into an unknown higher dimensional space, we can already guess that it may be
 ill-defined, non-unique, or ambiguous is some other way, which is why assumptions play a huge
-but often underappreciated role in machine learning. 
+albeit often underappreciated role in machine learning. 
