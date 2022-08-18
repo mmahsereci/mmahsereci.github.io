@@ -219,7 +219,7 @@ axis, the dots representing the surface of the sphere move in, or outwards in th
 The rotating tesseract and the hyper-sphere are simple enough to animate. 
 In 4 dimensions all you need are some vectors and a rotation matrix.
 There are little things more simple to write in code than a matrix-vector multiplication
-which is effectively what this boils down to. The projection into 3d is simple, too.
+which is effectively what this boils down to. The projection onto 3d is simple, too.
 
 In 3 dimensions, however, the movement of the object looks more involved, and perhaps even 
 complicated. The dynamics are not as easy to understand and harder to describe mathematically.
