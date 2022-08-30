@@ -247,7 +247,7 @@ $$\Delta\in \mathbb{R}^{n^2\times n^2}$$
 as the counter-part to the symmetrization operator $$\Gamma$$ such that
 
 $$
-\Delta = I + \Gamma\quad \text{and}
+\Delta = I - \Gamma\quad \text{and}
 \quad
 \Delta \overrightarrow{X} = \frac{1}{2}(\overrightarrow{X - X^{\intercal}})
 $$

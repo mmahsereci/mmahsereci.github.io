@@ -243,5 +243,5 @@ that projects the given, usually lower dimensional features, into a high-dimensi
 such that the resulting function looks simple (linear) enough.
 
 As the feature map is a projection into an unknown higher dimensional space, we can already guess that it may be
-ill-defined, non-unique, or ambiguous is some other way, which is why assumptions play a huge
+ill-defined, non-unique, or ambiguous in some other way, which is why assumptions play a huge
 albeit often underappreciated role in machine learning. 
