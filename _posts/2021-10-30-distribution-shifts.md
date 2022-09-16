@@ -3,7 +3,7 @@ layout:     post
 title:      "Dataset Shifts"
 author:     mmahsereci
 description:    ""
-date:       2021-10-31
+date:       2021-10-30
 category:   techblog
 tags:       [machinelearning, statistics]
 description: >
