@@ -345,7 +345,7 @@ x_test = np.atleast_1d(np.random.uniform(0, 10, 1))
 f_hat_at_x_test = fhat(x_test)
 ```
 
-### Estimation of Bias and variance
+### Estimation of bias and variance
 
 Recall that the bias and the variance of an estimator are generally not tractable.
 For each of the 14 estimators, we thus approximate those two quantities by computing the expectations

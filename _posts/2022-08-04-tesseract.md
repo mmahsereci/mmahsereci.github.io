@@ -24,7 +24,6 @@ The [tesseract](https://en.wikipedia.org/wiki/Tesseract)
 is a 4-dimensional hyper-cube which is fun to animate by rotating it around 
 one or more planes and projecting it onto 3-dimensional space.
 The post also contains animations of a rotating 4-dimensional sphere.
-We end with [some thoughts](#some-thoughts).
 
 The analogue to the tesseract in 3d is the cube, and in 2d the square.
 
@@ -199,7 +198,7 @@ w = r * np.cos(theta1)
 The above code snipped uses spherical coordinates in $$d=4$$ dimensions that are given
 by the radius $$r$$ and $$d-1$$ angles $$\theta_1,\dots,\theta_{d-1} $$ . 
 In total, we distribute $$2000=10\times 10\times 20$$ points on the surface of the hyper-sphere.
-The points are chosen ad-hoc and are neither spread homogeneously nor uniformly.
+The points are chosen ad-hoc and not spread uniformly.
 
 The animations below (from left to right or top to bottom)
 show the same rotations as the ones of the tesseract above. Whenever a rotation involves 
@@ -218,7 +217,7 @@ axis, the dots representing the surface of the sphere move in, or outwards in th
 
 The rotating tesseract and the hyper-sphere are simple enough to animate. 
 In 4 dimensions all you need are some vectors and a rotation matrix.
-There are little things more simple to write in code than a matrix-vector multiplication
+There are little things simpler to write in code than a matrix-vector multiplication
 which is effectively what this boils down to. The projection onto 3d is simple, too.
 
 In 3 dimensions, however, the movement of the object looks more involved, and perhaps even 
@@ -236,12 +235,12 @@ the "inverse" projection, that makes the problem look easy.
 An example is 
 [linear feature regression](https://en.wikipedia.org/wiki/Linear_regression), 
 which, as the name says, is linear, and thus easy to solve in 
-the high dimensional feature space for example with 
+the constructed feature space for example with 
 [linear least squares](https://en.wikipedia.org/wiki/Linear_least_squares). 
 The difficulty is only to find the appropriate feature map 
-that projects the given, usually lower dimensional features, into a high-dimensional feature space
+that projects the original, lower dimensional features, into a high-dimensional feature space
 such that the resulting function looks simple (linear) enough.
 
-As the feature map is a projection into an unknown higher dimensional space, we can already guess that it may be
-ill-defined, non-unique, or ambiguous in some other way, which is why assumptions play a huge
-albeit often underappreciated role in machine learning. 
+As the feature map is a projection into a higher dimensional space that requires designing or learning, 
+we can already guess that it may be ill-defined, non-unique, or ambiguous in some other way, 
+which is why assumptions play a huge albeit often underappreciated role in machine learning. 

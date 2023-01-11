@@ -113,7 +113,7 @@ of the matrix $$A$$, and respectively for the other matrices.
 Proof of all these equalities follow straightforwardly from the definition of the 
 Kronecker product (Eq. \eqref{eq:def}) but can be found in the [references](#references) below.
 
-Eqs. \eqref{eq:1}-\eqref{eq:6} especially hold if $$A$$, $$B$$, $$C$$, $$B$$ are scalars or 
+Eqs. \eqref{eq:1}-\eqref{eq:6} especially hold if $$A$$, $$B$$, $$C$$, $$D$$ are scalars or 
 vectors (where applicable). 
 
 All formulas exploit the factorizing structure of the Kronecker product, which is why one side 
@@ -346,7 +346,7 @@ is further linked to the second moment of the
 which is a distribution over symmetric positive-definite matrices.
 
 
-### Quasi-newton methods
+### Quasi-Newton methods
 
 Quasi-Newton methods (I may make another blogpost on those some day) 
 are optimizers for deterministic objective functions
@@ -417,7 +417,7 @@ neural network architecture, and
 ii) since tensors are a natural representation of weights and gradients in most 
 deep learning code bases. Hence, e.g., left an right matrix-multiplication can be thought of as
 a Kronecker multiplication as in Eq. \eqref{eq:vec}.
-Two recent, but not the first, examples are KFAC [[4]](#references) and Shampoo [[5]](#references), but there are
+Two recent, but not the first, examples are K-FAC [[4]](#references) and Shampoo [[5]](#references), but there are
 many more, also older ones that explore Kronecker structure in the context of stochastic optimization.
 
 
