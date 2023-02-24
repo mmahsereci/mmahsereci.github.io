@@ -250,7 +250,7 @@ def f(x):
 The resulting ground truth function $$f(x)$$ is plotted below on the x-range $$[0, 10]$$.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/img/2021-10-31-bias-variance-decomposition/00.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-10-31-bias-variance-decomposition/00.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 ### The data
@@ -281,7 +281,7 @@ A good estimator should avoid fitting those "wiggles" and rather
 smooth them out to fit the dotted line more closely.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/img/2021-10-31-bias-variance-decomposition/00data.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-10-31-bias-variance-decomposition/00data.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 Further, we denote the set of nodes, observations and ground truth values as 
@@ -364,7 +364,7 @@ on the test point. As expected, neither its variance, nor its squared bias is mi
 when compared to all other estimators.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/img/2021-10-31-bias-variance-decomposition/05.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-10-31-bias-variance-decomposition/05.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 The behavior of the estimators can be understood by looking at individual fits.
@@ -377,7 +377,7 @@ The winning model with $$K=3$$ has just the right complexity to explain the sign
 smooth out the perturbations $$\epsilon$$.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/img/2021-10-31-bias-variance-decomposition/01.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-10-31-bias-variance-decomposition/01.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 It should be noted that the intuition presented here may not be applicable to all estimators out there, especially
