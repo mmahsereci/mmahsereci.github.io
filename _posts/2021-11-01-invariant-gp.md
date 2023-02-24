@@ -117,7 +117,7 @@ Group $$G_f$$ is of size $$J=2$$ and contains $$T_0= I$$ as well as a projection
 prior samples (the origin at $$[0, 0]$$ is in the center of each plot).
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/assets/posts/2021-09-06-invariant-gp/point_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+  <img src="{{ site.baseurl }}/assets/posts/2021-11-01-invariant-gp/point_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
 </div>
 
 ### Axis-symmetry along both axis
@@ -129,7 +129,7 @@ We observe that the samples from this prior observe the axis-symmetries.
 
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/assets/posts/2021-09-06-invariant-gp/flip-point_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+  <img src="{{ site.baseurl }}/assets/posts/2021-11-01-invariant-gp/flip-point_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
 </div>
 
 ### Axis-symmetry along one axis
@@ -138,7 +138,7 @@ For axis-symmetry along one axis only (say x-axis), we only require $$J=2$$ tran
 $$T_1 = [[1, 0]; [0, -1]]$$. The samples again obey the symmetry.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/assets/posts/2021-09-06-invariant-gp/x-flip_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-11-01-invariant-gp/x-flip_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 
@@ -149,13 +149,13 @@ $$T_i = R(\theta=i\frac{2\pi}{J})$$ for $$i=1,\dots,J$$ where $$R(\theta)$$ is
 the [2D rotation matrix](https://en.wikipedia.org/wiki/Rotation_matrix). Below we show $$J=5$$.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/assets/posts/2021-09-06-invariant-gp/rotations_00_a.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-11-01-invariant-gp/rotations_00_a.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 Same as above but for $$10$$-fold rotation ($$J=10$$). 
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/assets/posts/2021-09-06-invariant-gp/rotations_00_n10_a.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2021-11-01-invariant-gp/rotations_00_n10_a.png"  style="width:90%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 ## Where is the data?
