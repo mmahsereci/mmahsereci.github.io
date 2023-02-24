@@ -159,9 +159,9 @@ ii) rotation in $$z$$-$$w$$ plane, ($$x$$-$$y$$ rotation plane stays invariant)
 iii) double rotation in $$x$$-$$y$$ and $$z$$-$$w$$ planes.
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/img/2022-08-17-tesseract/tesseract-x-y-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
-  <img src="{{ site.baseurl }}/img/2022-08-17-tesseract/tesseract-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
-  <img src="{{ site.baseurl }}/img/2022-08-17-tesseract/tesseract-x-y-and-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2022-08-17-tesseract/tesseract-x-y-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2022-08-17-tesseract/tesseract-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2022-08-17-tesseract/tesseract-x-y-and-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 The corners only move "in" and "out" w.r.t. the origin when the rotation involves movement in the
@@ -207,9 +207,9 @@ axis, the dots representing the surface of the sphere move in, or outwards in th
 
 
 <div style="text-align:center">
-  <img src="{{ site.baseurl }}/img/2022-08-17-tesseract/sphere-x-y-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
-  <img src="{{ site.baseurl }}/img/2022-08-17-tesseract/sphere-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
-  <img src="{{ site.baseurl }}/img/2022-08-17-tesseract/sphere-x-y-and-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2022-08-17-tesseract/sphere-x-y-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2022-08-17-tesseract/sphere-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
+  <img src="{{ site.baseurl }}/assets/posts/2022-08-17-tesseract/sphere-x-y-and-z-w-plane.gif"  style="width:32%; padding-top: 10px; padding-bottom: 10px;"/>
 </div>
 
 
