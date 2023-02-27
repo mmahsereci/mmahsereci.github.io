@@ -292,6 +292,7 @@ Thus, quasi-Newton methods can ensure a descent direction, and can be applied to
 where Newton's method fails.
 
 As this post is getting a bit long, I may discuss line searches and their role in Newton's and quasi-Newton methods in another post, hopefully to come soon.
+[Edit: I actually made one. It's [here]({% link _posts/2023-02-19-line-searches.md %})]
 
 ## Lastly (there is much more)
 
