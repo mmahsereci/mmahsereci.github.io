@@ -149,7 +149,7 @@ $$
     &&B_{t+1} &= \operatorname{arg\,min}_{B}\|B - B_t\|_{W, F}\\
     &&&\notag \\
     &\text{s.t.}\qquad& Bs_t &= \Delta y_t,   \qquad (\text{secant equation})\notag\\
-    &\text{and}\qquad&  B    &= B^{\intercal}x.\qquad (B\text{ symmetric})\notag
+    &\text{and}\qquad&  B    &= B^{\intercal}.\qquad (B\text{ symmetric})\notag
 \end{alignat}
 $$
 

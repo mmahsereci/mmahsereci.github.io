@@ -4,7 +4,7 @@ title: Stochastic optimization
 description: >
   High-dimensional stochastic, non-convex optimization such as required to train neural networks.
 img: assets/img/project_thumbnails/opt.png
-importance: 29
+importance: 27
 category: research
 ---
 

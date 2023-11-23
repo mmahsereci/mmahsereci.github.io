@@ -21,7 +21,9 @@ Previously I have been at Amazon Web Services (AWS) Berlin and
 Amazon Retail (AMZN) Cambridge as Machine Learning Scientist. I graduated from
 the Max-Planck Institute for Intelligent Systems (MPI) T&uuml;bingen.
 
-My research interests are stochastic optimization, 
-numerical integration, 
-probabilistic numerics, and statistical emulation. I am also an active contributor and maintainer of 
-open source software projects on GitHub.
+My research interests are 
+stochastic optimization, 
+probabilistic numerics,
+numerical integration and 
+statistical emulation. 
+I am also an active contributor and maintainer of open source software projects on GitHub.

@@ -6,7 +6,7 @@ description: >
   and applied mathematics, where tasks in numerical analysis are seen as problems of statistical, 
   probabilistic, or Bayesian inference.
 img: assets/img/project_thumbnails/pn.png
-importance: 29
+importance: 28
 category: research
 ---
 
@@ -17,7 +17,7 @@ This includes (stochastic) optimization, ordinary differential equation (ODE) so
 integration routines (quadrature) and others.
 The general idea of PN is that the numerical quantity of interest is seen as a latent variable that is to be inferred.
 
-### related open source projects
+### Related open source projects
 
 ---
 

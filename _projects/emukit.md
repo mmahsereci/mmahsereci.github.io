@@ -23,7 +23,6 @@ I am one of the original authors and a co-maintainer of EmuKit.
 
 - [GitHub page](https://github.com/EmuKit/emukit) 
 - [Webpage](https://emukit.github.io/) 
-- [Paper](https://ml4physicalsciences.github.io/2019/files/NeurIPS_ML4PS_2019_113.pdf)
 
 
 ### Citation
@@ -31,7 +30,15 @@ I am one of the original authors and a co-maintainer of EmuKit.
 If you use EmuKit in your work, please cite as:
 
 ```buildoutcfg
-@inproceedings{emukit19,
+@article{emukit2023,
+  author = {A. Paleyes and M. Mahsereci and N.~D. Lawrence},
+  title = {Emukit: A Python toolkit for decision making under uncertainty},
+  journal = {Proceedings of the 22nd Python in Science Conference},
+  pages = {68 - 75},
+  year = {2023}
+}
+
+@inproceedings{emukit2019,
   author = {Paleyes, A. and Pullin, M. and Mahsereci, M. and Lawrence, N. and Gonzalez, J.},
   title = {Emulation of physical processes with Emukit},
   booktitle = {Second Workshop on Machine Learning and the Physical Sciences, NeurIPS},

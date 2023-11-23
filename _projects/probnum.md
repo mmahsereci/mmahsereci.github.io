@@ -14,10 +14,6 @@ ProbNum's solvers not only estimate the solution of the numerical problem, but a
 arises from finite computational resources, discretization and stochastic input. 
 The estimated numerical uncertainty can be used in downstream decisions.
 
-Lower level structure of ProbNum includes: A module for random variables and random variable arithmetics;
-(memory-)efficient and lazy implementation of linear operators that integrate with random variables;
-filtering and smoothing for probabilistic state-space models, mostly variants of Kalman filters.
-
 I am an active contributor and maintainer of ProbNum.
 
 ### Resources

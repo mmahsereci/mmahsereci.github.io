@@ -5,7 +5,7 @@ description: >
   Bayesian quadrature is a model-based approach to numerical integration similar to how 
   Bayesian optimization is a model-based approach to global optimization. 
 img: assets/img/project_thumbnails/bq.png
-importance: 28
+importance: 29
 category: research
 ---
 
