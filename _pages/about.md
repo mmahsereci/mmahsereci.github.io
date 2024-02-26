@@ -22,8 +22,7 @@ Amazon Retail (AMZN) Cambridge as Machine Learning Scientist. I graduated from
 the Max-Planck Institute for Intelligent Systems (MPI) T&uuml;bingen.
 
 My research interests are 
-stochastic optimization, 
-probabilistic numerics,
-numerical integration and 
+stochastic optimization methods for deep learning, 
+probabilistic numerics, and 
 statistical emulation. 
 I am also an active contributor and maintainer of open source software projects on GitHub.

@@ -2,17 +2,17 @@
 layout: page
 title: ProbNum
 description: >
-  ProbNum provides numerical solvers for linear systems, intractable integrals and ordinary differential equations in Python.
+  ProbNum provides numerical solvers for linear systems, differential equations, integrals and linear systems in Python.
 img: assets/img/project_thumbnails/probnum.png
 importance: 10
 category: software
 ---
 
 
-ProbNum provides numerical solvers for linear systems, intractable integrals and ordinary differential equations in Python.
-ProbNum's solvers not only estimate the solution of the numerical problem, but also its uncertainty (numerical error) which 
+ProbNum provides numerical solvers for linear systems, differential equations, integrals and linear systems in Python.
+The solvers not only estimate the solution of the numerical problem, but also its numerical error which 
 arises from finite computational resources, discretization and stochastic input. 
-The estimated numerical uncertainty can be used in downstream decisions.
+The return objects are usually distributions over the solution which can be used in downstream decisions.
 
 I am an active contributor and maintainer of ProbNum.
 

@@ -8,13 +8,17 @@ importance: 10
 category: software
 ---
 
-EmuKit is a highly adaptable Python toolkit for decision-making under uncertainty. Its core components is an 
-active learning loop that unifies several active machine learning methods such as experimental design, 
-Bayesian optimization and Bayesian quadrature. 
-EmuKit's design allows the user to customize the learning algorithm easily, 
-by switching out or adding new components (plug-and-play). 
-Further, EmuKit provides an interface for the surrogate model, such that custom models can be integrated into
-the code quickly. 
+EmuKit is a highly adaptable Python toolkit for decision-making under uncertainty. 
+It's main packages provide methods for Bayesian optimization, Bayesian quadrature and experimental design.
+The core package contains and active learning loop that unifies functionality of those methods.
+
+Emukit's main features is that is it backend agnostic to the modeling backend. Hence, custom models in the Python
+ecosystem, can be wrapped into Emukit's interfaces and make use of active data selection. 
+This is particularly useful if it is not possible to port the custom model to another library.
+
+Further, Emukit is composed of classes and interfaces that mimic the practical choices of a machine learning practitioner.
+Hence, it is possible to design customize methods quite easily, by switching out or adding new components that seamlessly
+integrate with the rest of the codebase (plug-and-play).
 
 I am one of the original authors and a co-maintainer of EmuKit.
 

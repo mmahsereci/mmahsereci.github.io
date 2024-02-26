@@ -12,9 +12,9 @@ category: research
 
 
 [Probabilistic numerics](https://en.wikipedia.org/wiki/Probabilistic_numerics) (PN) 
-is concerned with solving numerical tasks using probabilistic inference. 
-This includes (stochastic) optimization, ordinary differential equation (ODE) solvers, 
-integration routines (quadrature) and others.
+is concerned with solving a numerical task using probabilistic inference. 
+This includes stochastic optimization methods, differential equation solvers, 
+integration routines and solvers of linear systems.
 The general idea of PN is that the numerical quantity of interest is seen as a latent variable that is to be inferred.
 
 ### Related open source projects
