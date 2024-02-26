@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Maren  Mahsereci
+
+
+  | Dataset Shifts
+
+</title>
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>Ω</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2021/distribution-shifts/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://mmahsereci.github.io/">
+       <span class="font-weight-bold">Maren</span>   Mahsereci
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              <!-- I changed this -->
+              posts
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Dataset Shifts</h1>
+    <p class="post-meta">October 30, 2021 • mmahsereci</p>
+    <p class="post-tags">
+      <a href="/blog/2021"> <i class="fas fa-calendar fa-sm"></i> 2021 </a>
+      
+        ·  
+        
+        <a href="/blog/tag/machinelearning">
+          <i class="fas fa-hashtag fa-sm"></i> machinelearning</a>  
+          
+        <a href="/blog/tag/statistics">
+          <i class="fas fa-hashtag fa-sm"></i> statistics</a>  
+          
+      
+
+      
+        ·  
+        
+        <a href="/blog/category/techblog">
+          <i class="fas fa-tag fa-sm"></i> techblog</a>  
+          
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>Distinguishing data-distributions is a central topic of statistics. There exist several approaches 
+to categorize data-distribution shift, often with particular emphasis on the difference between the 
+training and test distribution. 
+Here, I collect some thoughts on the issue.</p>
+
+<p>The term <em>dataset shift</em> was probably coined by <a href="#references">Storkey 2009</a> and means that the training and 
+test datasets in a supervised learning problem differ not solely due to the randomness of the data sample, 
+but also due to the test and 
+training data-distribution having different sample space and/or probability of events. 
+Thus, dataset shifts occur when models are fitted to training data that does not reflect the data-distribution they 
+encounter once deployed.
+Two of the most frequent reasons for dataset shift are:</p>
+
+<ul>
+  <li>
+<em>Sample selection bias</em>: Samples may be discarded from the training with a certain, possibly unknown probability.</li>
+  <li>
+<em>Changing environments</em>: The mechanism that produces the data changes between collecting 
+the training data and deployment.</li>
+</ul>
+
+<p>Specific instances of dataset shift where categorised by <a href="#references">Moreno-Torres et al. 2012</a> in a thorough review.
+Probably the most well-known shift is the <em>covariate shift</em> where the marginal distribution of the inputs changes, but the conditional 
+distribution of the targets given the inputs stays unchanged. 
+We’ll now explore the shift types based on which marginal or conditional distribution is acted upon.</p>
+
+<h2 id="the-4-types-of-dataset-shift">The 4 types of dataset shift</h2>
+
+<p>Consider a supervised prediction problem (classification or regression) where a relation between inputs 
+\(x\) and targets \(y\) needs to be learned. Denote the available dataset at training time as 
+\(\mathcal{D}_{tr} :=\{(x_n, y_n)\}_{n=1}^N\) with elements assumed to be iid draws from a data-distribution 
+\((x_n, y_n)\sim P_{tr}(x, y)\). 
+Denote the dataset which will be accesible at deployment time as \(\mathcal{D}_{ts}=\{(x_m, y_m)\}_{m=1}^{M}\) with 
+\((x_m, y_m)\sim P_{ts}(x, y)\).</p>
+
+<p>In machine learning, the distributions at training and deployment time \(P_{tr}\) and \(P_{ts}\) respectively are 
+often implicitly assumed to be 
+identical, in which case we can assess generalisation performance at training time already, e.g., by splitting off 
+a test set from \(\mathcal{D}_{tr}\) and witholding it during training.
+In practical applications, the implicit assumption of \(P_{tr}\equiv P_{ts}\) may be violated, and the distribution 
+\(P_{ts}\) at deployment time may be arbitrarily different to the distribution \(P_{tr}\) at fitting time. 
+This ‘difference in data-distribution’ is referred to as <em>dataset shift</em>. There are 
+<em>4 types of shifts</em> which each describe a special case where one distribution of the data-generating process 
+stays fixed, and the other one changes. The following table summarises those shifts.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th style="text-align: center">causal direction</th>
+      <th style="text-align: center">    marginal probability      </th>
+      <th style="text-align: right">     conditional probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>covariate shift</td>
+      <td style="text-align: center">\(X\rightarrow Y\)</td>
+      <td style="text-align: center">\(P_{tr}(x)\not\equiv P_{ts}(x)\)</td>
+      <td style="text-align: right">\(P_{tr}(y\vert x)\equiv P_{ts}(y\vert x)\)</td>
+    </tr>
+    <tr>
+      <td>concept shift i</td>
+      <td style="text-align: center">\(X\rightarrow Y\)</td>
+      <td style="text-align: center">\(P_{tr}(x)\equiv P_{ts}(x)\)</td>
+      <td style="text-align: right">\(P_{tr}(y\vert x)\not\equiv P_{ts}(y\vert x)\)</td>
+    </tr>
+    <tr>
+      <td>prior probability shift</td>
+      <td style="text-align: center">\(Y\rightarrow X\)</td>
+      <td style="text-align: center">\(P_{tr}(y)\not\equiv P_{ts}(y)\)</td>
+      <td style="text-align: right">\(P_{tr}(x\vert y)\equiv P_{ts}(x\vert y)\)</td>
+    </tr>
+    <tr>
+      <td>concept shift ii</td>
+      <td style="text-align: center">\(Y\rightarrow X\)</td>
+      <td style="text-align: center">\(P_{tr}(y)\equiv P_{ts}(y)\)</td>
+      <td style="text-align: right">\(P_{tr}(x\vert y)\not\equiv P_{ts}(x\vert y)\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br>
+Two of the shifts (covariate and prior probability shift) act on one of the marginal distributions each, 
+while the other two (concept shift i and ii) act on one of the conditional distributions while the ‘other’ 
+distribution completing the joint stays the same for all types.</p>
+
+<p>The shifts include the causal direction of the data generation in their definitions. 
+Dataset shift is thus an intervention into the system, where either the generation of inputs \(x\) via \(P(x)\) 
+(forward direction \(X\rightarrow Y\)), the generation of the targets \(y\) via \(P(y)\) 
+(inverse direction \(Y\rightarrow X\)), or the mechanisms \(P(y|x)\) and \(P(x|y)\) that create the targets and inputs 
+respectively, are being altered.
+The causal relation ensures that if one of the 4 distributions is intervened on—one of the 2 marginals 
+\(P(x)\) and \(P(y)\), or one of the 2 conditionals \(P(x|y)\) and \(P(y|x)\)—the other relevant distribution 
+completing the joint does not change.</p>
+
+<p>This also means that the 4 shift types do not cover the entirety of possible dataset shifts as there are more causal 
+structures in practice than the ones considered above.
+The dataset shifts that fall under the 4 types in practice are probably just a small sub-set of 
+possible dataset shifts one might encounter as practitioner; and, unless we know the ground truth, it’s probably really 
+hard to find out what the causal relation between \(x\) and \(y\) is.</p>
+
+<p>Granted there is quite a bit of confusion about naming in the dataset shift literature, 
+even authors assigning the same name to opposing 
+concepts, but nevertheless (or rather therefore) it is beneficial to be clear on definitions.
+The ones above are taken from <a href="#references">Moreno-Torres et al. 2012</a>.</p>
+
+<h4 id="the-colloquial-use-of-the-term-covariate-shift">The colloquial use of the term ‘covariate shift’</h4>
+
+<p>This is a bit of a tangent (skip to the next section if you like), 
+but did you ever read in a machine learning paper that it addresses covariate shift? 
+Probably that’s not what they are doing.
+As we’ve just seen, covariate shift is the change of the marginal distribution \(P(x)\) of features \(x\) assuming the causal 
+relation \(X\rightarrow Y\), and \(P(y|x)\) stays unchanged when the intervention (shift) occurs.
+The covariate shifted dataset follows the generative process \(x\sim P_{ts}(x)\), \(y\sim P(y|x)\) while the 
+original dataset follows \(x\sim P_{tr}(x)\), \(y\sim P(y|x)\).
+Quite frequently, any  statistical change in the marginal distribution \(P(x)\) of features is coined as 
+covarite shift, disregarding the distribution \(P(y|x)\).</p>
+
+<p>Hence, the term ‘covariate shift’ is often used colloquially in the machine learning literature when in fact, ‘any’
+dataset shift is meant, and the actual shift is not specified, and sometimes not well understood.</p>
+
+<p><em>Example MNIST:</em>
+The causal direction of data-generation for MNIST is inverse (\(Y\) causes \(X\)). Printed forms were handed to 
+volunteers (<a href="https://www.nist.gov/srd/nist-special-database-19" target="_blank" rel="noopener noreferrer">example</a> of a filled form). The forms contained boxes 
+in which the volunteers were supposed to draw pre-defined number-characters. 
+Thus, the labels \(y\sim P(y)\) were generated first by printing and distributing the forms. Then, the features 
+\(x\sim P(x|y)\) were produces by the volunteers, digitalisation and post-processing.<br>
+It is common practice in deep learning to “shift” datasets by transforming the features \(x\).
+But, for this shifted/transformed image \(\tilde{x}\) derived from \(x\), it is not possible to attach a label that 
+follows the original data generating process because there is no such process.
+Strictly speaking, transforms on the features \(x\) for MNIST fall under concept shift of type ii as the 
+transformation changes the process underlying 
+\(P(x|y)\) given some \(y\), while the process underlying \(P(y)\) stays intact.</p>
+
+<h2 id="how-does-dataset-shift-look-like">How does dataset shift look like?</h2>
+
+<h4 id="each-type-of-dataset-shift-can-have-different-appearances">Each type of dataset shift can have different appearances</h4>
+<p>Let’s assume the dataset shift we are considering falls into one of the 4 shift type categories as defined above.
+The definitions merely state which of the 4 
+distributions \(P(x)\), \(P(y|x)\), \(P(y)\) and \(P(x|y)\) changes based on the intervention on the underlying 
+data generating process. The definitions do not state how this change will look like.</p>
+
+<p>Thus, dataset shift, even of the same type, can have wildly different appearance.
+Common realizations are drifting distributions where the dataset shift happens gradually over time, abrupt changes 
+in the distribution where the data generating process is shifted at discrete points in time, 
+or periodic shifts where the data generating process returns to one of it’s states cyclically.
+Thus, simply by looking at the data, we may not know the dataset shift; but also, and perhaps more importantly,
+how a practitioner handles dataset shift may depend on the appearance rather than the type, or possibly on
+their combination.</p>
+
+<h4 id="each-type-of-dataset-shift-can-have-different-root-causes">Each type of dataset shift can have different root causes</h4>
+
+<p>The different appearances can be explained by the root causes of the dataset 
+shift, i.e., the reason why the dataset shift happens. There are two common root causes. The first one is:</p>
+
+<ul>
+  <li>
+<em>Changes in the environment</em>.</li>
+</ul>
+
+<p>Changes in the environment can lead to gradual, cyclic, or abrupt changes and can occur for any dataset shift type. 
+The root cause ist not equivalent to the shift types. 
+The types explain which distribution is affected but not why it is affected.
+Thus, the root cause tells us why the shift happens, the type tells us which distribution is intervened on, and the 
+appearance tells use what the shift looks like.</p>
+
+<p>In addition to changing environments, a second common root cause is:</p>
+
+<ul>
+  <li>
+<em>Sample selection bias</em>.</li>
+</ul>
+
+<p>Roughly, sample selection bias means that there is a mechanism that reduces the probability of a sample being included 
+in the dataset.
+The training distribution may not be represented well if datapoints are selected not according to \((x,y) \sim P_{tr}(x,y)\) but 
+according to \((x,y) \sim P_{tr}(x,y|s=1)\) where \(s\) is a binary selection variable and \(Q(s = 1|x, y)\) is the 
+probability of accepting \((x, y)\) into the training dataset. Sample selection bias is zero if \(Q(s = 1|x, y) = 1\) 
+(see <a href="#references">Quionero-Candela et al. 2009</a>, Section 3.2 for formulas and conditional distributions).</p>
+
+<p>Unwanted sample selection bias can occur for example when the environment where the training was 
+collected does not capture all aspects of the test environment. An example is training data that consists of 
+measurements of a vehicle in a wind-tunnel. The wind-tunnel cannot produce certain wind configurations \(x\) that 
+appear in the real world where it is tested. For those configurations \(Q(s = 1|x, y) = 0\).</p>
+
+<p>There is a lot more to say about sample selection bias, and this may be a topic for another blog post, but for now, 
+we only need to remember that it may induce dataset shift.</p>
+
+<h2 id="whats-the-conclusion">What’s the conclusion?</h2>
+
+<p>Does dataset shift matter? In real world applications, it’s probably hard to know for sure what dataset shift type occurs, but even if we did 
+know does that information provide any benefit? I guess it’s not entirely clear, but here are some thoughts 
+(which should be taken with a grain of salt, as this is my current take only):</p>
+
+<ul>
+  <li>
+    <p><em>The type of shift often shouldn’t matter:</em> A predictive model probably does not care
+a lot if the statistical change in \(P(x)\) was causes by covariate shift, inverse concept shift, prior probability 
+shift, or some undefined shift. All that matters is that the input of the learner changes in 
+some way such that the pattern in \(P(y|x)\), and hence the learned representation, is different now. This could be due to exploring a different domain 
+of \(x\), which can be caused by several shift types, or because the mechanism connecting \(x\) with \(y\) 
+changed. So what really matters is that the learner either i) sees a lot of data from all possible scenarios, 
+or ii) somehow understands that it deals with a new scenario. The former is hard to do by default. 
+How the latter can be achieved is an open question
+as it is not straightforward to estimate if and in what way a shift implies that the learned patterns do not apply anymore. 
+Hence, the machine learning field has worked on data-driven approaches such as meta-learning or continual learning, 
+where the jury is still out if they are applicable and robust in practice. Bayesian models are promising as well.</p>
+  </li>
+  <li>
+    <p><em>The type of shift should matter:</em> It is often not clear
+or easily interpretable how a trained machine learning model reacts to dataset shift. Hence, if we want to 
+use models in the real world, we should care. For example artificial shifts in benchmark datasets are 
+often ad-hoc and definitions are not provided or incorporated in the analysis. Sometimes there are even discrepancies 
+between shifts used in toy-examples that are meant to build intuition and so-called real world applications 
+which makes interpretation of experimental results even harder.</p>
+  </li>
+</ul>
+
+<p>One approach supposed to combat dataset shift is meta-learning I may do a blog post on it at some point :)</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Storkey A.J. 2009 <em>When Training and Test Sets are Different: Characterising Learning Transfer</em>,
+    in <em>Dataset Shift in Machine Learning</em> MIT Press, pages 3-28.</p>
+
+<p>[2] Moreno-Torres et al. 2012 <em>A unifying view on dataset shift in classification</em>, 
+    Pattern Recognition 45, pages 521–530.</p>
+
+<p>[3] Quionero-Candela et al. 2009 <em>Dataset Shift in Machine Learning</em>,
+    The MIT Press.</p>
+
+<p><br></p>
+
+<hr>
+
+<h2 id="appendix-some-further-observations">Appendix: Some further observations</h2>
+
+<p>You scrolled too far! But since you’re here, this is a somewhat random collection of thoughts
+that did not quite make it into the blog post above, so bear with me.</p>
+
+<h4 id="is-dataset-shift-a-reliable-indicator-for-change-in-performance">Is dataset shift a reliable indicator for change in performance?</h4>
+
+<p>We are getting into the wild territory of applied research here. But let’s just roll with it for now.
+What if I deployed a performant model, do I need to worry about dataset shift? The answer is probably yes, but it is not so simple.
+Consider for instance a supervised prediction problem and  a machine learning model trained on a dataset 
+\(\mathcal{D}_{tr}=\{(x, y)_n\}_{n=1}^N\) with elements i.i.d. draws from some data distribution 
+\((x, y)\sim P_{tr}(x, y)\) 
+(\(\mathcal{D}_{tr}\) might be split up in a train/validation/test split during training). 
+Consider a dataset shift at deployment time such that \(\mathcal{D}_{ts} = \{(x, y)_m\}_{m=1}^M\) 
+with \((x, y)_m\sim P_{ts}(x, y)\) and \(P_{ts}(x, y)\neq P_{tr}(x, y)\).
+Also, suppose we have access to a metric or score \(S(\mathcal{D}_{tr}, \mathcal{D}_{ts})\) that quantifies 
+reliably the dataset shift between training 
+and deployment time (we leave aside the issue for now that it is unclear how to define this score).
+Is this score a good indicator for predictive model performance on the shifted dataset? 
+This question is important as score metrics could be used to inform re-training decisions, coresets, or other 
+learning parameters of an already trained model.
+The fast answer is that it’s not so easy to say. We won’t go into too much detail in this blog post appendix, 
+but here are some reasons:</p>
+
+<p><em>Feature importance:</em> Consider e.g., covariate shift. If an unimportant feature shifts, the generalisation 
+will not be affected much. If an important features shifts, the generalisation performance will drop. A shift score 
+would give the same signal. Likewise, if an important features shifts only a litte this may impact performance 
+disproportionately high, which is not reflected in the value of the score.</p>
+
+<p><em>Shift type:</em> During deployment, often only \(P(x)\) is available for a new dataset, and the targets \(y\) are missing.
+Hence, the score \(S\) needs to be computed on \(P_{ts}(x)\) only.
+Covariate shift, inverse concept shift and to some degree also prior probability shift all 
+will have a detectable effect on the statistics of \(P_{ts}(x)\). If targets \(y\) are 
+not available in a new dataset however, and forward concept shift occurs (\(P(y|x)\) is intervened on), then no 
+shift will be detected, but generalisation performance will drop. This scenario is quite realistic: For example 
+users may start to like or not like a feature anymore due to some outer influence which affects \(P(y|x)\) only.</p>
+
+<p><em>Model assumptions:</em> There is an interplay between dataset, shift appearance, and machine learning model. 
+A relatively small shift may have a larger effect on generalisation performance, e.g., swapping pixels in an image, than 
+a larger shift that keeps the smooth structure of an image intact. 
+An example are neural networks that encode prior assumptions 
+about what patters they expect to see such as the design of filters in convolutional neural networks. 
+If this assumption is broken by the shift, even small 
+shifts can have a large effect on performance, and likewise large shifts can have less effect if those assumptions are not violated.</p>
+
+<p>The above list is by no means complete.</p>
+
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2024 Maren  Mahsereci.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+
+
+
+
+
+</html>

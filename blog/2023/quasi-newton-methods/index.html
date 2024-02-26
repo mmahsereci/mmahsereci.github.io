@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Maren  Mahsereci
+
+
+  | Quasi-Newton Methods
+
+</title>
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>Ω</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2023/quasi-newton-methods/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://mmahsereci.github.io/">
+       <span class="font-weight-bold">Maren</span>   Mahsereci
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              <!-- I changed this -->
+              posts
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">Quasi-Newton Methods</h1>
+    <p class="post-meta">January 15, 2023 • mmahsereci</p>
+    <p class="post-tags">
+      <a href="/blog/2023"> <i class="fas fa-calendar fa-sm"></i> 2023 </a>
+      
+        ·  
+        
+        <a href="/blog/tag/optimization">
+          <i class="fas fa-hashtag fa-sm"></i> optimization</a>  
+          
+        <a href="/blog/tag/machinelearning">
+          <i class="fas fa-hashtag fa-sm"></i> machinelearning</a>  
+          
+      
+
+      
+        ·  
+        
+        <a href="/blog/category/techblog">
+          <i class="fas fa-tag fa-sm"></i> techblog</a>  
+          
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <p>Limited memory BFGS (<a href="https://en.wikipedia.org/wiki/Limited-memory_BFGS" target="_blank" rel="noopener noreferrer">L-BFGS</a>) is one of the most successful gradient-based optimizers and
+arguably the gold-standard in deterministic, non-convex optimization. 
+It is a member of the Dennis family of quasi-Newton methods that use low-rank approximations of the inverse Hessian to project the gradient. 
+The resulting search direction can thus be thought of as an approximation to the Newton direction, 
+with the important difference that, even for non-convex objective functions, it is always a descent direction. 
+There is a multitude of symmetric and non-symmetric quasi-Newton updates, and here we’ll discuss the most relevant ones.</p>
+
+<h2 id="optimization-objective-and-notation">Optimization objective and notation</h2>
+
+<p>Let \(f: \mathbb{R}^d\rightarrow \mathbb{R}\), \(w\mapsto f(w)\) be a function that is at least twice
+differentiable. 
+We aim to solve the optimization problem</p>
+
+\[w^∗ = \operatorname*{arg\,min}_w f (w)\]
+
+<p>where we are interested in finding the input \(w^*\) that minimizes \(f\).</p>
+
+<p>The gradient function w.r.t \(w\) is denoted as \(\nabla f: \mathbb{R}^d\rightarrow \mathbb{R}^d\), \(w\mapsto \nabla f(w)\)
+and the Hessian function as  \(\nabla^2 f: \mathbb{R}^d\rightarrow \mathbb{R}^{d\times d}\), \(w\mapsto \nabla^2 f(w)\).
+Greedy, gradient-based optimizers such as Newton’s method generally find local minimizers of \(f\) which is 
+often deemed sufficient.</p>
+
+<h2 id="newtons-method">Newton’s method</h2>
+
+<p>We will briefly introduce Newton’s method here as quasi-Newton methods aim to approximate the Newton step. 
+Newton’s method starts with an initial guess \(w_0\) for \(w^*\) and then updates the guess by iterating over the following line:</p>
+
+\[w_{t+1} = w_t - \nabla^2 f(w_t)^{-1} \nabla f(w_t).\]
+
+<p>Hence, the new guess \(w_{t+1}\) is found by updating the old guess \(w_t\) with the vector \(p_t^{\mathrm{newton}}:=-\nabla^2 f(w_t)^{-1} \nabla f(w_t)\).
+We will call \(p_t^{\mathrm{newton}}\) the <em>Newton direction</em> or <em>Newton step</em>.</p>
+
+<h2 id="quasi-newton-methods">Quasi-Newton methods</h2>
+
+<p>As the name suggests, quasi-Newton methods aim to approximate the Newton step. 
+There is a zoo of quasi-Newton methods out there
+which in some sense also reflects the history of discovery of these powerful methods. 
+Two famous families are the <em>Broyden</em> and the <em>Dennis</em> family of quasi-Newton methods the latter of which contains
+arguably the most successful quasi-Newton method: <a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm" target="_blank" rel="noopener noreferrer">BFGS</a>. 
+We will have a look at the Dennis family later on.</p>
+
+<h4 id="the-quasi-newton-step">The quasi-Newton step</h4>
+
+<p>In essence, quasi-Newton methods replace the Hessian matrix \(\nabla^2 f(w_t)\) at every step \(t\)
+with an estimator \(B_t\in\mathbb{R}^{d\times d}\) thereof.
+The <em>quasi-Newton step</em> is then defined as</p>
+
+\[p_t^{\mathrm{quasi}} = - B_t^{-1}\nabla f(w_t),\]
+
+<p>where the exact estimator \(B_t = \nabla^2 f(w_t)\) recovers the Newton step.</p>
+
+<p>In contrast to Newton’s method, quasi-Newton methods never evaluate the Hessian function itself but build the
+estimate \(B_t\) from past gradient evaluations \(\nabla f(w_t), \nabla f(w_{t-1}),\dots\).</p>
+
+<p>How this is done, we will see next.</p>
+
+<h4 id="the-secant-equation">The secant equation</h4>
+
+<p>First, we observe that the gradient \(\nabla f(w)\) and the Hessian \(\nabla^2 f(w)\) are
+related in the sense that the latter is the Jacobien of the former. 
+Hence, it is possible to learn about one by evaluating the other.
+In particular, quasi-Newton methods estimate the Hessian from past gradient evaluations.
+This idea is encoded in the <em>secant equation</em>.</p>
+
+<p>Let \(s_t := w_{t+1} - w_t\) be the path segment in parameter space and 
+\(\Delta y_t:= \nabla f(w_{t+1}) - \nabla f(w_t)\) be the corresponding gradient difference.</p>
+
+<p>The basic assumption for all quasi-Newton methods is that the estimator \(B_t\) must fulfill the secant equation</p>
+
+\[\begin{equation*}
+    B_{t} s_{t-1} = \Delta y_{t-1},\quad\text{(secant equation)}
+\end{equation*}\]
+
+<p>which means that \(B_t\) is equal to the <em>average</em> Hessian along the sub-space \(s_{t-1}\).</p>
+
+<p>This can be seen from the <a href="https://en.wikipedia.org/wiki/Gradient_theorem" target="_blank" rel="noopener noreferrer">fundamental theorem of calculus for line integrals</a>.
+In other words, parametrize the path \(\bar{s}(\tau) = w_{t} + \tau s_{t-1}\) with 
+\(\tau\in[0, 1]\), fulfilling \(\bar{s}(0) = w_{t-1}\) and \(\bar{s}(1) = w_t\). 
+Then, the average Hessian along the path \(\bar{s}\) ist</p>
+
+\[\begin{equation*}
+\begin{split}
+\int_{\bar{s}} \nabla^2 f(\bar{s})\frac{\mathrm{d}\bar{s}}{\|\bar{s}\|}
+&amp;= \int_{0}^{1}\nabla \left[\nabla f(\bar{s}(\tau))\bar{s}'(\tau)\right]\frac{\mathrm{d}\tau}{\|\bar{s}\|} \\
+&amp;= \int_{0}^{1}\nabla \left[\frac{\mathrm{d}f(\bar{s}(\tau))}{\mathrm{d}\tau}\right]\frac{\mathrm{d}\tau}{\|\bar{s}\|} \\
+&amp;=\nabla \left[f(\bar{s}(1)) - f(\bar{s}(0))\right] \frac{1}{\|\bar{s}\|} \\
+&amp; =\left[  \nabla f(w_{t}) - \nabla f(w_{t-1})\right]\frac{1}{\|\bar{s}\|} \\
+&amp; =\frac{\Delta y_{t-1}}{\|\bar{s}\|}\\
+&amp; =B_t \frac{s_{t-1}}{\|\bar{s}\|},
+\end{split}
+\end{equation*}\]
+
+<p>where the last line uses the definition of the secant equation.</p>
+
+<p>We found a way to identify the Hessian estimator \(B_t\) in the subspace spanned by the path segment 
+\(s_{t-1}\). However, this does not identify \(B_t\) fully.
+Hence, we need further assumptions. In the next section we will explore how the Dennis family
+of quasi-Newton methods resolves this issue (Other families take a similar approach, so we will skip them here).</p>
+
+<h3 id="the-dennis-family-of-quasi-newton-methods">The Dennis family of quasi-Newton methods</h3>
+
+<p>We will now see how the Dennis family of quasi-Newton methods uses the secant equation and 
+further assumptions to identify \(B_t\).</p>
+
+<p>Quasi-Newton methods take an iterative approach to estimating \(B_t\). This means that we start with an 
+initial guess \(B_0\) for the Hessian at \(w_0\) (this can for example be a scaled identity matrix \(\sigma_0^2I\))
+and update this guess at every iteration.</p>
+
+<p>Consider a guess \(B_t\). 
+In the Dennis family of quasi-Newton methods
+the subsequent guess \(B_{t+1}\) for the Hessian matrix, is the solution to the following constrained optimization problem:</p>
+
+\[\begin{alignat}{2}
+\label{eq:qn}
+    &amp;&amp;B_{t+1} &amp;= \operatorname{arg\,min}_{B}\|B - B_t\|_{W, F}\\
+    &amp;&amp;&amp;\notag \\
+    &amp;\text{s.t.}\qquad&amp; Bs_t &amp;= \Delta y_t,   \qquad (\text{secant equation})\notag\\
+    &amp;\text{and}\qquad&amp;  B    &amp;= B^{\intercal}.\qquad (B\text{ symmetric})\notag
+\end{alignat}\]
+
+<p>Again, we observe that the first constraint (the secant equation) partially identifies \(B_{t+1}\) in the sub-space spanned by \(s_t\).
+Further, the second constraint (the symmetry assumption, known to be true for Hessians) restricts the solution to the space of
+symmetric matrices. Lastly, to fully identify \(B_{t+1}\), the minimization problem of Eq. \eqref{eq:qn}
+is solved, which, under the mentioned constraints, finds a matrix that is closest to the previous guess \(B_t\) w.r.t.
+the weighted Frobenius norm with weight matrix \(W\). 
+The norm-minimization aspect can be thought of as a regularizer on \(B\), but most importantly it
+identifies \(B_{t+1}\) in the remaining space that is not covered by the constraints.
+All previous path segments \(s_{t-1}\), \(s_{t-2}\), \(\dots\) and corresponding gradient differences are implicitly represented in the 
+preceding guess \(B_t\).</p>
+
+<p>I will not explain the Frobenius norm here (I have another post 
+<a href="/blog/2022/kronecker/">here</a>
+where it is mentioned in the context
+of Kronecker products). But essentially, given a symmetric positive definite weight matrix \(W\in\mathbb{R}^{d\times d}\), 
+the weighted Frobenius norm
+is a matrix norm defined as \(\|X\|_{W, F} = \|W^{\frac{1}{2}}XW^{\frac{1}{2}}\|_F\) with
+\(\|X\|_F^2 = \sum_{i=1}^{d} \sum_{j=1}^{d}X_{ij}^2\) the (square of the) standard Frobenius norm.
+Due to the fact, that \(B_{t+1}\) is the solution of a norm-minimization problem parametrized by some weight matrix
+\(W\), quasi-Newton methods are also denoted as <em>variable metric</em> methods in the literature.</p>
+
+<p>Retrieving \(B_{t+1}\) from Eq. \eqref{eq:qn} is a bit tedious (proof can be found in the <a href="#references">reference</a>). 
+The important point is that the solution \(B_{t+1}\) is <em>analytic</em>, and, for some vector \(c_t := Ws_t\in\mathbb{R}^d\) that is 
+identified by \(W\) and \(s_t\), can be written as</p>
+
+\[\begin{equation}
+\label{eq:dennis}
+    B_{t+1} = B_t + \frac{(\Delta y_t - B_ts_t)c_t^{\intercal} + c_t(\Delta y_t - B_ts_t)^{\intercal}}{c_t^{\intercal}s_t} - \frac{c_ts_t^{\intercal}(\Delta y_t - B_ts_t)c_t^{\intercal}}{(c_t^{\intercal}s_t)^2}.
+\end{equation}\]
+
+<p>Eq. \eqref{eq:dennis} describes the Hessian estimates of the <em>Dennis family</em> of quasi-Newton methods <a href="#references">[2]</a> which is 
+parameterized by the weight matrix \(W\) of the metric used and in consequence simply by the vector \(c_t\in\mathbb{R}^d\). 
+All formulas only ever require choosing \(c_t\) and never \(W\) explicitly.
+For every different \(c_t\), we obtain another member of the Dennis family.</p>
+
+<p>The most relevant members of the Dennis family are (see <a href="#references">references</a>)</p>
+
+\[\begin{alignat*}{3}
+    &amp;\text{SR1} &amp; c_t &amp; = \Delta y_t - B_ts_t &amp; W_t &amp;= \nabla^2 f(w_t) - B_t\\
+    &amp;\text{PSB} &amp; c_t &amp; = s_t &amp; W_t &amp;= I\\
+    &amp;\text{Greenstadt}\qquad &amp; c_t &amp; = B_ts_t &amp; W_t &amp;= B_t\\
+    &amp;\text{DFP} &amp; c_t &amp; = \Delta y_t &amp; W_t &amp;= \nabla^2 f(w_t)\\
+    &amp;\text{BFGS} &amp; c_t &amp; = \Delta y_t + \sqrt{\frac{s_t^{\intercal} \Delta y_t}{s_t^{\intercal} B_t s_t}}B_ts_t\quad  &amp; W_t &amp;= \nabla^2 f(w_t) + \sqrt{\frac{s_t\Delta y_t}{s_t^{\intercal} B_t s_t}}B_t.
+\end{alignat*}\]
+
+<p>In particular, the highly performant BFGS estimator is</p>
+
+\[\begin{equation*}
+    \begin{split}
+        B_{t+1} &amp; = B_t + \frac{\Delta y_t \Delta y_t^{\intercal}}{\Delta y_t^{\intercal} s_t} - \frac{B_ts_ts_t^{\intercal} B_t}{s_t^{\intercal} B_ts_t}.
+    \end{split}
+\end{equation*}\]
+
+<h4 id="computing-the-quasi-newton-step">Computing the quasi-Newton step</h4>
+<p>In order to obtain the quasi-Newton update \(p_t^{\mathrm{quasi}}\), the inverse \(B_t^{-1}\) is required.
+From Eq. \eqref{eq:dennis}, \(B_t^{-1}\) is easy to obtain via the 
+<a href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity" target="_blank" rel="noopener noreferrer">matrix inversion lemma</a>.</p>
+
+<p>The BFGS estimator for the inverse Hessian \(B_{t+1}^{-1}\) for example is</p>
+
+\[\begin{equation}
+\label{eq:bfgs}
+    \begin{split}
+        B_{t+1}^{-1} &amp; = \left(I -\frac{s_t\Delta y_t^{\intercal}}{\Delta y_t^{\intercal} s_t} \right)B_{t}^{-1}\left(I -\frac{\Delta y_ts_t^{\intercal}}{\Delta y_t^{\intercal} s_t} \right) - \frac{s_ts_t^{\intercal}}{\Delta y_t^{\intercal} s_t}\\
+        &amp; = B_t^{-1} + \frac{(\Delta y_t^{\intercal} s_t + \Delta y_t^{\intercal} B_t^{-1}\Delta y_t)(s_ts_t^{\intercal})}{(\Delta y_t^{\intercal} s_t)^2} 
+        - \frac{B_t^{-1}\Delta y_ts_t^{\intercal} + s_t\Delta y_t^{\intercal} B_t^{-1}}{\Delta y_t^{\intercal}s_t}.
+    \end{split}
+\end{equation}\]
+
+<p>Hence, in practice, only ever \(B_t^{-1}\) needs to be stored which is then updated with a rank-2 term at every iteration.
+This removes the need to i) construct \(B_t\), and ii) removes the need to solve an expensive linear system of size \(d\).
+Hence, quasi-Newton methods require only quadratic cost, both in memory and compute (the latter to perform the matrix vector multiplication with the gradient)
+in contrast to quadratic and cubic cost respectively of Newton’s method.</p>
+
+<h3 id="limited-memory-bfgs-l-bfgs-scales-linearly">Limited-memory BFGS (L-BFGS) scales linearly</h3>
+
+<p>Quasi-Newton methods can be made even faster such that they scale linearly with \(d\) in memory and compute.</p>
+
+<p>To see this, first observe that the quasi-Newton step
+\(p_t^{\mathrm{quasi}}\) can be constructed in two different ways.
+The straightforward way is to keep the matrix \(B_{t}^{-1}\) in memory and to update it at every iteration with the 
+rank-2 term as in Eq. \eqref{eq:dennis} using the newly acquired gradient \(\nabla f(w_{t})\) and path segment \(s_{t-1}\). 
+Then \(B_t^{-1}\) can be multiplied with the
+current gradient to obtain \(p_t^{\mathrm{quasi}}\).</p>
+
+<p>An alternative way is to never construct nor store \(B_t^{-1}\) directly, but to keep all 
+paths segments \(\{s_i\}_{i=0}^{t-1}\) and gradients \(\{\nabla f(w_i)\}_{i=0}^{t}\) in memory instead.
+The step \(p_t^{\mathrm{quasi}}\) is then constructed directly by adding up the analytic products of the 
+\(t\) rank-2 terms with their corresponding gradients.</p>
+
+<p>This second version thus requires storing \(2t-1\) \(d\)-dimensional vectors (the path segments and the gradients) and requires
+\(\mathcal{O}(td)\) operations. Hence, if \(t\ll d\), this version of computing the quasi-Newton update is linear in \(d\).</p>
+
+<h4 id="a-shifting-window-of-memory">A shifting window of memory</h4>
+<p>The simple trick of <em>limited memory</em> quasi-Newton methods such as <em>limited memory BFGS</em> (L-BFGS)
+is now to simply only keep a shifting window of the last \(m\) gradients and corresponding path segments in memory instead of the whole history.
+This reduces the memory cost such that only \(2m-1\) \(d\)-dimensional vectors need to be stored; the compute cost is reduced to \(\mathcal{O}(d)\).</p>
+
+<p>In practice, any value between \(m=1,...20\) is generally used. 
+In my experience often even \(m=1\) which equals to keeping only one past gradient and path segment
+in memory and which yields a rank-2 approximation performs very well.</p>
+
+<p>In my experience, limited memory BFGS often even outperforms its original ‘more precise’ version with an unlimited memory.
+At first, this may sound counterintuitive as L-BFGS uses less observed gradients to build an approximation to the Hessian.
+But keep in mind, that the estimator \(B_t\) can be interpreted as the sum of rank-2 matrices each of which encodes information about the 
+average Hessian along their respective path segment. Thus, in case the true Hessian function \(\nabla^2 f(w)\) changes 
+considerably along the optimizer’s path, it may even be suboptimal to keep around old and potentially outdated rank-2 terms that have nothing to do 
+anymore with the Hessian at the current location \(w_t\). Newton’s method never has this problem, as the Newton step is computed with
+local information at \(w_t\) only—it does not have a memory, and each Newton step is independent of the previous one.</p>
+
+<p>The precise algorithm for L-BFGS can for example be found <a href="https://en.wikipedia.org/wiki/Limited-memory_BFGS" target="_blank" rel="noopener noreferrer">here</a>.</p>
+
+<h3 id="line-searches-the-key-to-success">Line searches: The key to success</h3>
+
+<p>We’ve left out a huge, and unfortunately often neglected component of quasi-Newton methods: Line searches!</p>
+
+<p>In essence, line searches scale the quasi-Newton step with a positive scalar \(0&lt;\alpha_t&lt;\infty\)
+such that the update becomes</p>
+
+\[w_{t+1} = w_t + \alpha_tp_t^{\mathrm{quasi}}\]
+
+<p>While line searches play a minor role in Newton’s method and are mainly used to stabilize
+its initial iterates, they play an <em>integral part</em> in quasi-Newton methods and cannot be separated from them.</p>
+
+<p>Spoiler: Line searches ensure (for some quasi-Newton methods such as BFGS) that the estimator \(B_t\)
+(and hence \(B_t^{-1}\)) is always positive definite even if the underlying true Hessian \(\nabla^2 f(w_t)\) is not!
+Thus, quasi-Newton methods can ensure a descent direction, and can be applied to non-convex objective function \(f\)
+where Newton’s method fails.</p>
+
+<p>As this post is getting a bit long, I may discuss line searches and their role in Newton’s and quasi-Newton methods in another post, hopefully to come soon.
+[Edit: I actually made one. It’s <a href="/blog/2023/line-searches/">here</a>]</p>
+
+<h2 id="lastly-there-is-much-more">Lastly (there is much more)</h2>
+
+<p>There is so much more to say about Newton’s and quasi-Newton methods which we haven’t touched on here such as
+convergence rates etc. Further, there are intricate connections to linear solvers such as 
+the <em>conjugate gradient algorithm</em> (CG) which coincides with BFGS in some sense under certain circumstance.
+I suppose, whenever a linear system is solved explicitely (as in Newton’s method) or implicitly (as in quasi-Newton methods)
+you have to think about linear solver, too. But this, too, may be a topic for another blogpost.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] J. J. Dennis and J. Moré 1977 <em>Quasi-Newton methods, motivation and theory.</em>, SIAM Review 19.1 pp. 46–89.</p>
+
+<p>[2] J. Dennis 1971 <em>On some methods based on Broyden’s secant approximations.</em>, Numerical Methods for Non-Linear Optimization.</p>
+
+<p>[3] C. Broyden 1969 <em>A new double-rank minimization algorithm</em>, Notices of the AMS 16.4 p. 670.</p>
+
+<p>[4] R. Fletcher 1970 <em>A new approach to variable metric algorithms</em>, The Computer Journal 13.3 p. 317.</p>
+
+<p>[5] D. Goldfarb 1970 <em>A family of variable metric updates derived by variational means</em>, Math. Comp. 24.109 pp. 23–26.</p>
+
+<p>[6] D. Shanno 1970 <em>Conditioning of quasi-Newton methods for function minimization</em>, Math. Comp. 24.111 pp. 647–656.</p>
+
+<p>[7] J. Greenstadt 1970 <em>Variations on variable-metric methods</em>, Math. Comp 24 pp. 1–22.</p>
+
+<p>[8] M. Powell 1970 <em>A new algorithm for unconstrained optimization</em>, Nonlinear Programming.</p>
+
+<p>[9] W. Davidon 1959 <em>Variable metric method for minimization</em>, Tech. rep. Argonne National Laboratories, Ill.</p>
+
+<p>[10] R. Fletcher and M. Powell 1963 <em>A rapidly convergent descent method for minimization</em> The Computer Journal 6.2 pp. 163–168.</p>
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2024 Maren  Mahsereci.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+
+
+
+
+
+</html>

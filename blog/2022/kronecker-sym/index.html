@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    
+    <meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>
+
+  Maren  Mahsereci
+
+
+  | The Symmetric Kronecker Product
+
+</title>
+<meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+">
+
+<!-- Open Graph -->
+
+
+<!-- Bootstrap & MDB -->
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha512-MoRNloxbStBcD8z3M/2BmnT+rg4IsMxPkXaGh2zD6LGNNFE80W3onsAhRcMAMrSoyWL9xD7Ert0men7vR8LUZg==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" integrity="sha512-RO38pBRxYH3SoOprtPTD86JFOclM51/XTIdEPh5j8sj4tp8jmQIx26twG52UaLi//hQldfrh7e51WzP9wuP32Q==" crossorigin="anonymous" />
+
+<!-- Fonts & Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css"  integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.0/css/academicons.min.css" integrity="sha512-W4yqoT1+8NLkinBLBZko+dFB2ZbHsYLDdr50VElllRcNt2Q4/GSs6u71UHKxB7S6JEMCp5Ve4xjh3eGQl/HRvg==" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:100,300,400,500,700|Material+Icons">
+
+<!-- Code Syntax Highlighting -->
+<link rel="stylesheet" href="https://gitcdn.link/repo/jwarby/jekyll-pygments-themes/master/github.css" />
+
+<!-- Styles -->
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>Ω</text></svg>">
+
+<link rel="stylesheet" href="/assets/css/main.css">
+<link rel="canonical" href="/blog/2022/kronecker-sym/">
+
+
+<!-- Dark Mode -->
+<script src="/assets/js/theme.js"></script>
+<script src="/assets/js/dark_mode.js"></script>
+
+
+
+  </head>
+
+  <body class="fixed-top-nav ">
+
+    <!-- Header -->
+
+    <header>
+
+    <!-- Nav Bar -->
+    <nav id="navbar" class="navbar navbar-light navbar-expand-sm fixed-top">
+    <div class="container">
+      
+      <a class="navbar-brand title font-weight-lighter" href="https://mmahsereci.github.io/">
+       <span class="font-weight-bold">Maren</span>   Mahsereci
+      </a>
+      
+      <!-- Navbar Toggle -->
+      <button class="navbar-toggler collapsed ml-auto" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar top-bar"></span>
+        <span class="icon-bar middle-bar"></span>
+        <span class="icon-bar bottom-bar"></span>
+      </button>
+      <div class="collapse navbar-collapse text-right" id="navbarNav">
+        <ul class="navbar-nav ml-auto flex-nowrap">
+          <!-- About -->
+          <li class="nav-item ">
+            <a class="nav-link" href="/">
+              about
+              
+            </a>
+          </li>
+          
+          <!-- Blog -->
+          <li class="nav-item active">
+            <a class="nav-link" href="/blog/">
+              <!-- I changed this -->
+              posts
+              
+            </a>
+          </li>
+          
+          <!-- Other pages -->
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/projects/">
+                projects
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          <li class="nav-item ">
+              <a class="nav-link" href="/publications/">
+                publications
+                
+              </a>
+          </li>
+          
+          
+          
+          
+          
+          
+          
+          
+          
+          
+            <div class="toggle-container">
+              <a id="light-toggle">
+                  <i class="fas fa-moon"></i>
+                  <i class="fas fa-sun"></i>
+              </a>
+            </div>
+          
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+</header>
+
+
+    <!-- Content -->
+
+    <div class="container mt-5">
+      
+
+
+
+
+
+<div class="post">
+
+  <header class="post-header">
+    <h1 class="post-title">The Symmetric Kronecker Product</h1>
+    <p class="post-meta">August 6, 2022 • mmahsereci</p>
+    <p class="post-tags">
+      <a href="/blog/2022"> <i class="fas fa-calendar fa-sm"></i> 2022 </a>
+      
+        ·  
+        
+        <a href="/blog/tag/machinelearning">
+          <i class="fas fa-hashtag fa-sm"></i> machinelearning</a>  
+          
+      
+
+      
+        ·  
+        
+        <a href="/blog/category/techblog">
+          <i class="fas fa-tag fa-sm"></i> techblog</a>  
+          
+      
+
+    </p>
+  </header>
+
+  <article class="post-content">
+    <blockquote>
+  <p>This is a follow-up post to <a href="/blog/2022/kronecker/">this</a> post about the Kronecker product.
+Notation and definitions will be used from the previous post.</p>
+</blockquote>
+
+<p>The symmetric Kronecker product can be derived from the Kronecker product. 
+It again appears naturally in some machine learning <a href="#applications-of-the-kronecker-product">applications</a>.
+This post also discusses the lesser known 
+<a href="#the-anti-symmetric-kronecker-product">anti-symmetric Kronecker product</a>
+for completeness.</p>
+
+<p>Let \(\Gamma\in\mathbb{R}^{n^2\times n^2}\) be a 
+projection operator implicitly defined such that</p>
+
+\[\Gamma \overrightarrow{C} = \frac{1}{2}(\overrightarrow{C + C^{\intercal}})\]
+
+<p>symmetrizes the un-vectorized matrix \(C\in\mathbb{R}^{n\times n}\). 
+Let \(A\in\mathbb{R}^{n\times n}\) and \(B\in\mathbb{R}^{n\times n}\) be square matrices
+of same size. 
+Then, the symmetric Kronecker product can be defined as</p>
+
+\[A \circledast B = \Gamma(A\otimes B)\Gamma^{\intercal}\]
+
+<p>with elements</p>
+
+\[(A\circledast B)_{(ij), (kl)} 
+= \frac{1}{4}(A_{ik}B_{jl} + A_{il}B_{jk} + A_{jk}B_{il} + A_{jl}B_{ik}).\]
+
+<h2 id="symmetric-kronecker-algebra">Symmetric Kronecker algebra</h2>
+
+<p>Like to the Kronecker product, the symmetric Kronecker product has some nice
+algebraic properties which are similar but differ in key aspects to the properties of the Kronecker product.</p>
+
+\[\begin{alignat}{3}
+&amp;\text{transpose}           &amp;(A\circledast B)^{\intercal} &amp;= (A^{\intercal}\circledast B^{\intercal}) &amp;&amp; \\
+\label{eq:3-sym}
+&amp;\text{inverse}             &amp;(A\circledast A)^{-1} &amp;= A^{-1}\circledast A^{-1} &amp;&amp;\quad\text{but}\quad (A\circledast B)^{-1} \neq A^{-1}\circledast B^{-1} \\
+&amp;\text{factorizing}\quad         &amp;(A\circledast A)(C\circledast C)&amp;= (AC\circledast AC) &amp;&amp;\quad\text{but}\quad (A\circledast B)(C\circledast D) \neq (AC\circledast BD)
+\end{alignat}\]
+
+<p>The symmetric Kronecker product factorizes according to</p>
+
+\[(A\circledast B)(C\circledast D)= \frac{1}{2}[AC\circledast BD + AD\circledast BC].\]
+
+<p>In contrast to the Kronecker product, the symmetric Kronecker product commutes</p>
+
+\[A\circledast B = B\circledast A\]
+
+<p>and its trace is given by</p>
+
+\[\operatorname{tr}[(A\circledast B)] 
+= \frac{1}{2}(\operatorname{tr}[A]\operatorname{tr}[B]  
++ \operatorname{tr}[AB]).\]
+
+<p>It is worth noting that</p>
+
+\[I_n\otimes I_n = I_{n^2}\quad\text{but}\quad I_n\circledast I_n = \Gamma \neq I_{n^2}.\]
+
+<h2 id="vector-multiplication">Vector multiplication</h2>
+
+<p>A similar formula to Eq. (8) of the 
+<a href="/blog/2022/kronecker/">previous post</a>
+holds for the symmetric Kronecker product</p>
+
+\[(A\circledast B)\overrightarrow{X} = \frac{1}{4}
+\overrightarrow{AXB^{\intercal} + AX^{\intercal}B^{\intercal} + BX^{\intercal}A^{\intercal} + BXA^{\intercal}}.\]
+
+<p>For the special case of \(A=B\) the equations simplify to</p>
+
+\[\begin{align*}
+(A\circledast A)_{(ij), (kl)} 
+&amp;=\frac{1}{2}(A_{ik}A_{jl} + A_{jk}A_{il})\\
+(A\circledast A)\overrightarrow{X} 
+&amp;=\frac{1}{2}\overrightarrow{AXA^{\intercal} + AX^{\intercal}A^{\intercal}}.
+\end{align*}\]
+
+<h2 id="closest-symmetric-kronecker-product">Closest symmetric Kronecker product</h2>
+
+<p>The closest symmetric Kronecker product \(\tilde{A}^*\circledast\tilde{B}^*\) under the Frobenius norm is defined as</p>
+
+\[\begin{equation}
+\label{eq:argmin-sym}
+\tilde{A}^*, \tilde{B}^* = \operatorname*{arg\,min}_{A, B}\|C-A\circledast B\|_F^2.
+\end{equation}\]
+
+<p>Since there exists a fixed linear operator \(\mathcal{T}\) (<a href="#references">[3]</a>, Eq. 199)
+such that (with slight abuse of notation)</p>
+
+\[\begin{equation*}
+\tilde{A}^*, \tilde{B}^*  = \operatorname*{arg\,min}_{A, B}\|\mathcal{T}[C-A\otimes B]\|_F^2.
+\end{equation*}\]
+
+<p>Eq. \eqref{eq:argmin-sym} can be solved by solving the closest Kronecker problem (Eq. (11) of the
+<a href="/blog/2022/kronecker/">previous post</a>)
+instead and then the solution can be symmetrized according to</p>
+
+\[\begin{equation*}
+\begin{split}
+\tilde{A}^* &amp;= A^*\quad\text{and}\quad \tilde{B}^* =B^*\\
+\tilde{A}^*\circledast \tilde{B}^*
+&amp; = \mathcal{T}[A^*\otimes B^*]
+=A^*\circledast B^*.
+\end{split}
+\end{equation*}\]
+
+<h2 id="applications-of-the-symmetric-kronecker-product">Applications of the symmetric Kronecker product</h2>
+
+<p>The <a href="/blog/2022/kronecker/">previous post</a>
+already discussed some applications of the Kronecker product. Here we 
+mention some applications where the use of the symmetric Kronecker product is key
+or naturally shows up. Of course the list is not complete.</p>
+
+<h3 id="symmetric-matrix-normal-distribution">Symmetric matrix normal distribution</h3>
+
+<p>Consider a matrix-valued random variable \(X\in\mathbb{R}^{n_1\times n_2}\)  that follows a
+<a href="https://en.wikipedia.org/wiki/Matrix_normal_distribution" target="_blank" rel="noopener noreferrer">matrix-normal distribution</a>.
+We already know from the <a href="/blog/2022/kronecker/">previous post</a>
+that the vectorized version of \(\overrightarrow{X}\) follows the multi-variate normal distribution</p>
+
+\[p(\overrightarrow{X};\overrightarrow{M}, U\otimes V),\]
+
+<p>where \(M\) is the mean matrix, and \(V\) and \(U\) are symmetric positive definite matrices
+that parametrize the matrix-normal distribution.</p>
+
+<p>For square \(X\in\mathbb{R}^{n\times n}\), the domain can be naturally restricted to only 
+allow symmetric matrices by applying the symmetrization operator \(\Gamma\) 
+to the random variable \(\overrightarrow{X}\)</p>
+
+\[\begin{equation}
+\label{eq:pdf-sym}
+\begin{split}
+\overrightarrow{X}_{s} &amp;= \Gamma\overrightarrow{X}
+\quad\text{and hence}\quad\\
+p(\overrightarrow{X}_{s}; \overrightarrow{M}_{s}, U\circledast V)
+&amp;= p(\Gamma\overrightarrow{X}; \Gamma \overrightarrow{M}, \Gamma(U\otimes V)\Gamma^{\intercal}).
+\end{split}
+\end{equation}\]
+
+<p>Above, we used the definition of the symmetric Kronecker product and 
+the closeness property of the normal distribution under linear transformations. 
+Hence, a distribution over symmetric matrices \(X_s\)
+can be achieved by assuming a symmetric mean matrix \(M_s\)
+and a symmetric Kronecker product as covariance for its vectorized form.</p>
+
+<p>However, since \((U\circledast V)^{-1} \neq U^{-1}\circledast V^{-1}\) in general 
+and only equal if \(U=V\) (Eq. \eqref{eq:3-sym}), it is often prudent to restrict to 
+\(U=V\) when working with Eq. \eqref{eq:pdf-sym}.</p>
+
+<h3 id="wishart-distribution">Wishart distribution</h3>
+
+<p>The symmetric Kronecker product also naturally occurs in the 
+<a href="https://en.wikipedia.org/wiki/Wishart_distribution" target="_blank" rel="noopener noreferrer">Wishart distribution</a>
+over symmetric positive-definite matrices.</p>
+
+<p>Let \(X\in\mathbb{R}^{n\times n}\) be a matrix-valued random variable that follows a 
+<a href="https://en.wikipedia.org/wiki/Wishart_distribution" target="_blank" rel="noopener noreferrer">Wishart distribution</a>
+with density</p>
+
+\[p(X; V, \nu) = \det(X)^{\frac{\nu-n-1}{2}}
+\frac{e^{-\frac{1}{2}\operatorname{tr}[V^{-1}X]}}{2^{\frac{\nu n}{2}}\det(V)^{\frac{\nu}{2}}\Gamma_n(\frac{\nu}{2})},\]
+
+<p>that is parametrized by the degrees of freedom \(\nu&gt;n-1\) and a symmetric positive definite matrix \(V\).
+Further, \(\Gamma_n\) is the multivariate Gamma function. Then, it can be shown straightforwardly that
+the covariance (centered second moment) of \(X\) is given by the elemetns of the symmetric Kronecker product 
+of \(V\) scaled with a constant factor of \(2\nu\)</p>
+
+\[\operatorname{Cov}{[X_{ij}, X_{kl}]} = 2\nu (V\circledast V)_{(ij), (kl)}.\]
+
+<h2 id="references">References</h2>
+
+<p>[1] C.F. Van Loan 2000 <em>The ubiquitous Kronecker product</em>, 
+    Journal of Computational and Applied Mathematics 123, pp. 85–100.</p>
+
+<p>[2] C.F. Van Loan and N. Pitsianis 1993 <em>Approximation with Kronecker Products</em> 
+    Linear Algebra for Large Scale and Real Time Applications. Kluwer Publications, pp. 293–314.</p>
+
+<p>[3] M. Mahsereci 2018 <em>Probabilistic Approaches to Stochastic Optimization</em>, PhD thesis, Appendix A.</p>
+
+<hr>
+
+<h2 id="appendix-the-anti-symmetric-kronecker-product">Appendix: The anti-symmetric Kronecker product</h2>
+
+<p>I am not actually sure if the anti-symmetric Kronecker product is a thing, or if it has
+been used anywhere, but since it is the counter-part to the well-established symmetric
+Kronecker product it is here for completeness (<a href="#references">[3]</a> Appendix A.3).</p>
+
+<p>First, define the anti-symmetrization operator 
+\(\Delta\in \mathbb{R}^{n^2\times n^2}\)
+as the counter-part to the symmetrization operator \(\Gamma\) such that</p>
+
+\[\Delta = I - \Gamma\quad \text{and}
+\quad
+\Delta \overrightarrow{X} = \frac{1}{2}(\overrightarrow{X - X^{\intercal}})\]
+
+<p>implicitly projects onto the un-vectorized anti-symmetric part of the matrix \(X\).</p>
+
+<p>Let \(A\in\mathbb{R}^{n\times n}\) and \(B\in\mathbb{R}^{n\times n}\) be square matrices
+of same size. 
+Then, the anti-symmetric Kronecker product can be defined as</p>
+
+\[A \circleddash B = \Delta (A\otimes B) \Delta^{\intercal},\]
+
+<p>with elements</p>
+
+\[(A\circleddash B)_{(ij), (kl)} 
+= \frac{1}{4}(A_{ik}B_{jl} - A_{il}B_{jk} - A_{jk}B_{il} + A_{jl}B_{ik}),\]
+
+<h3 id="decomposition-of-the-kronecker-product-in-symmetric-and-anti-symmetric-part">Decomposition of the Kronecker product in symmetric and anti-symmetric part</h3>
+
+<p>The Kronecker product decomposes as</p>
+
+\[A\otimes B = A\circledast B + A\circleddash B
++ \Delta(A\otimes B)\Gamma^{\intercal}
++ \Gamma(A\otimes B)\Delta^{\intercal}\]
+
+<p>For the special case of \(A=B\), we get
+\(\Delta(A\otimes A)\Gamma^{\intercal} = \Gamma(A\otimes A)\Delta^{\intercal}=0\)
+and \(A\otimes B\) fully decomposes into a symmetric and anit-symmetric part</p>
+
+\[A\otimes A = A\circledast A + A\circleddash A.\]
+
+<p>If \(A\otimes A\) has full rank of \(n^2\), then the symmetric Kronecker
+product and anti-symmetric Kronecker product span the \(\frac{1}{2}n(n+1)\)
+and \(\frac{1}{2}n(n-1)\) dimensional symmetric and anti-symmetric subspace respectively.</p>
+
+<h3 id="vector-multiplication-1">Vector multiplication</h3>
+
+<p>The vectorization equation for the anti-symmetric Kronecker product is</p>
+
+\[(A\circleddash B)\overrightarrow{X} = \frac{1}{4}
+\overrightarrow{
+AXB^{\intercal} 
+- AX^{\intercal}B^{\intercal} 
+- BX^{\intercal}A^{\intercal} 
++ BXA^{\intercal}}.\]
+
+<h3 id="anti-symmetric-kronecker-algebra">Anti-Symmetric Kronecker algebra</h3>
+
+<p>The properties of the anti-symmetric Kronecker product mimic the ones of the 
+symmetric Kronecker product</p>
+
+\[\begin{alignat*}{3}
+&amp;\text{transpose}           &amp;(A\circleddash B)^{\intercal} &amp;= (A^{\intercal}\circleddash B^{\intercal}) &amp;&amp; \\
+&amp;\text{inverse}             &amp;(A\circleddash A)^{-1} &amp;= A^{-1}\circleddash A^{-1} &amp;&amp;\quad\text{but}\quad (A\circleddash B)^{-1} \neq A^{-1}\circleddash B^{-1} \\
+&amp;\text{factorizing}\quad    &amp;(A\circleddash A)(C\circleddash C)&amp;= (AC\circleddash AC) &amp;&amp;\quad\text{but}\quad (A\circleddash B)(C\circleddash D) \neq (AC\circleddash BD)
+\end{alignat*}\]
+
+<p>The ant-symmetric Kronecker product factorizes according to</p>
+
+\[(A\circleddash B)(C\circleddash D)= \frac{1}{2}[AC\circleddash BD + AD\circleddash BC].\]
+
+<p>Like the symmetric Kronecker product, the anti-symmetric one also commutes</p>
+
+\[A\circleddash B = B\circleddash A\]
+
+<p>and its trace is given by</p>
+
+\[\operatorname{tr}[(A\circleddash B)] 
+= \frac{1}{2}(\operatorname{tr}[A]\operatorname{tr}[B]  
+- \operatorname{tr}[AB]).\]
+
+<h3 id="application-anti-symmetric-matrix-normal-distribution">Application: Anti-symmetric matrix normal distribution</h3>
+
+<p>Consider a matrix-valued random variable \(X\in\mathbb{R}^{n\times n}\) that follows a 
+matrix normal distribution with mean matrix \(M\) and symmetric positive definite 
+matrices \(U\) and \(V\) that parametrize the distribution.</p>
+
+<p>Analogously to above, for anti-symmetric matrices, the anti-symmetrization operator \(\Delta\) 
+and the anti-symmetric Kronecker product, we can restrict the domain and write</p>
+
+\[\begin{equation}
+\label{eq:pdf-asym}
+\begin{split}
+\overrightarrow{X}_{a} &amp;= \Delta\overrightarrow{X}
+\quad\text{then}\quad\\
+p(\overrightarrow{X}_{a}; \overrightarrow{M}_{a}, U\circleddash V) 
+&amp;= p(\Delta\overrightarrow{X}; \Delta \overrightarrow{M}, \Delta(U\otimes V)\Delta^{\intercal}).
+\end{split}
+\end{equation}\]
+
+  </article>
+
+  
+
+</div>
+
+    </div>
+
+    <!-- Footer -->
+
+    
+<footer class="fixed-bottom">
+  <div class="container mt-0">
+    © Copyright 2024 Maren  Mahsereci.
+    Powered by <a href="http://jekyllrb.com/" target="_blank" rel="noopener noreferrer">Jekyll</a> with <a href="https://github.com/alshedivat/al-folio" target="_blank" rel="noopener noreferrer">al-folio</a> theme. Hosted by <a href="https://pages.github.com/" target="_blank" rel="noopener noreferrer">GitHub Pages</a>.
+
+    
+    
+  </div>
+</footer>
+
+
+
+  </body>
+
+  <!-- jQuery -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+
+  <!-- Bootsrap & MDB scripts -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.4.4/umd/popper.min.js" integrity="sha512-eUQ9hGdLjBjY3F41CScH3UX+4JDSI9zXeroz7hJ+RteoCaY+GP/LDoM8AO+Pt+DRFw3nXqsjh9Zsts8hnYv8/A==" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha512-M5KW3ztuIICmVIhjSqXe01oV2bpe248gOxqmlcYrEzAvws7Pw3z6BK0iGbrwvdrUQUhi3eXgtxp5I8PDo9YfjQ==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/js/mdb.min.js" integrity="sha512-Mug9KHKmroQFMLm93zGrjhibM2z2Obg9l6qFG2qKjXEXkMp/VDkI4uju9m4QKPjWSwQ6O2qzZEnJDEeCw0Blcw==" crossorigin="anonymous"></script>
+
+  
+<!-- Mansory & imagesLoaded -->
+<script defer src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
+<script defer src="https://unpkg.com/imagesloaded@4/imagesloaded.pkgd.min.js"></script>
+<script defer src="/assets/js/mansory.js" type="text/javascript"></script>
+
+
+  
+
+
+<!-- Medium Zoom JS -->
+<script src="https://cdn.jsdelivr.net/npm/medium-zoom@1.0.6/dist/medium-zoom.min.js" integrity="sha256-EdPgYcPk/IIrw7FYeuJQexva49pVRZNmt3LculEr7zM=" crossorigin="anonymous"></script>
+<script src="/assets/js/zoom.js"></script>
+
+
+<!-- Load Common JS -->
+<script src="/assets/js/common.js"></script>
+
+  
+<!-- MathJax -->
+<script type="text/javascript">
+  window.MathJax = {
+    tex: {
+      tags: 'ams'
+    }
+  };
+</script>
+<script defer type="text/javascript" id="MathJax-script" src="https://cdn.jsdelivr.net/npm/mathjax@3.2.0/es5/tex-mml-chtml.js"></script>
+<script defer src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+  
+
+
+
+
+
+</html>

@@ -2,7 +2,7 @@
 <html>
 
   <head>
-    <meta http-equiv="refresh" content="3; url=https://mmahsereci.github.io/" />
+    
     <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,7 +12,7 @@
   Maren  Mahsereci
 
 
-  | Page not found
+  | EmuKit
 
 </title>
 <meta name="description" content="A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
@@ -38,7 +38,7 @@
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>Ω</text></svg>">
 
 <link rel="stylesheet" href="/assets/css/main.css">
-<link rel="canonical" href="/404.html">
+<link rel="canonical" href="/projects/emukit/">
 
 
 <!-- Dark Mode -->
@@ -174,12 +174,52 @@
       <div class="post">
 
   <header class="post-header">
-    <h1 class="post-title">Page not found</h1>
-    <p class="post-description">Looks like there has been a mistake. Nothing exists here.</p>
+    <h1 class="post-title">EmuKit</h1>
+    <p class="post-description">EmuKit is a highly adaptable Python toolkit for decision-making under uncertainty.
+</p>
   </header>
 
   <article>
-    <p>You will be redirected to the main page within 3 seconds. If not redirected, please click <a href="https://mmahsereci.github.io/">here</a>.</p>
+    <p>EmuKit is a highly adaptable Python toolkit for decision-making under uncertainty. 
+It’s main packages provide methods for Bayesian optimization, Bayesian quadrature and experimental design.
+The core package contains and active learning loop that unifies functionality of those methods.</p>
+
+<p>Emukit’s main features is that is it backend agnostic to the modeling backend. Hence, custom models in the Python
+ecosystem, can be wrapped into Emukit’s interfaces and make use of active data selection. 
+This is particularly useful if it is not possible to port the custom model to another library.</p>
+
+<p>Further, Emukit is composed of classes and interfaces that mimic the practical choices of a machine learning practitioner.
+Hence, it is possible to design customize methods quite easily, by switching out or adding new components that seamlessly
+integrate with the rest of the codebase (plug-and-play).</p>
+
+<p>I am one of the original authors and a co-maintainer of EmuKit.</p>
+
+<h3 id="resources">Resources</h3>
+
+<ul>
+  <li><a href="https://github.com/EmuKit/emukit" target="_blank" rel="noopener noreferrer">GitHub page</a></li>
+  <li><a href="https://emukit.github.io/" target="_blank" rel="noopener noreferrer">Webpage</a></li>
+</ul>
+
+<h3 id="citation">Citation</h3>
+
+<p>If you use EmuKit in your work, please cite as:</p>
+
+<pre><code class="language-buildoutcfg">@article{emukit2023,
+  author = {A. Paleyes and M. Mahsereci and N.~D. Lawrence},
+  title = {Emukit: A Python toolkit for decision making under uncertainty},
+  journal = {Proceedings of the 22nd Python in Science Conference},
+  pages = {68 - 75},
+  year = {2023}
+}
+
+@inproceedings{emukit2019,
+  author = {Paleyes, A. and Pullin, M. and Mahsereci, M. and Lawrence, N. and Gonzalez, J.},
+  title = {Emulation of physical processes with Emukit},
+  booktitle = {Second Workshop on Machine Learning and the Physical Sciences, NeurIPS},
+  year = {2019},
+}
+</code></pre>
 
   </article>
 

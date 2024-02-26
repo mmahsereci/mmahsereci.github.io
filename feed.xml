@@ -1,0 +1,2560 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" ><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://mmahsereci.github.io/feed.xml" rel="self" type="application/atom+xml" /><link href="https://mmahsereci.github.io/" rel="alternate" type="text/html" /><updated>2024-02-26T18:55:23+00:00</updated><id>https://mmahsereci.github.io/feed.xml</id><title type="html">blank</title><subtitle>A simple, whitespace theme for academics. Based on [*folio](https://github.com/bogoli/-folio) design.
+</subtitle><entry><title type="html">Covariance of the Wishart distribution</title><link href="https://mmahsereci.github.io/blog/2023/wishart-stats/" rel="alternate" type="text/html" title="Covariance of the Wishart distribution" /><published>2023-04-27T00:00:00+00:00</published><updated>2023-04-27T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2023/wishart-stats</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2023/wishart-stats/"><![CDATA[<p>The covariance of the elements of a Wishart distributed \(n\times n\) random matrix \(A\sim\mathcal{W}_n(V, \nu)\) 
+is related to a <a href="/blog/2022/kronecker-sym/">symmetric Kronecker product</a></p>
+
+\[\mathrm{Cov}[A_{ij}, A_{kl}] = 2\nu (V\circledast V)_{(ij), (kl)},\]
+
+<p>where ‘\(\circledast\)’ denotes the symmetric Kronecker product. 
+I have tried to locate derivations of the above relation, but they seem quite hard to find.
+As the relation seems to pop up here and there and seems to be quite useful I did my own derivation
+which this post is about.</p>
+
+<blockquote>
+  <p><em>Disclaimer:</em> No one checked my the derivation below for errors, and I was tired when writing this up, so beware of possible mistakes (though I hope it’s correct).</p>
+</blockquote>
+
+<h2 id="preliminaries-the-wishart-distribution">Preliminaries: The Wishart distribution</h2>
+
+<p>The support of the Wishart distribution \(\mathcal{W}_n(V, \nu)\) are symmetric positive definite \(n\times n\) matrices \(A\). 
+The distribution is parametrized by a positive definite \(n\times n\) matrix \(V\), and the degrees of freedom \(\nu&gt;n-1.\)
+Its density is</p>
+
+\[p(A) = \frac{\det(A)^{\frac{\nu-n - 1}{2}} e^{-\frac{1}{2}\mathrm{tr}(V^{-1}A)}}{ 2^{\frac{\nu n}{2}}\det(V)^{\frac{\nu}{2}} \Gamma_n\left(\frac{\nu}{2}\right)}
+  \quad\text{with}\quad
+  \Gamma_n\left(\frac{\nu}{2}\right) = \pi^{\frac{n(n-1)}{4}} \prod_{i=1}^n \Gamma\left(\frac{\nu}{2} - \frac{i-1}{2}\right).\]
+
+<p>The random matrices \(A\) can equally be constructed as sums of outer products of normally distributed 
+\(n\)-dimensional vectors \(u\sim \mathcal{N}(0, V)\) with covariance matrix \(V\) according to</p>
+
+\[A = \sum_{\alpha=1}^\nu u^{\alpha} u^{\alpha\intercal}.\]
+
+<p>Simply for notational convenience, I will also use the vectorized notation \(\overrightarrow{A}\) which are the rows of \(A\) stacked into a vector.</p>
+
+<h2 id="derivation-of-the-mean-of-a-wishart">Derivation of the mean of a Wishart</h2>
+
+<p>To derive the mean \(\mathbb{E}[\overrightarrow{A}]\) we use the construction \(A = \sum_{\alpha=1}^\nu u^{\alpha} u^{\alpha\intercal}\) with \(u\sim \mathcal{N}(0, V)\)
+as mentioned.</p>
+
+\[\begin{equation*}
+  \begin{split}
+     \mathbb{E}[A_{ij}]
+    &amp;=  \mathbb{E}\left[\left[\sum_{\alpha=1}^\nu  u^{\alpha} u^{\alpha\intercal}\right]_{ij}\right]\\
+    &amp;=  \mathbb{E}\left[\sum_{\alpha=1}^\nu u^{\alpha}_i u^{\alpha}_j\right]\\
+    &amp;= \sum_{\alpha=1}^\nu  \mathbb{E}\left[ u^{\alpha}_i u^{\alpha}_j\right]\\
+    &amp;= \sum_{\alpha=1}^\nu  V_{ij}\\ 
+    &amp;= \nu  V_{ij}
+  \end{split}
+\end{equation*}\]
+
+<p>The second to last line uses \(V_{ij} = \mathrm{Cov}[ u_i,  u_j] = \mathbb{E}[ u_i u_j]  -  \mathbb{E}[u_i] \mathbb{E}[u_j] = \mathbb{E}[ u_i u_j] - 0\cdot 0 = \mathbb{E}[ u_i u_j]\).</p>
+
+<h2 id="derivation-of-the-covariance-of-a-wishart">Derivation of the covariance of a Wishart</h2>
+
+<p>Likewise for the covariance \(\mathrm{Cov}[\overrightarrow{A}]\) we get</p>
+
+\[\begin{equation*}
+  \begin{split}
+    \mathrm{Cov}[A_{ij}, A_{kl}]
+    &amp;=  \mathbb{E}[A_{ij}A_{kl}] -    \mathbb{E}[A_{ij}]   \mathbb{E}[A_{kl}]\\ 
+    &amp;=  \mathbb{E}[A_{ij}A_{kl}] -   \nu^2  V_{ij}  V_{kl}\\ 
+    &amp;=  \mathbb{E}\left[\left[\sum_{\beta=1}^\nu  u^{\beta} u^{\beta\intercal}\right]_{ij} \left[\sum_{\alpha=1}^\nu  u^{\alpha} u^{\alpha\intercal}\right]_{kl}\right]
+    - \nu^2  V_{ij}  V_{kl}\\ 
+    &amp;=  \mathbb{E}\left[\sum_{\alpha,\beta=1}^\nu u^{\beta}_{i} u^{\beta}_{j} u^{\alpha}_{k} u^{\alpha}_{l} \right]
+    -   \nu^2  V_{ij}  V_{kl}\\ 
+    &amp; = \sum_{\alpha,\beta=1}^\nu  \mathbb{E}\left[ u^{\beta}_{i} u^{\beta}_{j} u^{\alpha}_{k} u^{\alpha}_{l} \right]
+    -   \nu^2  V_{ij}  V_{kl}\\ 
+    &amp; = \nu [ V_{ik}  V_{jl} +  V_{il}  V_{jk}]
+     + \nu^2  V_{ij}  V_{kl}     
+     - \nu^2  V_{ij}  V_{kl}\\ 
+    &amp; = \nu [ V_{ik}  V_{jl} +  V_{il}  V_{jk}] \\
+    &amp; = 2\nu (V \circledast V)_{(ij), (kl)}
+   \end{split}
+\end{equation*}\]
+
+<p>In the second line we used the result of the mean \(\mathbb{E}[A_{il}] = \nu  V_{ij}\).
+In the third line we use the construction \(A = \sum_{\alpha=1}^\nu u^{\alpha} u^{\alpha\intercal}\) with \(u\sim \mathcal{N}(0, V)\).
+In the last line we used the definition of the symmetric Kronecker product 
+\((\Xi\circledast \Xi)_{(ij), (kl)} = \frac{1}{2}(\Xi_{ik}\Xi_{jl} + \Xi_{jk}\Xi_{il})\)
+(see also <a href="/blog/2022/kronecker-sym/">this</a> post). 
+From fifth to sixth line we used the following derivation:</p>
+
+\[\begin{equation*}
+  \begin{split}
+    \sum_{\alpha,\beta=1}^\nu
+     \mathbb{E}[ u^{\beta}_{i} u^{\beta}_{j}  u^{\alpha}_{k} u^{\alpha}_{l}]
+     &amp; = \sum_{\alpha,\beta=1}^\nu  \mathbb{E}[ u^{\beta}_{i} u^{\beta}_{j}  u^{\alpha}_{k} u^{\alpha}_{l}] \delta_{\alpha\beta}
+     + \sum_{\alpha,\beta=1, \alpha\neq\beta}^\nu  \mathbb{E}[ u^{\beta}_{i} u^{\beta}_{j}u^{\alpha}_{k} u^{\alpha}_{l}]\\
+     &amp; = \sum_{\alpha=1}^\nu  \mathbb{E}[ u^{\alpha}_{i} u^{\alpha}_{j}  u^{\alpha}_{k} u^{\alpha}_{l}]
+     + \sum_{\alpha,\beta=1, \alpha\neq\beta}^\nu  \mathbb{E}[ u^{\beta}_{i} u^{\beta}_{j}]  \mathbb{E}[ u^{\alpha}_{k} u^{\alpha}_{l}]\\
+     &amp; = \sum_{\alpha=1}^\nu [ V_{ij}  V_{kl} +  V_{ik}  V_{jl} +  V_{il}  V_{jk}]
+     + \sum_{\alpha,\beta=1, \alpha\neq\beta}^\nu V_{ij}  V_{kl}\\
+     &amp; = \sum_{\alpha=1}^\nu [ V_{ij}  V_{kl} +  V_{ik}  V_{jl} +  V_{il}  V_{jk}]
+     + \sum_{\alpha,\beta=1}^\nu V_{ij}  V_{kl}
+     - \sum_{\alpha=1}^\nu V_{ij}  V_{kl}\\
+     &amp; = \nu [ V_{ij}  V_{kl} +  V_{ik}  V_{jl} +  V_{il}  V_{jk}]
+     + \nu^2  V_{ij}  V_{kl}
+     - \nu   V_{ij}  V_{kl}\\
+     &amp; = \nu [ V_{ik}  V_{jl} +  V_{il}  V_{jk}]
+     + \nu^2  V_{ij}  V_{kl}.
+  \end{split}
+\end{equation*}\]
+
+<p>In the first line we split the sum into terms where \(\alpha=\beta\) and \(\alpha\neq\beta\).
+In the second line and second term we used that \(u^{\alpha}\) and \(u^{\beta}\) were drawn independently if \(\alpha\neq \beta\);
+the first term simplifies due to the Kronecker delta \(\delta_{\alpha\beta}\).
+In the third line we use two simplifications: The first one ist the fourth moment of a multivariate Gaussian; that is if 
+\(x\sim\mathcal{N}(0, \Sigma)\) with \(\sigma_{ij}\) the \(ij\)-th element
+of the covariance matrix \(\Sigma\) then \(\mathbb{E}[x_ix_j x_k x_l] = \sigma_{ij} \sigma_{kl} + \sigma_{ik} \sigma_{jl} + \sigma_{il} \sigma_{jk}\). 
+The second one is that \(V_{ij} = \mathrm{Cov}[ u_i,  u_j] = \mathbb{E}[ u_i u_j]\) as already used above. Now the terms in the sums
+do not depend on \(\alpha\) and \(\beta\) anymore, thus we only collect terms in the last three lines.</p>
+
+<h2 id="summary">Summary</h2>
+
+<p>The results for the mean, variance and covariance are hence</p>
+
+\[\begin{equation*}
+\begin{split}
+  \mathbb{E}[A_{ij}] 
+  &amp;= \nu V_{ij} \\
+  \mathrm{Var}[A_{ij}]
+  &amp;= \nu [ V_{ii}  V_{jj} +  V_{ij}^2]\\
+  \mathrm{Cov}[A_{ij}, A_{kl}] 
+  &amp;= \nu [ V_{ik}  V_{jl} +  V_{il}  V_{jk}] \\
+\end{split}
+\end{equation*}\]
+
+<p>where we also used that \(V_{ij}=V_{ji}\).</p>
+
+<p>With the definition of the symmetric Kronecker product we obtain the vectorized versions</p>
+
+\[\begin{equation*}
+\begin{split}
+   \mathbb{E}[\overrightarrow{A}] &amp; = \nu \overrightarrow{V}\\
+  \mathrm{Cov}[\overrightarrow{A}] &amp; = 2\nu (V\circledast V),
+\end{split}
+\end{equation*}\]
+
+<p>where \(\overrightarrow{A}\) is an \(n^2\)-dimensional vector as mentioned (rows of \(A\) are stacked),
+and the associated covariance matrix is a symmetric Kronecker product of shape \(n^2\times n^2\).</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="machinelearning" /><summary type="html"><![CDATA[This post contains a derivation of the covariance of the elements of a Wishart distributed random matrix which can be expressed as a symmetric Kronecker product.]]></summary></entry><entry><title type="html">Line Searches</title><link href="https://mmahsereci.github.io/blog/2023/line-searches/" rel="alternate" type="text/html" title="Line Searches" /><published>2023-02-19T00:00:00+00:00</published><updated>2023-02-19T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2023/line-searches</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2023/line-searches/"><![CDATA[<p>Line searches are fast an efficient sub-routines that determine
+the step size (a.k.a ‘learning rate’) of gradient-based optimizers at every iteration.
+Besides this, line searches have auxiliary purpose in quasi-Newton methods, where a correctly
+chosen step size yields positive definite Hessian estimates and thus descent directions.
+In this post, we discuss two well-known instances of a line search and their use cases: 
+1) the back-tracking line search, and 2) line searches based on cubic polynomials and the Wolfe conditions.</p>
+
+<h2 id="optimization-objective-and-notation">Optimization objective and notation</h2>
+
+<p>Please refer to <a href="/blog/2023/quasi-newton-methods/">this</a> post for notation on the 
+optimization objective \(f: \mathbb{R}^d\rightarrow \mathbb{R}\) and its gradient and
+Hessian function \(\nabla f: \mathbb{R}^d\rightarrow \mathbb{R}^d\) and \(f: \mathbb{R}^d\rightarrow \mathbb{R}^{d\times d}\) respectively. 
+We re-iterate that we aim to solve the optimization problem</p>
+
+\[w^∗ = \operatorname*{arg\,min}_w f (w).\]
+
+<p>Further, whenever the Newton step, the quasi-Newton step, the Hessian, or the quasi-Newton estimate \(B_t\) of the Hessian
+is mentioned, please also refer to the <a href="/blog/2023/quasi-newton-methods/">mentioned post</a> 
+for notation (this is mainly needed for the section on the role of line searches in quasi-Newton methods).</p>
+
+<h2 id="what-do-line-searches-do">What do line searches do?</h2>
+
+<p>Let \(p_t\in\mathbb{R}^d\) be any descent direction and</p>
+
+\[w_{t+1} = w_t + p_t\]
+
+<p>a typical update of an optimizer.</p>
+
+<p>Line searches are routines that are called at every iteration \(t\) <em>after</em> the descent direction \(p_t\) is determined
+by the optimizer and <em>before</em> \(w_{t+1}\) is computed.</p>
+
+<p>Their task is to find a suitable scalar \(0&lt; \alpha_t &lt; \infty\) that yields a <em>scaled step</em> \(\alpha_tp_t\). 
+The update then becomes</p>
+
+\[w_{t+1} = w_t + \alpha_tp_t.\]
+
+<p>The scaling of the step is supposed to stabilize the optimizer and increase its efficiency.</p>
+
+<h3 id="line-searches-operate-on-1-dimensional-problems">Line searches operate on 1-dimensional problems</h3>
+
+<p>As mentioned, line searches come into play after \(p_t\) is determined.
+Hence, line searches only ever operate on a 1-dimensional problem defined as</p>
+
+\[\begin{alignat*}{2}
+\alpha &amp; \geq 0\qquad &amp;&amp;\text{(1-dim domain)}\\
+w(\alpha) &amp; := w_t + \alpha p_t\qquad &amp;&amp;\text{(1-dim subspace)}\\
+h(\alpha) &amp; := f(w(\alpha)). &amp;&amp;\text{(1-dim objective)}
+\end{alignat*}\]
+
+<p>Putting the above formulas into words: The line search objective is \(h: \mathbb{R}_{+}\rightarrow \mathbb{R}\), \(\alpha\mapsto h(\alpha)\) 
+and has domain \(\mathbb{R}_+\). In terms of \(w\), the domain is equal to the 1-dimensional slice \(\{w(\alpha) \vert \alpha\in\mathbb{R}_+\}\) 
+through the \(d\)-dimensional \(w\)-space ‘to-the-right’ (for positive \(\alpha\)) of \(w_t\).
+The function values of \(h\) are simply the corresponding function values of \(f\) on that line.</p>
+
+<p>Further, the corresponding 1-dimensional gradient \(h': \mathbb{R}_{+}\rightarrow \mathbb{R}\), \(\alpha\mapsto h'(\alpha)\) is</p>
+
+\[\begin{align*}
+h'(\alpha) &amp;= (\frac{\partial w}{\partial \alpha})^{\intercal}\nabla f(w(\alpha))\\
+ &amp;= p_t^{\intercal}\nabla f(w(\alpha)),
+\end{align*}\]
+
+<p>which is equal to a projection of the high-dimensional gradient \(\nabla f(w(\alpha))\) onto \(p_t\).</p>
+
+<p>All computations inside the line search routine exclusively use the univariate quantities 
+\(\alpha\), \(h(\alpha)\) and \(h'(\alpha)\). Thus the line search routine itself scales \(\mathcal{O}(1)\)
+w.r.t the problem dimension \(d\).</p>
+
+<h2 id="what-is-a-good-step-size">What is a good step size?</h2>
+
+<p>We learned that line searches automatically find suitable step sizes \(\alpha_t\) at every iteration \(t\) of the optimizer.
+But what exactly does ‘suitable’ mean? 
+There are some general rules, although the type of the optimizer that produces \(p_t\) will mostly define this. 
+Consequently, certain instances of line searches are typically used alongside certain optimizers
+(textbooks like <a href="#references">Nocedal &amp; Wright</a> give a good overview).</p>
+
+<p>Let us have a look at an example: The backtracking line search used with the Newton optimizer.</p>
+
+<h3 id="example-1-backtracking-line-searches-for-newtons-method">Example 1: Backtracking line searches for Newton’s method</h3>
+
+<p>The Newton optimizer updates \(w_t\) according to the Newton step \(p_t^{\mathrm{newton}}\).
+Recall from the <a href="/blog/2023/quasi-newton-methods/">previous post</a><br />
+that the Newton step is given by  \(p_t^{\mathrm{newton}}:=-\nabla^2 f(w_t)^{-1} \nabla f(w_t)\)
+where \(\nabla^2 f(w_t)^{-1}\) is the inverse Hessian at location \(w_t\). 
+Let us assume here for simplicity that the Hessian at \(w_t\) is positive definite and 
+that the Newton step yields a descent direction.
+The step \(p_t^{\mathrm{newton}}\) is equal to stepping into the minimizer of a local quadratic approximation of \(f\) according 
+to a second order Taylor expansion around \(w_t\).</p>
+
+<p>From what we just learned, we can deduce that the Newton step has a natural scale of \(\alpha=1\) 
+that steps into said minimizer of the Taylor expansion.
+Sometimes though, when the Taylor expansion is not accurate enough, the step may overshoot the true objective, 
+especially at the beginning of the optimization when \(w_t\) is still too far away from the minimizer of \(f\), causing the optimizer to diverge. 
+Hence, Newton’s method is often used with a <em>backtracking line search</em>.</p>
+
+<p>A backtracking line search starts with the natural guess \(\alpha = 1\) and then shortens the step e.g., by a constant 
+multiplicative factor. The line search terminates once a suitable step is found, or throws an error instead.
+Simple code may look for example like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">backtracking_ls</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">h0</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">h0 is the function value at the current position (alpha=0)</span><span class="sh">"""</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="mi">1</span>  <span class="c1"># initial guess for the step size
+</span>    <span class="n">gamma</span> <span class="o">=</span> <span class="mf">0.9</span>  <span class="c1"># multiplicative factor 
+</span>    <span class="n">n_evals_max</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># maximal number of evaluations per line search
+</span>    <span class="n">n_evals</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># number of evaluations performed during the line search
+</span>    <span class="k">while</span> <span class="n">n_evals</span> <span class="o">&lt;</span> <span class="n">n_evals_max</span><span class="p">:</span>
+        <span class="n">halpha</span> <span class="o">=</span> <span class="nf">h</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>  <span class="c1"># evaluate h at current guess
+</span>        <span class="n">n_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># is the step suitable?
+</span>        <span class="k">if</span> <span class="nf">stopping_condition</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">halpha</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">alpha</span>
+        <span class="n">alpha</span> <span class="o">=</span> <span class="n">gamma</span> <span class="o">*</span> <span class="n">alpha</span>  <span class="c1"># reduce the step size
+</span>    <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">"</span><span class="s">A suitable step size could not be found.</span><span class="sh">"</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>We observe that the line search probes the natural \(\alpha=1\) first, and returns if this initial guess is suitable.
+Hence, a line search can terminate with no additional function evaluations in comparison to 
+an optimizer that uses no line search.</p>
+
+<p>If the guess is not suitable, the step is shortened by a multiplicative factor \(\gamma\in(0, 1)\). 
+If no suitable step can be found in the given budget of <code class="language-plaintext highlighter-rouge">n_evals_max</code> function evaluations, the 
+line search raises an exception.</p>
+
+<p>We summarize that the backtracking line search only intervenes (shortens the step) and uses additional compute if the 
+initial step size would most likely derail the optimizer. This is an important property since
+line searches are supposed to be lightweight.</p>
+
+<h4 id="the-armijo-condition-for-backtracking-line-searches">The Armijo condition for backtracking line searches</h4>
+
+<p>A backtracking line search usually uses the <a href="#references">Armijo condition</a> as <code class="language-plaintext highlighter-rouge">stopping_condition(...)</code>
+which encodes that the function value \(f(w_{t+1})\) should decrease linearly 
+along the line compared to the current value \(f(w_t)\). 
+Thus, the Armijo condition is also called the <em>sufficient decrease</em> condition; it reads:</p>
+
+\[\begin{alignat*}{2}
+h(\alpha) \leq h(0) + \alpha c_1 h'(0)\quad &amp;&amp;\text{(Armijo condition)}
+\end{alignat*}\]
+
+<p>where \(c_1\in[0, 1)\) is a fixed constant usually close or equal to \(0\) (demanding a trivial decrease of the objective function;
+note that \(h'(0)\) is negative if \(p_t\) is a descent direction which is generally assumed for line searches).</p>
+
+<p>Newton’s optimizer using a backtracking line search may look something like this:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">_h</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">helper function to construct h.</span><span class="sh">"""</span>
+    <span class="n">fw</span><span class="p">,</span> <span class="n">dfw</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">w</span> <span class="o">+</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">p</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">fw</span><span class="p">,</span> <span class="n">np</span><span class="p">.</span><span class="nf">dot</span><span class="p">(</span><span class="n">dfw</span><span class="p">,</span> <span class="n">p</span><span class="p">)</span>
+
+<span class="n">T</span> <span class="o">=</span> <span class="mi">1000</span>  <span class="c1"># maximum number of optimization steps
+</span><span class="n">w</span> <span class="o">=</span> <span class="n">w0</span>  <span class="c1"># w0 is the starting position of the optimizer
+</span><span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="n">T</span><span class="p">):</span>
+    <span class="n">fw</span><span class="p">,</span> <span class="n">dfw</span><span class="p">,</span> <span class="n">ddfw</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">w</span><span class="p">)</span>  <span class="c1"># evaluate objective, dfw and ddfw are gradient and Hessian at w
+</span>    <span class="n">p</span> <span class="o">=</span> <span class="nf">get_newton_direction</span><span class="p">(</span><span class="n">dfw</span><span class="p">,</span> <span class="n">ddfw</span><span class="p">)</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="nf">backtracking_ls</span><span class="p">(</span><span class="n">h</span><span class="o">=</span><span class="k">lambda</span> <span class="n">a</span><span class="p">:</span> <span class="nf">_h</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">p</span><span class="p">),</span> <span class="n">h0</span><span class="o">=</span><span class="n">fw</span><span class="p">)</span>
+    <span class="n">w</span> <span class="o">+=</span> <span class="n">alpha</span> <span class="o">*</span> <span class="n">p</span>  <span class="c1"># step
+</span></code></pre></div></div>
+
+<p>(Note: The code snippets above are inefficient implementations because \(f\) might be
+evaluated twice at the accepted step (once inside the line search when evaluating \(h\) 
+and once explicitly in the main optimizer loop). This compute-sharing is easy to resolve, but it would 
+convolute the code which is why I opted for the shown version.)</p>
+
+<h3 id="example-2-line-searches-based-on-wolfe-conditions-for-quasi-newton-methods">Example 2: Line searches based on Wolfe-conditions for quasi-Newton methods</h3>
+
+<p>The backtracking line search is a rather simple line search. For instance the search space for
+\(\alpha\) is restricted as it is capped by a maximal value of \(\alpha=1\), and we were only
+interested in <em>shortening</em> a step, hence the Armijo condition was appropriate 
+(the Armijo condition in principle allows very small, inefficient steps, but as we were backtracking this was not an issue).
+This strategy is suitable for Newton’s method as it exhibits a natural scale that is often right.</p>
+
+<p>When used with other optimizers, line searches often cannot be as simple and need to allow for any continuous \(\alpha\in\mathbb{R}_+\),
+and be able to both extend and shorted the step.
+Thus, line searches often do the heavy lifting when it comes to stabilizing optimizers.</p>
+
+<p>In particular, <em>line searches base on the Wolfe conditions</em> are essential to stabilize e.g., the (L-)BFGS
+update and even ensure a descent direction for non-convex \(f\). 
+(At this point it may make sense to read the <a href="/blog/2023/quasi-newton-methods/">previous post</a> 
+on quasi-Newton methods as I will not explain their update here again.
+We will simply note that the quasi-Newton update \(p_t^{\mathrm{quasi}} = - B_t^{-1}\nabla f(w_t)\) approximates the Newton step
+using \(B_t^{-1}\), an evolving estimate of the inverse Hessian constructed from past gradient difference 
+\(\Delta y_{t-1}:= \nabla f(w_{t}) - \nabla f(w_{t-1})\) 
+and path segment observations \(s_{t-1} := w_{t} - w_{t-1}\).)</p>
+
+<p>The <a href="#references">Wolfe conditions</a> are often motivated as an extension of the Armijo condition, that, in addition to
+preventing too large steps (by capping the allowed function value), also prevent too short steps
+(by imposing an increase in gradient).
+However, we will motivate the Wolfe conditions a bit non-traditionally here by examining the BFGS update.</p>
+
+<h4 id="the-wolfe-conditions-line-searches-can-ensure-positive-definite-bfgs-updates">The Wolfe conditions (Line searches can ensure positive definite BFGS updates)</h4>
+
+<p>As shown in the <a href="/blog/2023/quasi-newton-methods/">previous post</a> (L-)BFGS 
+does not explicitly encode positive definiteness of the Hessian estimate \(B_t\).</p>
+
+<p>However, Theorems 7.7 and 7.8 in <a href="#references">Dennis and Moré</a> show (by examining the determinant) 
+that \(B_t\) of BFGS (and DFP for that matter)
+are positive definite if the newly collected gradient difference and path segment fulfill
+\(s_t^{\intercal}\Delta y_t &gt; 0\). Hence, let us define the parametrized path segment
+\(s(\alpha) := w(\alpha) - w_t = \alpha p_t\) and the parametrized gradient difference 
+\(\Delta y(\alpha):=\nabla f(w(\alpha)) - \nabla f(w(0))\)
+and let us write</p>
+
+\[\begin{align*}
+s(\alpha)^{\intercal}\Delta y(\alpha) &amp; = \alpha p_t^{\intercal}\nabla f(w(\alpha)) - \alpha p_t^{\intercal}\nabla f(w(0))\\
+&amp; = \alpha h'(\alpha) - \alpha h'(0) &gt; 0\\
+\rightarrow h'(\alpha) &amp; &gt; h'(0).
+\end{align*}\]
+
+<p>The above result states that \(B_t\) will stay positive definite if \(h'(\alpha)  &gt; h'(0)\).
+That is, a suitable step \(\alpha\) must have a larger projected gradient
+\(h'(\alpha)\) in comparison to the current projected gradient \(h'(0)\).
+Since \(h'(0)\) is negative (descent direction), this means that \(h'(\alpha)\) must either be
+smaller in absolute value or positive.
+Hence, when (L-)BFGS is used with a line search that finds step sizes that fulfill the above inequality, the estimator \(B_t\) 
+will always be positive definite, and hence \(p_t\) will always be a descent direction.
+<strong>This holds even if \(f\) is non-convex and the true Hessian matrix at \(w_t + s(\alpha)\) is not positive definite.</strong></p>
+
+<p>The condition we just found is called the <em>curvature condition</em>, and together with the Armijo condition
+forms the <em>weak Wolfe conditions</em></p>
+
+\[\begin{alignat*}{2}
+h(\alpha) &amp;\leq h(0) + \alpha c_1 h'(0)\quad &amp;&amp;\text{(Wolfe-I, or Armijo condition)}\\
+h'(\alpha) &amp;&gt; c_2 h(0)\quad &amp;&amp;\text{(Wolfe-II, or curvature condition)}
+\end{alignat*}\]
+
+<p>where \(0&lt;c_1&lt;c_2&lt;1\). As mentioned above, the curvature condition can also be derived independently of the
+definiteness constraint for the BFGS update, as a means to disallow short steps.</p>
+
+<p>Still, let us stop here for a moment and appreciate the interplay between the seemingly separate BFGS quasi-Newton estimate \(B_t\)
+and the line search routine enforcing the Wolfe conditions:
+The line search can affect the definiteness of the BFGS update by choosing the step size as illustrated above.
+Furthermore, the BFGS update rule allows (\(B_t\) remains positive definite) for just the right size of steps for the optimizer to make rapid progress.
+The latter should be understood in the sense that the Wolfe conditions are meaningful in their own right and have been derived in other contexts, 
+for example as conditions for convergence. 
+To me, this interplay between two a priori separate methods with separate concerns is a true masterpiece of algorithm, and 
+it may explain in parts the huge success of the (L-)BFGS method over several decades to date.</p>
+
+<p>(A note in passing: It is not possible to control the robustness of Newton’s method in the same way.
+This is because the Newton step uses the Hessian matrix at location \(w_t\) which simply is positive definite, or it is not.)</p>
+
+<p>Continuing on, in practice, often the <em>strong Wolfe conditions</em> are used over the weak ones, as they safeguard a bit better against too large steps.
+The strong Wolfe conditions modify the curvature condition and disallow too large positive gradients. In essence, the projected gradient must 
+not only become larger, but also decrease in absolute value under the strong Wolfe conditions.</p>
+
+\[\begin{alignat*}{2}
+h(\alpha) &amp;\leq h(0) + \alpha c_1 h'(0)\quad &amp;&amp;\text{(Wolfe-I, or Armijo condition)}\\
+|h'(\alpha)| &amp; &lt; c_2 |h(0)|\quad &amp;&amp;\text{(Wolfe-IIa, or curvature condition)}
+\end{alignat*}\]
+
+<p>(Note that the sign changed from a larger-than to a smaller-than sign in the second line due to taking the
+absolute values.)
+The weak Wolfe conditions contain the strong Wolfe conditions in the sense that all \(\alpha\) allowed by
+the strong, will also be allowed by the weak Wolfe conditions.</p>
+
+<h4 id="polynomial-interpolants-or-how-to-search-the-line">Polynomial interpolants (or how to search the line)</h4>
+
+<p>The Wolfe conditions define a suitable step; now let us see how to efficiently
+search the line. In contrast to the backtracking line search that only searches on the domain \(\alpha=(0, 1]\)
+we now want to allow for \(\alpha\in\mathbb{R}_+\) since Wolfe points may lie at larger values \(\alpha&gt;1\), too.</p>
+
+<p>We cannot simply sample a whole range of points, as this would decrease the efficiency of the line search significantly.
+Thus, line searches often try the step size of the previous iteration first, and, if not accepted, extend the step
+with a multiplicative factor until a point with positive gradient \(h'(\alpha)&gt;0\) is reached 
+(this means there must exist a minimizer between this candidate and the previous one tried).
+Let \(\alpha^{(i)}\), \(i=0, 1, 2, \dots\) be the guesses. 
+The extension phase is followed by a search in \([0, \alpha^{(i)}]\) or \([\alpha^{(i-1)} , \alpha^{(i)}]\), 
+by interval nesting or by interpolation of the collected function and gradient values,
+e.g. with <a href="https://en.wikipedia.org/wiki/Spline_(mathematics)">cubic splines</a>. 
+If cubic splines are used, the next candidate may be the minimizer of the spline.
+If any point during the described procedure is a Wolfe point (also the initial try), the line search terminates.</p>
+
+<p>The described procedure may sound complicated (see e.g., <a href="#references">Nocedal &amp; Wright</a> for an extended discussion), 
+but line searches of this sort are highly efficient in probing 
+the right candidates \(\alpha\) such that a Wolfe point is found immediately or with very little 
+function evaluations. To make things a bit clearer, here is a sketch of a potential line search using the Wolfe conditions:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">wolfe_ls</span><span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">h0</span><span class="p">,</span> <span class="n">dh0</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">alpha is the step size of the previous iteration.</span><span class="sh">"""</span>
+    <span class="c1"># set up storage (all stored values are scalars)
+</span>    <span class="n">Alphas</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span>  <span class="c1"># h0 and dh0 correspond to alpha=0
+</span>    <span class="n">H</span> <span class="o">=</span> <span class="p">[</span><span class="n">h0</span><span class="p">]</span>
+    <span class="n">dH</span> <span class="o">=</span> <span class="p">[</span><span class="n">dh0</span><span class="p">]</span>
+    
+    <span class="n">n_evals_max</span> <span class="o">=</span> <span class="mi">20</span>  <span class="c1"># maximal number of evaluations per line search
+</span>    <span class="n">n_evals</span> <span class="o">=</span> <span class="mi">0</span>  <span class="c1"># number of evaluations performed during the line search    
+</span>    <span class="n">extrapolate</span> <span class="o">=</span> <span class="bp">True</span>  <span class="c1"># flag for extrapolation phase
+</span>    <span class="k">while</span> <span class="n">n_evals</span> <span class="o">&lt;</span> <span class="n">n_evals_max</span><span class="p">:</span>
+        <span class="n">halpha</span><span class="p">,</span> <span class="n">dhalpha</span> <span class="o">=</span> <span class="nf">h</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>  <span class="c1"># evaluate h at current guess
+</span>        <span class="n">n_evals</span> <span class="o">+=</span> <span class="mi">1</span>
+        
+        <span class="c1"># update storage
+</span>        <span class="n">Alphas</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">alpha</span><span class="p">)</span>
+        <span class="n">H</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">halpha</span><span class="p">)</span>
+        <span class="n">dH</span><span class="p">.</span><span class="nf">append</span><span class="p">(</span><span class="n">dhalpha</span><span class="p">)</span>
+
+        <span class="c1"># is the step suitable?
+</span>        <span class="k">if</span> <span class="nf">wolfe_conditions</span><span class="p">(</span><span class="n">h0</span><span class="p">,</span> <span class="n">dh0</span><span class="p">,</span> <span class="n">halpha</span><span class="p">,</span> <span class="n">dhalpha</span><span class="p">,</span> <span class="n">alpha</span><span class="p">):</span>
+            <span class="k">return</span> <span class="n">alpha</span>
+        <span class="n">alpha</span><span class="p">,</span> <span class="n">extrapolate</span> <span class="o">=</span> <span class="nf">compute_next_candidate</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">Alphas</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">dH</span><span class="p">,</span> <span class="n">extrapolate</span><span class="p">)</span>
+    <span class="k">raise</span> <span class="nc">RuntimeError</span><span class="p">(</span><span class="sh">"</span><span class="s">A suitable step size could not be found.</span><span class="sh">"</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_next_candidate</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">Alphas</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">dH</span><span class="p">,</span> <span class="n">extrapolate</span><span class="p">):</span>
+    <span class="c1"># stop extrapolating if gradient turns positive first time
+</span>    <span class="k">if</span> <span class="n">extrapolate</span> <span class="ow">and</span> <span class="n">dH</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">extrapolate</span> <span class="o">=</span> <span class="bp">False</span>
+
+    <span class="k">if</span> <span class="n">extrapolate</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">alpha</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">extrapolate</span>  <span class="c1"># double step size
+</span>
+    <span class="c1"># find e.g., cubic minimizer of previous cell
+</span>    <span class="k">return</span> <span class="nf">cubic_minimizer</span><span class="p">(</span><span class="n">alpha</span><span class="p">,</span> <span class="n">Alphas</span><span class="p">,</span> <span class="n">H</span><span class="p">,</span> <span class="n">dH</span><span class="p">),</span> <span class="n">extrapolate</span>
+</code></pre></div></div>
+
+<p>In summary, more involved line searches operate on a larger, possibly unbounded search space for \(\alpha\),
+they use more complex stopping criteria, such as the Wolfe conditions, and they can both extend and shorted
+the steps of the optimizer. Apart from step size, they can control properties of some selected optimizers
+as could be seen from the BFGS update where the line search ensures future descent directions \(p_{t+1}\).</p>
+
+<h2 id="some-final-thoughts">Some final thoughts</h2>
+
+<p>Line searches are, in my humble opinion, really cool subroutines that get glossed over often.
+From a practical perspective line searches automate one of the most sensitive 
+hyperparameter of optimization: The learning rate, which is extremely tedious if it
+needed to be set by hand. Hence, line searches might seem like small/ non-essential subroutines at first glance, 
+but often they are at the heart of optimizers that solve the most intricate problems automated and efficiently.
+Robust implementations go beyond the code snippets shown above, as one main objective of a line
+search is to ‘keep the optimizer going’ also in numerically unstable situation, and even when 
+no suitable point can be found in the given budget.</p>
+
+<p>You may finally be wondering: But what about deep learning? The short answer is that things are simply
+different if the objective \(f\) cannot be evaluated precisely (due to mini-batching). In this case
+many assumptions of the line search go down the drain (a straightforward example is that the Wolfe conditions cannot be checked with certainty anymore;
+an even more straightforward example is that descent directions \(p_t\) cannot be ensured anymore).
+I may do another blogpost at some point about probabilistic equivalents of line searches that are robust to gradient noise and
+that perform really well for certain types of deep learning problems, but alas not for all of them yet.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] J. J. Dennis and J. Moré 1977 <em>Quasi-Newton methods, motivation and theory</em>, SIAM Review 19.1 pp. 46–89.</p>
+
+<p>[2] L. Armijo 1966 <em>Minimization of functions having Lipschitz continuous first partial derivatives</em>, Pacific Journal of Mathematics 16.1 pp. 1–3.</p>
+
+<p>[3] P. Wolfe 1969 <em>Convergence conditions for ascent methods</em>,  SIAM Review 11.2 pp. 226–235.</p>
+
+<p>[4] J. Nocedal, S. J. Wright 2006 <em>Numerical Optimization</em>, Springer.</p>
+
+<p>[5] (some of the above text is copied from my PhD thesis, Section 2.5) M. Mahsereci 2018 <em>Probabilistic Approaches to Stochastic Optimization</em>.</p>
+
+<h2 id="appendix-a-practical-note-on-line-search-parameters">Appendix: A practical note on line search parameters</h2>
+
+<p>We accumulated a bunch of line search parameters (\(\gamma\), \(c_1\), \(c_2\), …) that 
+(at least if you grew up with deep learning, which this post is not about) seem like an extra nuisance to tune,
+defeating the purpose of any kind of automation. But fortuitously, in the deterministic world, it can be 
+said that those parameters can be fixed and stay fixed for pretty much any problem without compromising the
+optimization performance. The reasons are that i) the optimizer’s effectiveness does not seem to 
+depend on the parameter values a lot, and ii) line searches can be quite lenient, allowing for most steps (e.g., \(c_1\) close to 0)
+and only disallowing catastrophic steps in order to keep the optimizer doing its thing. The latter can be understood in the
+context of a line search being an auxiliary step within a larger iteration, and thus the definition of a ‘suitable step’ does not need to be very precise.</p>
+
+<p><em>Small caveat:</em> There is usually no need at all to meddle with the parameters of the Wolfe or the Armijo condition, but it may 
+be helpful here and there to play with \(\gamma\) of a backtracking line search or the backtracking schedule
+when evaluating \(f(w)\) is very expensive by itself <em>and</em> expensive in comparison to computing \(p_t\).
+In this case one would rather shorten the step quite aggressively (smaller \(\gamma\)) and find “some step” for a reduced budget that trying
+to find a more precise but costly step. 
+The parameter \(\gamma\) or the schedule can be fixed by some meaningful expert knowledge 
+(how many function evaluations do I want to waste in the worst case and what’s the shortest step I want to try?) rather than by trial and error.
+If \(\gamma\) is used, the step sizes tried are equal to \(\gamma^i\) for \(i=0, 1, 2, \dots\) which may give a hint on what to do best.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="optimization" /><category term="machinelearning" /><summary type="html"><![CDATA[Line searches are fast an efficient sub-routines that determine the step size (a.k.a 'learning rate') of gradient-based optimizers at every iteration. Besides this, line searches have auxiliary purpose in quasi-Newton methods, where a correctly chosen step size yields positive definite Hessian estimates and thus descent directions. In this post, we discuss two well-known instances of a line search and their use cases: 1) the back-tracking line search, and 2) line searches based on cubic polynomials and the Wolfe conditions.]]></summary></entry><entry><title type="html">Quasi-Newton Methods</title><link href="https://mmahsereci.github.io/blog/2023/quasi-newton-methods/" rel="alternate" type="text/html" title="Quasi-Newton Methods" /><published>2023-01-15T00:00:00+00:00</published><updated>2023-01-15T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2023/quasi-newton-methods</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2023/quasi-newton-methods/"><![CDATA[<p>Limited memory BFGS (<a href="https://en.wikipedia.org/wiki/Limited-memory_BFGS">L-BFGS</a>) is one of the most successful gradient-based optimizers and
+arguably the gold-standard in deterministic, non-convex optimization. 
+It is a member of the Dennis family of quasi-Newton methods that use low-rank approximations of the inverse Hessian to project the gradient. 
+The resulting search direction can thus be thought of as an approximation to the Newton direction, 
+with the important difference that, even for non-convex objective functions, it is always a descent direction. 
+There is a multitude of symmetric and non-symmetric quasi-Newton updates, and here we’ll discuss the most relevant ones.</p>
+
+<h2 id="optimization-objective-and-notation">Optimization objective and notation</h2>
+
+<p>Let \(f: \mathbb{R}^d\rightarrow \mathbb{R}\), \(w\mapsto f(w)\) be a function that is at least twice
+differentiable. 
+We aim to solve the optimization problem</p>
+
+\[w^∗ = \operatorname*{arg\,min}_w f (w)\]
+
+<p>where we are interested in finding the input \(w^*\) that minimizes \(f\).</p>
+
+<p>The gradient function w.r.t \(w\) is denoted as \(\nabla f: \mathbb{R}^d\rightarrow \mathbb{R}^d\), \(w\mapsto \nabla f(w)\)
+and the Hessian function as  \(\nabla^2 f: \mathbb{R}^d\rightarrow \mathbb{R}^{d\times d}\), \(w\mapsto \nabla^2 f(w)\).
+Greedy, gradient-based optimizers such as Newton’s method generally find local minimizers of \(f\) which is 
+often deemed sufficient.</p>
+
+<h2 id="newtons-method">Newton’s method</h2>
+
+<p>We will briefly introduce Newton’s method here as quasi-Newton methods aim to approximate the Newton step. 
+Newton’s method starts with an initial guess \(w_0\) for \(w^*\) and then updates the guess by iterating over the following line:</p>
+
+\[w_{t+1} = w_t - \nabla^2 f(w_t)^{-1} \nabla f(w_t).\]
+
+<p>Hence, the new guess \(w_{t+1}\) is found by updating the old guess \(w_t\) with the vector \(p_t^{\mathrm{newton}}:=-\nabla^2 f(w_t)^{-1} \nabla f(w_t)\).
+We will call \(p_t^{\mathrm{newton}}\) the <em>Newton direction</em> or <em>Newton step</em>.</p>
+
+<h2 id="quasi-newton-methods">Quasi-Newton methods</h2>
+
+<p>As the name suggests, quasi-Newton methods aim to approximate the Newton step. 
+There is a zoo of quasi-Newton methods out there
+which in some sense also reflects the history of discovery of these powerful methods. 
+Two famous families are the <em>Broyden</em> and the <em>Dennis</em> family of quasi-Newton methods the latter of which contains
+arguably the most successful quasi-Newton method: <a href="https://en.wikipedia.org/wiki/Broyden%E2%80%93Fletcher%E2%80%93Goldfarb%E2%80%93Shanno_algorithm">BFGS</a>. 
+We will have a look at the Dennis family later on.</p>
+
+<h4 id="the-quasi-newton-step">The quasi-Newton step</h4>
+
+<p>In essence, quasi-Newton methods replace the Hessian matrix \(\nabla^2 f(w_t)\) at every step \(t\)
+with an estimator \(B_t\in\mathbb{R}^{d\times d}\) thereof.
+The <em>quasi-Newton step</em> is then defined as</p>
+
+\[p_t^{\mathrm{quasi}} = - B_t^{-1}\nabla f(w_t),\]
+
+<p>where the exact estimator \(B_t = \nabla^2 f(w_t)\) recovers the Newton step.</p>
+
+<p>In contrast to Newton’s method, quasi-Newton methods never evaluate the Hessian function itself but build the
+estimate \(B_t\) from past gradient evaluations \(\nabla f(w_t), \nabla f(w_{t-1}),\dots\).</p>
+
+<p>How this is done, we will see next.</p>
+
+<h4 id="the-secant-equation">The secant equation</h4>
+
+<p>First, we observe that the gradient \(\nabla f(w)\) and the Hessian \(\nabla^2 f(w)\) are
+related in the sense that the latter is the Jacobien of the former. 
+Hence, it is possible to learn about one by evaluating the other.
+In particular, quasi-Newton methods estimate the Hessian from past gradient evaluations.
+This idea is encoded in the <em>secant equation</em>.</p>
+
+<p>Let \(s_t := w_{t+1} - w_t\) be the path segment in parameter space and 
+\(\Delta y_t:= \nabla f(w_{t+1}) - \nabla f(w_t)\) be the corresponding gradient difference.</p>
+
+<p>The basic assumption for all quasi-Newton methods is that the estimator \(B_t\) must fulfill the secant equation</p>
+
+\[\begin{equation*}
+    B_{t} s_{t-1} = \Delta y_{t-1},\quad\text{(secant equation)}
+\end{equation*}\]
+
+<p>which means that \(B_t\) is equal to the <em>average</em> Hessian along the sub-space \(s_{t-1}\).</p>
+
+<p>This can be seen from the <a href="https://en.wikipedia.org/wiki/Gradient_theorem">fundamental theorem of calculus for line integrals</a>.
+In other words, parametrize the path \(\bar{s}(\tau) = w_{t} + \tau s_{t-1}\) with 
+\(\tau\in[0, 1]\), fulfilling \(\bar{s}(0) = w_{t-1}\) and \(\bar{s}(1) = w_t\). 
+Then, the average Hessian along the path \(\bar{s}\) ist</p>
+
+\[\begin{equation*}
+\begin{split}
+\int_{\bar{s}} \nabla^2 f(\bar{s})\frac{\mathrm{d}\bar{s}}{\|\bar{s}\|}
+&amp;= \int_{0}^{1}\nabla \left[\nabla f(\bar{s}(\tau))\bar{s}'(\tau)\right]\frac{\mathrm{d}\tau}{\|\bar{s}\|} \\
+&amp;= \int_{0}^{1}\nabla \left[\frac{\mathrm{d}f(\bar{s}(\tau))}{\mathrm{d}\tau}\right]\frac{\mathrm{d}\tau}{\|\bar{s}\|} \\
+&amp;=\nabla \left[f(\bar{s}(1)) - f(\bar{s}(0))\right] \frac{1}{\|\bar{s}\|} \\
+&amp; =\left[  \nabla f(w_{t}) - \nabla f(w_{t-1})\right]\frac{1}{\|\bar{s}\|} \\
+&amp; =\frac{\Delta y_{t-1}}{\|\bar{s}\|}\\
+&amp; =B_t \frac{s_{t-1}}{\|\bar{s}\|},
+\end{split}
+\end{equation*}\]
+
+<p>where the last line uses the definition of the secant equation.</p>
+
+<p>We found a way to identify the Hessian estimator \(B_t\) in the subspace spanned by the path segment 
+\(s_{t-1}\). However, this does not identify \(B_t\) fully.
+Hence, we need further assumptions. In the next section we will explore how the Dennis family
+of quasi-Newton methods resolves this issue (Other families take a similar approach, so we will skip them here).</p>
+
+<h3 id="the-dennis-family-of-quasi-newton-methods">The Dennis family of quasi-Newton methods</h3>
+
+<p>We will now see how the Dennis family of quasi-Newton methods uses the secant equation and 
+further assumptions to identify \(B_t\).</p>
+
+<p>Quasi-Newton methods take an iterative approach to estimating \(B_t\). This means that we start with an 
+initial guess \(B_0\) for the Hessian at \(w_0\) (this can for example be a scaled identity matrix \(\sigma_0^2I\))
+and update this guess at every iteration.</p>
+
+<p>Consider a guess \(B_t\). 
+In the Dennis family of quasi-Newton methods
+the subsequent guess \(B_{t+1}\) for the Hessian matrix, is the solution to the following constrained optimization problem:</p>
+
+\[\begin{alignat}{2}
+\label{eq:qn}
+    &amp;&amp;B_{t+1} &amp;= \operatorname{arg\,min}_{B}\|B - B_t\|_{W, F}\\
+    &amp;&amp;&amp;\notag \\
+    &amp;\text{s.t.}\qquad&amp; Bs_t &amp;= \Delta y_t,   \qquad (\text{secant equation})\notag\\
+    &amp;\text{and}\qquad&amp;  B    &amp;= B^{\intercal}.\qquad (B\text{ symmetric})\notag
+\end{alignat}\]
+
+<p>Again, we observe that the first constraint (the secant equation) partially identifies \(B_{t+1}\) in the sub-space spanned by \(s_t\).
+Further, the second constraint (the symmetry assumption, known to be true for Hessians) restricts the solution to the space of
+symmetric matrices. Lastly, to fully identify \(B_{t+1}\), the minimization problem of Eq. \eqref{eq:qn}
+is solved, which, under the mentioned constraints, finds a matrix that is closest to the previous guess \(B_t\) w.r.t.
+the weighted Frobenius norm with weight matrix \(W\). 
+The norm-minimization aspect can be thought of as a regularizer on \(B\), but most importantly it
+identifies \(B_{t+1}\) in the remaining space that is not covered by the constraints.
+All previous path segments \(s_{t-1}\), \(s_{t-2}\), \(\dots\) and corresponding gradient differences are implicitly represented in the 
+preceding guess \(B_t\).</p>
+
+<p>I will not explain the Frobenius norm here (I have another post 
+<a href="/blog/2022/kronecker/">here</a>
+where it is mentioned in the context
+of Kronecker products). But essentially, given a symmetric positive definite weight matrix \(W\in\mathbb{R}^{d\times d}\), 
+the weighted Frobenius norm
+is a matrix norm defined as \(\|X\|_{W, F} = \|W^{\frac{1}{2}}XW^{\frac{1}{2}}\|_F\) with
+\(\|X\|_F^2 = \sum_{i=1}^{d} \sum_{j=1}^{d}X_{ij}^2\) the (square of the) standard Frobenius norm.
+Due to the fact, that \(B_{t+1}\) is the solution of a norm-minimization problem parametrized by some weight matrix
+\(W\), quasi-Newton methods are also denoted as <em>variable metric</em> methods in the literature.</p>
+
+<p>Retrieving \(B_{t+1}\) from Eq. \eqref{eq:qn} is a bit tedious (proof can be found in the <a href="#references">reference</a>). 
+The important point is that the solution \(B_{t+1}\) is <em>analytic</em>, and, for some vector \(c_t := Ws_t\in\mathbb{R}^d\) that is 
+identified by \(W\) and \(s_t\), can be written as</p>
+
+\[\begin{equation}
+\label{eq:dennis}
+    B_{t+1} = B_t + \frac{(\Delta y_t - B_ts_t)c_t^{\intercal} + c_t(\Delta y_t - B_ts_t)^{\intercal}}{c_t^{\intercal}s_t} - \frac{c_ts_t^{\intercal}(\Delta y_t - B_ts_t)c_t^{\intercal}}{(c_t^{\intercal}s_t)^2}.
+\end{equation}\]
+
+<p>Eq. \eqref{eq:dennis} describes the Hessian estimates of the <em>Dennis family</em> of quasi-Newton methods <a href="#references">[2]</a> which is 
+parameterized by the weight matrix \(W\) of the metric used and in consequence simply by the vector \(c_t\in\mathbb{R}^d\). 
+All formulas only ever require choosing \(c_t\) and never \(W\) explicitly.
+For every different \(c_t\), we obtain another member of the Dennis family.</p>
+
+<p>The most relevant members of the Dennis family are (see <a href="#references">references</a>)</p>
+
+\[\begin{alignat*}{3}
+    &amp;\text{SR1} &amp; c_t &amp; = \Delta y_t - B_ts_t &amp; W_t &amp;= \nabla^2 f(w_t) - B_t\\
+    &amp;\text{PSB} &amp; c_t &amp; = s_t &amp; W_t &amp;= I\\
+    &amp;\text{Greenstadt}\qquad &amp; c_t &amp; = B_ts_t &amp; W_t &amp;= B_t\\
+    &amp;\text{DFP} &amp; c_t &amp; = \Delta y_t &amp; W_t &amp;= \nabla^2 f(w_t)\\
+    &amp;\text{BFGS} &amp; c_t &amp; = \Delta y_t + \sqrt{\frac{s_t^{\intercal} \Delta y_t}{s_t^{\intercal} B_t s_t}}B_ts_t\quad  &amp; W_t &amp;= \nabla^2 f(w_t) + \sqrt{\frac{s_t\Delta y_t}{s_t^{\intercal} B_t s_t}}B_t.
+\end{alignat*}\]
+
+<p>In particular, the highly performant BFGS estimator is</p>
+
+\[\begin{equation*}
+    \begin{split}
+        B_{t+1} &amp; = B_t + \frac{\Delta y_t \Delta y_t^{\intercal}}{\Delta y_t^{\intercal} s_t} - \frac{B_ts_ts_t^{\intercal} B_t}{s_t^{\intercal} B_ts_t}.
+    \end{split}
+\end{equation*}\]
+
+<h4 id="computing-the-quasi-newton-step">Computing the quasi-Newton step</h4>
+<p>In order to obtain the quasi-Newton update \(p_t^{\mathrm{quasi}}\), the inverse \(B_t^{-1}\) is required.
+From Eq. \eqref{eq:dennis}, \(B_t^{-1}\) is easy to obtain via the 
+<a href="https://en.wikipedia.org/wiki/Woodbury_matrix_identity">matrix inversion lemma</a>.</p>
+
+<p>The BFGS estimator for the inverse Hessian \(B_{t+1}^{-1}\) for example is</p>
+
+\[\begin{equation}
+\label{eq:bfgs}
+    \begin{split}
+        B_{t+1}^{-1} &amp; = \left(I -\frac{s_t\Delta y_t^{\intercal}}{\Delta y_t^{\intercal} s_t} \right)B_{t}^{-1}\left(I -\frac{\Delta y_ts_t^{\intercal}}{\Delta y_t^{\intercal} s_t} \right) - \frac{s_ts_t^{\intercal}}{\Delta y_t^{\intercal} s_t}\\
+        &amp; = B_t^{-1} + \frac{(\Delta y_t^{\intercal} s_t + \Delta y_t^{\intercal} B_t^{-1}\Delta y_t)(s_ts_t^{\intercal})}{(\Delta y_t^{\intercal} s_t)^2} 
+        - \frac{B_t^{-1}\Delta y_ts_t^{\intercal} + s_t\Delta y_t^{\intercal} B_t^{-1}}{\Delta y_t^{\intercal}s_t}.
+    \end{split}
+\end{equation}\]
+
+<p>Hence, in practice, only ever \(B_t^{-1}\) needs to be stored which is then updated with a rank-2 term at every iteration.
+This removes the need to i) construct \(B_t\), and ii) removes the need to solve an expensive linear system of size \(d\).
+Hence, quasi-Newton methods require only quadratic cost, both in memory and compute (the latter to perform the matrix vector multiplication with the gradient)
+in contrast to quadratic and cubic cost respectively of Newton’s method.</p>
+
+<h3 id="limited-memory-bfgs-l-bfgs-scales-linearly">Limited-memory BFGS (L-BFGS) scales linearly</h3>
+
+<p>Quasi-Newton methods can be made even faster such that they scale linearly with \(d\) in memory and compute.</p>
+
+<p>To see this, first observe that the quasi-Newton step
+\(p_t^{\mathrm{quasi}}\) can be constructed in two different ways.
+The straightforward way is to keep the matrix \(B_{t}^{-1}\) in memory and to update it at every iteration with the 
+rank-2 term as in Eq. \eqref{eq:dennis} using the newly acquired gradient \(\nabla f(w_{t})\) and path segment \(s_{t-1}\). 
+Then \(B_t^{-1}\) can be multiplied with the
+current gradient to obtain \(p_t^{\mathrm{quasi}}\).</p>
+
+<p>An alternative way is to never construct nor store \(B_t^{-1}\) directly, but to keep all 
+paths segments \(\{s_i\}_{i=0}^{t-1}\) and gradients \(\{\nabla f(w_i)\}_{i=0}^{t}\) in memory instead.
+The step \(p_t^{\mathrm{quasi}}\) is then constructed directly by adding up the analytic products of the 
+\(t\) rank-2 terms with their corresponding gradients.</p>
+
+<p>This second version thus requires storing \(2t-1\) \(d\)-dimensional vectors (the path segments and the gradients) and requires
+\(\mathcal{O}(td)\) operations. Hence, if \(t\ll d\), this version of computing the quasi-Newton update is linear in \(d\).</p>
+
+<h4 id="a-shifting-window-of-memory">A shifting window of memory</h4>
+<p>The simple trick of <em>limited memory</em> quasi-Newton methods such as <em>limited memory BFGS</em> (L-BFGS)
+is now to simply only keep a shifting window of the last \(m\) gradients and corresponding path segments in memory instead of the whole history.
+This reduces the memory cost such that only \(2m-1\) \(d\)-dimensional vectors need to be stored; the compute cost is reduced to \(\mathcal{O}(d)\).</p>
+
+<p>In practice, any value between \(m=1,...20\) is generally used. 
+In my experience often even \(m=1\) which equals to keeping only one past gradient and path segment
+in memory and which yields a rank-2 approximation performs very well.</p>
+
+<p>In my experience, limited memory BFGS often even outperforms its original ‘more precise’ version with an unlimited memory.
+At first, this may sound counterintuitive as L-BFGS uses less observed gradients to build an approximation to the Hessian.
+But keep in mind, that the estimator \(B_t\) can be interpreted as the sum of rank-2 matrices each of which encodes information about the 
+average Hessian along their respective path segment. Thus, in case the true Hessian function \(\nabla^2 f(w)\) changes 
+considerably along the optimizer’s path, it may even be suboptimal to keep around old and potentially outdated rank-2 terms that have nothing to do 
+anymore with the Hessian at the current location \(w_t\). Newton’s method never has this problem, as the Newton step is computed with
+local information at \(w_t\) only—it does not have a memory, and each Newton step is independent of the previous one.</p>
+
+<p>The precise algorithm for L-BFGS can for example be found <a href="https://en.wikipedia.org/wiki/Limited-memory_BFGS">here</a>.</p>
+
+<h3 id="line-searches-the-key-to-success">Line searches: The key to success</h3>
+
+<p>We’ve left out a huge, and unfortunately often neglected component of quasi-Newton methods: Line searches!</p>
+
+<p>In essence, line searches scale the quasi-Newton step with a positive scalar \(0&lt;\alpha_t&lt;\infty\)
+such that the update becomes</p>
+
+\[w_{t+1} = w_t + \alpha_tp_t^{\mathrm{quasi}}\]
+
+<p>While line searches play a minor role in Newton’s method and are mainly used to stabilize
+its initial iterates, they play an <em>integral part</em> in quasi-Newton methods and cannot be separated from them.</p>
+
+<p>Spoiler: Line searches ensure (for some quasi-Newton methods such as BFGS) that the estimator \(B_t\)
+(and hence \(B_t^{-1}\)) is always positive definite even if the underlying true Hessian \(\nabla^2 f(w_t)\) is not!
+Thus, quasi-Newton methods can ensure a descent direction, and can be applied to non-convex objective function \(f\)
+where Newton’s method fails.</p>
+
+<p>As this post is getting a bit long, I may discuss line searches and their role in Newton’s and quasi-Newton methods in another post, hopefully to come soon.
+[Edit: I actually made one. It’s <a href="/blog/2023/line-searches/">here</a>]</p>
+
+<h2 id="lastly-there-is-much-more">Lastly (there is much more)</h2>
+
+<p>There is so much more to say about Newton’s and quasi-Newton methods which we haven’t touched on here such as
+convergence rates etc. Further, there are intricate connections to linear solvers such as 
+the <em>conjugate gradient algorithm</em> (CG) which coincides with BFGS in some sense under certain circumstance.
+I suppose, whenever a linear system is solved explicitely (as in Newton’s method) or implicitly (as in quasi-Newton methods)
+you have to think about linear solver, too. But this, too, may be a topic for another blogpost.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] J. J. Dennis and J. Moré 1977 <em>Quasi-Newton methods, motivation and theory.</em>, SIAM Review 19.1 pp. 46–89.</p>
+
+<p>[2] J. Dennis 1971 <em>On some methods based on Broyden’s secant approximations.</em>, Numerical Methods for Non-Linear Optimization.</p>
+
+<p>[3] C. Broyden 1969 <em>A new double-rank minimization algorithm</em>, Notices of the AMS 16.4 p. 670.</p>
+
+<p>[4] R. Fletcher 1970 <em>A new approach to variable metric algorithms</em>, The Computer Journal 13.3 p. 317.</p>
+
+<p>[5] D. Goldfarb 1970 <em>A family of variable metric updates derived by variational means</em>, Math. Comp. 24.109 pp. 23–26.</p>
+
+<p>[6] D. Shanno 1970 <em>Conditioning of quasi-Newton methods for function minimization</em>, Math. Comp. 24.111 pp. 647–656.</p>
+
+<p>[7] J. Greenstadt 1970 <em>Variations on variable-metric methods</em>, Math. Comp 24 pp. 1–22.</p>
+
+<p>[8] M. Powell 1970 <em>A new algorithm for unconstrained optimization</em>, Nonlinear Programming.</p>
+
+<p>[9] W. Davidon 1959 <em>Variable metric method for minimization</em>, Tech. rep. Argonne National Laboratories, Ill.</p>
+
+<p>[10] R. Fletcher and M. Powell 1963 <em>A rapidly convergent descent method for minimization</em> The Computer Journal 6.2 pp. 163–168.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="optimization" /><category term="machinelearning" /><summary type="html"><![CDATA[Limited memory BFGS (L-BFGS) is one of the most successful gradient-based optimizers and arguably the gold-standard in deterministic, non-convex optimization. It is a member of the Dennis family of quasi-Newton methods that use low-rank approximations of the inverse Hessian to project the gradient. The resulting search direction can thus be thought of as an approximation to the Newton direction, with the important difference that, even for non-convex objective functions, it is always a descent direction. There is a multitude of symmetric and non-symmetric quasi-Newton updates, and here we'll discuss the most relevant ones.]]></summary></entry><entry><title type="html">The Tesseract</title><link href="https://mmahsereci.github.io/blog/2022/tesseract/" rel="alternate" type="text/html" title="The Tesseract" /><published>2022-08-17T00:00:00+00:00</published><updated>2022-08-17T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2022/tesseract</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2022/tesseract/"><![CDATA[<p>The <a href="https://en.wikipedia.org/wiki/Tesseract">tesseract</a>
+is a 4-dimensional hyper-cube which is fun to animate by rotating it around 
+one or more planes and projecting it onto 3-dimensional space.
+The post also contains animations of a rotating 4-dimensional sphere.</p>
+
+<p>The analogue to the tesseract in 3d is the cube, and in 2d the square.</p>
+
+<h2 id="tesseract-construction--4-dimensional-vectors">Tesseract construction &amp; 4-dimensional vectors</h2>
+
+<p>We are in 4-dimensional space, hence denote \(d=4\).
+We can describe the tesseract with the coordinates of its corners. These are all 
+\(2^d=16\) combinations of</p>
+
+\[\begin{equation}
+\label{eq:init}
+v = 
+\left[\begin{array}{c} 
+v_x \\
+v_y \\
+v_z \\
+v_w 
+\end{array} \right]
+=
+\left[\begin{array}{c} 
+\pm 1 \\
+\pm 1 \\
+\pm 1 \\
+\pm 1 
+\end{array} \right]
+\end{equation}\]
+
+<p>for a tesseract centered at the origin. Hence, we can initialize our
+tesseract by storing these 16 corner vectors.
+Since it is custom to denote the axis of a vector in 3-dimensional space with the letters
+\(x\), \(y\), \(z\), we’ll extend the notation and use \(w\) for the forth axis.</p>
+
+<h2 id="4-dimensional-plane-rotations">4-dimensional plane rotations</h2>
+
+<p>In 2-dimensional space, we rotate around a point, in 3-dimensional space, we rotate around 
+an axis, and in 4-dimensional space where the tesseract lives, we rotate around a plane.</p>
+
+<p>In essence, a rotation is a circular movement in a plane that is spanned by 2 vectors,
+and the remaining space with dimensionality \(d-2\) stays invariant and is hence “rotated around”.
+In 4-dimensional space, there are 6 axis-aligned planes. These are the
+i) \(x\)-\(y\), 
+ii) \(x\)-\(z\), 
+iii) \(x\)-\(w\), 
+iv) \(y\)-\(z\), 
+v) \(y\)-\(w\), 
+and
+vi) \(z\)-\(w\) plane.</p>
+
+<p>For some angle \(\theta\), the corresponding axis-aligned \(d\times d\) 
+rotation matrix \(R\) in Python code is given by</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Choose 2 axis in which the circular movement occurs.
+# The rotation plane is spanned by the remaining 2 axis.
+</span><span class="n">a</span> <span class="o">=</span> <span class="sh">'</span><span class="s">x</span><span class="sh">'</span>
+<span class="n">b</span> <span class="o">=</span> <span class="sh">'</span><span class="s">y</span><span class="sh">'</span>
+
+<span class="c1"># Choose angle
+</span><span class="n">theta</span> <span class="o">=</span> <span class="mf">0.2</span>
+
+<span class="c1"># Convert axis name to axis index
+</span><span class="n">axis_dict</span> <span class="o">=</span> <span class="p">{</span><span class="sh">'</span><span class="s">x</span><span class="sh">'</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span> <span class="sh">'</span><span class="s">y</span><span class="sh">'</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="sh">'</span><span class="s">z</span><span class="sh">'</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="sh">'</span><span class="s">w</span><span class="sh">'</span><span class="p">:</span> <span class="mi">3</span><span class="p">}</span>
+<span class="n">i</span> <span class="o">=</span> <span class="n">axis_dict</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+<span class="n">j</span> <span class="o">=</span> <span class="n">axis_dict</span><span class="p">[</span><span class="n">b</span><span class="p">]</span>
+
+<span class="c1"># Build rotation matrix
+</span><span class="n">R</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">eye</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">R</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+<span class="n">R</span><span class="p">[</span><span class="n">j</span><span class="p">,</span> <span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The axes \(a\) and \(b\) chosen in the code snippet above are the axis that the
+rotation (circular movement) is happening in. The remaining 2 axis stay invariant 
+under this rotation and hence span the rotation plane. For example if \(a=x\) and
+\(b=y\), the rotation plane is the \(z\)-\(w\) plane.</p>
+
+<h2 id="projection-onto-3-dimensional-space">Projection onto 3-dimensional space</h2>
+
+<p>To visualize the 4-dimensional tesseract, we require an at most 3-dimensional representation.
+There are several ways to project a higher-dimensional object onto a lower-dimensional space.
+A simple one is the <a href="https://en.wikipedia.org/wiki/Stereographic_projection">stereographic projection</a> 
+where a point light source projects the shadow of a \(d\)-dimensional object onto a \(d-1\) dimensional 
+“screen” (or rather hyper-screen).
+For the tesseract, the hyper-screen is usually chosen to be the space spanned by the \(x\), \(y\) and \(z\) 
+axes’ unit vectors. 
+Then, the \(d-1\) dimensional projected vectors \(\bar{v}\) have the form</p>
+
+\[v = 
+\left[\begin{array}{c} 
+v_x \\
+v_y \\
+v_z \\
+v_w 
+\end{array} \right]
+\rightarrow
+\left[\begin{array}{c} 
+\frac{v_x}{\delta - v_w} \\
+\frac{v_y}{\delta - v_w} \\
+\frac{v_z}{\delta - v_w}
+\end{array} \right]
+= \bar{v},\]
+
+<p>where \(\delta\) is a positive scalar related to distance between the light-source and 
+the hyper-screen. We can choose \(\delta\) arbitrarily, as long as the object we project 
+still fits in between the light source and the hyper-screen (i.e., \(\delta\) must be large enough).</p>
+
+<p>The stereographic projection is intuitive. We observe that the remaining elements
+of \(v\) in \(\bar{v}\) are multiplied with the scale \((\delta-v_w)^{-1}\). 
+This scale is constant for each corner vector, but differs between vectors depending 
+on the value of the \(v_w\). 
+Hence, corners of the tesseract that are closer to the light source (larger \(v_w\))
+and further away from the screen will be shown larger on the screen than corners that are
+closer to the screen and further away from the light source. In that way, the value of the 
+4th dimension \(v_w\) is implicitly represented in all elements of \(\bar{v}\).</p>
+
+<h2 id="rotating-tesseract">Rotating tesseract</h2>
+
+<p>The following animations use the above projection. The tesseract is initialized 
+as in Eq. \eqref{eq:init}.</p>
+
+<p>From left to right (or top to bottom) the animations show 
+i) rotation in \(x\)-\(y\) plane (\(z\)-\(w\) rotation plane stays invariant)
+ii) rotation in \(z\)-\(w\) plane, (\(x\)-\(y\) rotation plane stays invariant)
+iii) double rotation in \(x\)-\(y\) and \(z\)-\(w\) planes.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2022-08-17-tesseract/tesseract-x-y-plane.gif" style="width:32%; padding-top: 10px; padding-bottom: 10px;" />
+  <img src="/assets/posts/2022-08-17-tesseract/tesseract-z-w-plane.gif" style="width:32%; padding-top: 10px; padding-bottom: 10px;" />
+  <img src="/assets/posts/2022-08-17-tesseract/tesseract-x-y-and-z-w-plane.gif" style="width:32%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>The corners only move “in” and “out” w.r.t. the origin when the rotation involves movement in the
+\(w\) axis. The 32 edges of the tesseract are drawn as lines in the animation.</p>
+
+<h2 id="rotating-4-dimensional-hyper-sphere">Rotating 4-dimensional hyper-sphere</h2>
+
+<p>A 4-dimensional centered hyper-sphere is the collection of points for which 
+\(v_x^2 + v_y^2 + v_z^2 + v_w^2 = r^2\), where \(r\) is the radius of the sphere.</p>
+
+<p>At first, it may sound boring to rotate and animate a centered sphere (shouldn’t it be symmetrical?).
+Since this is true, we represent the surface of the hyper-sphere with dots, each represented 
+by a 4-dimensional vector, and observe their movement when rotated on the hyper-screen. 
+The dots are spread according to:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="c1"># Choose radius of sphere.
+</span><span class="n">r</span> <span class="o">=</span> <span class="mi">1</span>
+
+<span class="c1"># Grid of angles
+</span><span class="n">z_</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="n">x_</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">y_</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">pi</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="n">theta1</span><span class="p">,</span> <span class="n">theta2</span><span class="p">,</span> <span class="n">theta3</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">meshgrid</span><span class="p">(</span><span class="n">x_</span><span class="p">,</span> <span class="n">y_</span><span class="p">,</span> <span class="n">z_</span><span class="p">,</span> <span class="n">indexing</span><span class="o">=</span><span class="sh">'</span><span class="s">ij</span><span class="sh">'</span><span class="p">)</span>
+
+<span class="n">x</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">theta3</span><span class="p">)</span>
+<span class="n">y</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta2</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta3</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">theta1</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">theta2</span><span class="p">)</span>
+<span class="n">w</span> <span class="o">=</span> <span class="n">r</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">theta1</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>The above code snipped uses spherical coordinates in \(d=4\) dimensions that are given
+by the radius \(r\) and \(d-1\) angles \(\theta_1,\dots,\theta_{d-1}\) . 
+In total, we distribute \(2000=10\times 10\times 20\) points on the surface of the hyper-sphere.
+The points are chosen ad-hoc and not spread uniformly.</p>
+
+<p>The animations below (from left to right or top to bottom)
+show the same rotations as the ones of the tesseract above. Whenever a rotation involves 
+movement in the \(w\)
+axis, the dots representing the surface of the sphere move in, or outwards in the animation.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2022-08-17-tesseract/sphere-x-y-plane.gif" style="width:32%; padding-top: 10px; padding-bottom: 10px;" />
+  <img src="/assets/posts/2022-08-17-tesseract/sphere-z-w-plane.gif" style="width:32%; padding-top: 10px; padding-bottom: 10px;" />
+  <img src="/assets/posts/2022-08-17-tesseract/sphere-x-y-and-z-w-plane.gif" style="width:32%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h2 id="some-thoughts">Some thoughts</h2>
+
+<p>The rotating tesseract and the hyper-sphere are simple enough to animate. 
+In 4 dimensions all you need are some vectors and a rotation matrix.
+There are little things simpler to write in code than a matrix-vector multiplication
+which is effectively what this boils down to. The projection onto 3d is simple, too.</p>
+
+<p>In 3 dimensions, however, the movement of the object looks more involved, and perhaps even 
+complicated. The dynamics are not as easy to understand and harder to describe mathematically.</p>
+
+<p>In other words, for the animations here, we went the route of describing something 
+mathematically simple in higher dimensions to make it look complicated in lower dimensions.</p>
+
+<p>In machine learning, we often go the route other way round. Meaning that we aim to describe
+something complicated looking in lower dimension, with something simple looking in higher 
+dimensions that we can then understand and solve. 
+The difficulty then is to find the map to the higher dimension, which, in our analogy, would be 
+the “inverse” projection, that makes the problem look easy.</p>
+
+<p>An example is 
+<a href="https://en.wikipedia.org/wiki/Linear_regression">linear feature regression</a>, 
+which, as the name says, is linear, and thus easy to solve in 
+the constructed feature space for example with 
+<a href="https://en.wikipedia.org/wiki/Linear_least_squares">linear least squares</a>. 
+The difficulty is only to find the appropriate feature map 
+that projects the original, lower dimensional features, into a high-dimensional feature space
+such that the resulting function looks simple (linear) enough.</p>
+
+<p>As the feature map is a projection into a higher dimensional space that requires designing or learning, 
+we can already guess that it may be ill-defined, non-unique, or ambiguous in some other way, 
+which is why assumptions play a huge albeit often underappreciated role in machine learning.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="machinelearning" /><summary type="html"><![CDATA[The tesseract is a 4-dimensional hyper-cube which is fun to animate by rotating it around one or more planes and projecting it onto 3-dimensional space. The post also contains animations of a rotating 4-dimensional sphere (which may sound boring at first, but projected onto 3d looks quite cool). We end with some thoughts.]]></summary></entry><entry><title type="html">The Symmetric Kronecker Product</title><link href="https://mmahsereci.github.io/blog/2022/kronecker-sym/" rel="alternate" type="text/html" title="The Symmetric Kronecker Product" /><published>2022-08-06T00:00:00+00:00</published><updated>2022-08-06T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2022/kronecker-sym</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2022/kronecker-sym/"><![CDATA[<blockquote>
+  <p>This is a follow-up post to <a href="/blog/2022/kronecker/">this</a> post about the Kronecker product.
+Notation and definitions will be used from the previous post.</p>
+</blockquote>
+
+<p>The symmetric Kronecker product can be derived from the Kronecker product. 
+It again appears naturally in some machine learning <a href="#applications-of-the-kronecker-product">applications</a>.
+This post also discusses the lesser known 
+<a href="#the-anti-symmetric-kronecker-product">anti-symmetric Kronecker product</a>
+for completeness.</p>
+
+<p>Let \(\Gamma\in\mathbb{R}^{n^2\times n^2}\) be a 
+projection operator implicitly defined such that</p>
+
+\[\Gamma \overrightarrow{C} = \frac{1}{2}(\overrightarrow{C + C^{\intercal}})\]
+
+<p>symmetrizes the un-vectorized matrix \(C\in\mathbb{R}^{n\times n}\). 
+Let \(A\in\mathbb{R}^{n\times n}\) and \(B\in\mathbb{R}^{n\times n}\) be square matrices
+of same size. 
+Then, the symmetric Kronecker product can be defined as</p>
+
+\[A \circledast B = \Gamma(A\otimes B)\Gamma^{\intercal}\]
+
+<p>with elements</p>
+
+\[(A\circledast B)_{(ij), (kl)} 
+= \frac{1}{4}(A_{ik}B_{jl} + A_{il}B_{jk} + A_{jk}B_{il} + A_{jl}B_{ik}).\]
+
+<h2 id="symmetric-kronecker-algebra">Symmetric Kronecker algebra</h2>
+
+<p>Like to the Kronecker product, the symmetric Kronecker product has some nice
+algebraic properties which are similar but differ in key aspects to the properties of the Kronecker product.</p>
+
+\[\begin{alignat}{3}
+&amp;\text{transpose}           &amp;(A\circledast B)^{\intercal} &amp;= (A^{\intercal}\circledast B^{\intercal}) &amp;&amp; \\
+\label{eq:3-sym}
+&amp;\text{inverse}             &amp;(A\circledast A)^{-1} &amp;= A^{-1}\circledast A^{-1} &amp;&amp;\quad\text{but}\quad (A\circledast B)^{-1} \neq A^{-1}\circledast B^{-1} \\
+&amp;\text{factorizing}\quad         &amp;(A\circledast A)(C\circledast C)&amp;= (AC\circledast AC) &amp;&amp;\quad\text{but}\quad (A\circledast B)(C\circledast D) \neq (AC\circledast BD)
+\end{alignat}\]
+
+<p>The symmetric Kronecker product factorizes according to</p>
+
+\[(A\circledast B)(C\circledast D)= \frac{1}{2}[AC\circledast BD + AD\circledast BC].\]
+
+<p>In contrast to the Kronecker product, the symmetric Kronecker product commutes</p>
+
+\[A\circledast B = B\circledast A\]
+
+<p>and its trace is given by</p>
+
+\[\operatorname{tr}[(A\circledast B)] 
+= \frac{1}{2}(\operatorname{tr}[A]\operatorname{tr}[B]  
++ \operatorname{tr}[AB]).\]
+
+<p>It is worth noting that</p>
+
+\[I_n\otimes I_n = I_{n^2}\quad\text{but}\quad I_n\circledast I_n = \Gamma \neq I_{n^2}.\]
+
+<h2 id="vector-multiplication">Vector multiplication</h2>
+
+<p>A similar formula to Eq. (8) of the 
+<a href="/blog/2022/kronecker/">previous post</a>
+holds for the symmetric Kronecker product</p>
+
+\[(A\circledast B)\overrightarrow{X} = \frac{1}{4}
+\overrightarrow{AXB^{\intercal} + AX^{\intercal}B^{\intercal} + BX^{\intercal}A^{\intercal} + BXA^{\intercal}}.\]
+
+<p>For the special case of \(A=B\) the equations simplify to</p>
+
+\[\begin{align*}
+(A\circledast A)_{(ij), (kl)} 
+&amp;=\frac{1}{2}(A_{ik}A_{jl} + A_{jk}A_{il})\\
+(A\circledast A)\overrightarrow{X} 
+&amp;=\frac{1}{2}\overrightarrow{AXA^{\intercal} + AX^{\intercal}A^{\intercal}}.
+\end{align*}\]
+
+<h2 id="closest-symmetric-kronecker-product">Closest symmetric Kronecker product</h2>
+
+<p>The closest symmetric Kronecker product \(\tilde{A}^*\circledast\tilde{B}^*\) under the Frobenius norm is defined as</p>
+
+\[\begin{equation}
+\label{eq:argmin-sym}
+\tilde{A}^*, \tilde{B}^* = \operatorname*{arg\,min}_{A, B}\|C-A\circledast B\|_F^2.
+\end{equation}\]
+
+<p>Since there exists a fixed linear operator \(\mathcal{T}\) (<a href="#references">[3]</a>, Eq. 199)
+such that (with slight abuse of notation)</p>
+
+\[\begin{equation*}
+\tilde{A}^*, \tilde{B}^*  = \operatorname*{arg\,min}_{A, B}\|\mathcal{T}[C-A\otimes B]\|_F^2.
+\end{equation*}\]
+
+<p>Eq. \eqref{eq:argmin-sym} can be solved by solving the closest Kronecker problem (Eq. (11) of the
+<a href="/blog/2022/kronecker/">previous post</a>)
+instead and then the solution can be symmetrized according to</p>
+
+\[\begin{equation*}
+\begin{split}
+\tilde{A}^* &amp;= A^*\quad\text{and}\quad \tilde{B}^* =B^*\\
+\tilde{A}^*\circledast \tilde{B}^*
+&amp; = \mathcal{T}[A^*\otimes B^*]
+=A^*\circledast B^*.
+\end{split}
+\end{equation*}\]
+
+<h2 id="applications-of-the-symmetric-kronecker-product">Applications of the symmetric Kronecker product</h2>
+
+<p>The <a href="/blog/2022/kronecker/">previous post</a>
+already discussed some applications of the Kronecker product. Here we 
+mention some applications where the use of the symmetric Kronecker product is key
+or naturally shows up. Of course the list is not complete.</p>
+
+<h3 id="symmetric-matrix-normal-distribution">Symmetric matrix normal distribution</h3>
+
+<p>Consider a matrix-valued random variable \(X\in\mathbb{R}^{n_1\times n_2}\)  that follows a
+<a href="https://en.wikipedia.org/wiki/Matrix_normal_distribution">matrix-normal distribution</a>.
+We already know from the <a href="/blog/2022/kronecker/">previous post</a>
+that the vectorized version of \(\overrightarrow{X}\) follows the multi-variate normal distribution</p>
+
+\[p(\overrightarrow{X};\overrightarrow{M}, U\otimes V),\]
+
+<p>where \(M\) is the mean matrix, and \(V\) and \(U\) are symmetric positive definite matrices
+that parametrize the matrix-normal distribution.</p>
+
+<p>For square \(X\in\mathbb{R}^{n\times n}\), the domain can be naturally restricted to only 
+allow symmetric matrices by applying the symmetrization operator \(\Gamma\) 
+to the random variable \(\overrightarrow{X}\)</p>
+
+\[\begin{equation}
+\label{eq:pdf-sym}
+\begin{split}
+\overrightarrow{X}_{s} &amp;= \Gamma\overrightarrow{X}
+\quad\text{and hence}\quad\\
+p(\overrightarrow{X}_{s}; \overrightarrow{M}_{s}, U\circledast V)
+&amp;= p(\Gamma\overrightarrow{X}; \Gamma \overrightarrow{M}, \Gamma(U\otimes V)\Gamma^{\intercal}).
+\end{split}
+\end{equation}\]
+
+<p>Above, we used the definition of the symmetric Kronecker product and 
+the closeness property of the normal distribution under linear transformations. 
+Hence, a distribution over symmetric matrices \(X_s\)
+can be achieved by assuming a symmetric mean matrix \(M_s\)
+and a symmetric Kronecker product as covariance for its vectorized form.</p>
+
+<p>However, since \((U\circledast V)^{-1} \neq U^{-1}\circledast V^{-1}\) in general 
+and only equal if \(U=V\) (Eq. \eqref{eq:3-sym}), it is often prudent to restrict to 
+\(U=V\) when working with Eq. \eqref{eq:pdf-sym}.</p>
+
+<h3 id="wishart-distribution">Wishart distribution</h3>
+
+<p>The symmetric Kronecker product also naturally occurs in the 
+<a href="https://en.wikipedia.org/wiki/Wishart_distribution">Wishart distribution</a>
+over symmetric positive-definite matrices.</p>
+
+<p>Let \(X\in\mathbb{R}^{n\times n}\) be a matrix-valued random variable that follows a 
+<a href="https://en.wikipedia.org/wiki/Wishart_distribution">Wishart distribution</a>
+with density</p>
+
+\[p(X; V, \nu) = \det(X)^{\frac{\nu-n-1}{2}}
+\frac{e^{-\frac{1}{2}\operatorname{tr}[V^{-1}X]}}{2^{\frac{\nu n}{2}}\det(V)^{\frac{\nu}{2}}\Gamma_n(\frac{\nu}{2})},\]
+
+<p>that is parametrized by the degrees of freedom \(\nu&gt;n-1\) and a symmetric positive definite matrix \(V\).
+Further, \(\Gamma_n\) is the multivariate Gamma function. Then, it can be shown straightforwardly that
+the covariance (centered second moment) of \(X\) is given by the elemetns of the symmetric Kronecker product 
+of \(V\) scaled with a constant factor of \(2\nu\)</p>
+
+\[\operatorname{Cov}{[X_{ij}, X_{kl}]} = 2\nu (V\circledast V)_{(ij), (kl)}.\]
+
+<h2 id="references">References</h2>
+
+<p>[1] C.F. Van Loan 2000 <em>The ubiquitous Kronecker product</em>, 
+    Journal of Computational and Applied Mathematics 123, pp. 85–100.</p>
+
+<p>[2] C.F. Van Loan and N. Pitsianis 1993 <em>Approximation with Kronecker Products</em> 
+    Linear Algebra for Large Scale and Real Time Applications. Kluwer Publications, pp. 293–314.</p>
+
+<p>[3] M. Mahsereci 2018 <em>Probabilistic Approaches to Stochastic Optimization</em>, PhD thesis, Appendix A.</p>
+
+<hr />
+
+<h2 id="appendix-the-anti-symmetric-kronecker-product">Appendix: The anti-symmetric Kronecker product</h2>
+
+<p>I am not actually sure if the anti-symmetric Kronecker product is a thing, or if it has
+been used anywhere, but since it is the counter-part to the well-established symmetric
+Kronecker product it is here for completeness (<a href="#references">[3]</a> Appendix A.3).</p>
+
+<p>First, define the anti-symmetrization operator 
+\(\Delta\in \mathbb{R}^{n^2\times n^2}\)
+as the counter-part to the symmetrization operator \(\Gamma\) such that</p>
+
+\[\Delta = I - \Gamma\quad \text{and}
+\quad
+\Delta \overrightarrow{X} = \frac{1}{2}(\overrightarrow{X - X^{\intercal}})\]
+
+<p>implicitly projects onto the un-vectorized anti-symmetric part of the matrix \(X\).</p>
+
+<p>Let \(A\in\mathbb{R}^{n\times n}\) and \(B\in\mathbb{R}^{n\times n}\) be square matrices
+of same size. 
+Then, the anti-symmetric Kronecker product can be defined as</p>
+
+\[A \circleddash B = \Delta (A\otimes B) \Delta^{\intercal},\]
+
+<p>with elements</p>
+
+\[(A\circleddash B)_{(ij), (kl)} 
+= \frac{1}{4}(A_{ik}B_{jl} - A_{il}B_{jk} - A_{jk}B_{il} + A_{jl}B_{ik}),\]
+
+<h3 id="decomposition-of-the-kronecker-product-in-symmetric-and-anti-symmetric-part">Decomposition of the Kronecker product in symmetric and anti-symmetric part</h3>
+
+<p>The Kronecker product decomposes as</p>
+
+\[A\otimes B = A\circledast B + A\circleddash B
++ \Delta(A\otimes B)\Gamma^{\intercal}
++ \Gamma(A\otimes B)\Delta^{\intercal}\]
+
+<p>For the special case of \(A=B\), we get
+\(\Delta(A\otimes A)\Gamma^{\intercal} = \Gamma(A\otimes A)\Delta^{\intercal}=0\)
+and \(A\otimes B\) fully decomposes into a symmetric and anit-symmetric part</p>
+
+\[A\otimes A = A\circledast A + A\circleddash A.\]
+
+<p>If \(A\otimes A\) has full rank of \(n^2\), then the symmetric Kronecker
+product and anti-symmetric Kronecker product span the \(\frac{1}{2}n(n+1)\)
+and \(\frac{1}{2}n(n-1)\) dimensional symmetric and anti-symmetric subspace respectively.</p>
+
+<h3 id="vector-multiplication-1">Vector multiplication</h3>
+
+<p>The vectorization equation for the anti-symmetric Kronecker product is</p>
+
+\[(A\circleddash B)\overrightarrow{X} = \frac{1}{4}
+\overrightarrow{
+AXB^{\intercal} 
+- AX^{\intercal}B^{\intercal} 
+- BX^{\intercal}A^{\intercal} 
++ BXA^{\intercal}}.\]
+
+<h3 id="anti-symmetric-kronecker-algebra">Anti-Symmetric Kronecker algebra</h3>
+
+<p>The properties of the anti-symmetric Kronecker product mimic the ones of the 
+symmetric Kronecker product</p>
+
+\[\begin{alignat*}{3}
+&amp;\text{transpose}           &amp;(A\circleddash B)^{\intercal} &amp;= (A^{\intercal}\circleddash B^{\intercal}) &amp;&amp; \\
+&amp;\text{inverse}             &amp;(A\circleddash A)^{-1} &amp;= A^{-1}\circleddash A^{-1} &amp;&amp;\quad\text{but}\quad (A\circleddash B)^{-1} \neq A^{-1}\circleddash B^{-1} \\
+&amp;\text{factorizing}\quad    &amp;(A\circleddash A)(C\circleddash C)&amp;= (AC\circleddash AC) &amp;&amp;\quad\text{but}\quad (A\circleddash B)(C\circleddash D) \neq (AC\circleddash BD)
+\end{alignat*}\]
+
+<p>The ant-symmetric Kronecker product factorizes according to</p>
+
+\[(A\circleddash B)(C\circleddash D)= \frac{1}{2}[AC\circleddash BD + AD\circleddash BC].\]
+
+<p>Like the symmetric Kronecker product, the anti-symmetric one also commutes</p>
+
+\[A\circleddash B = B\circleddash A\]
+
+<p>and its trace is given by</p>
+
+\[\operatorname{tr}[(A\circleddash B)] 
+= \frac{1}{2}(\operatorname{tr}[A]\operatorname{tr}[B]  
+- \operatorname{tr}[AB]).\]
+
+<h3 id="application-anti-symmetric-matrix-normal-distribution">Application: Anti-symmetric matrix normal distribution</h3>
+
+<p>Consider a matrix-valued random variable \(X\in\mathbb{R}^{n\times n}\) that follows a 
+matrix normal distribution with mean matrix \(M\) and symmetric positive definite 
+matrices \(U\) and \(V\) that parametrize the distribution.</p>
+
+<p>Analogously to above, for anti-symmetric matrices, the anti-symmetrization operator \(\Delta\) 
+and the anti-symmetric Kronecker product, we can restrict the domain and write</p>
+
+\[\begin{equation}
+\label{eq:pdf-asym}
+\begin{split}
+\overrightarrow{X}_{a} &amp;= \Delta\overrightarrow{X}
+\quad\text{then}\quad\\
+p(\overrightarrow{X}_{a}; \overrightarrow{M}_{a}, U\circleddash V) 
+&amp;= p(\Delta\overrightarrow{X}; \Delta \overrightarrow{M}, \Delta(U\otimes V)\Delta^{\intercal}).
+\end{split}
+\end{equation}\]]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="machinelearning" /><summary type="html"><![CDATA[The symmetric Kronecker product can be derived from the Kronecker product. It again appears naturally in some machine learning applications. This post also discusses the lesser known anti-symmetric Kronecker product for completeness.]]></summary></entry><entry><title type="html">The Kronecker Product</title><link href="https://mmahsereci.github.io/blog/2022/kronecker/" rel="alternate" type="text/html" title="The Kronecker Product" /><published>2022-08-05T00:00:00+00:00</published><updated>2022-08-05T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2022/kronecker</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2022/kronecker/"><![CDATA[<p>The Kronecker product is a tensor product that appears frequently in machine learning
+and its <a href="#applications-of-the-kronecker-product">applications</a>.
+This post collects some useful properties and some other insights on it.</p>
+
+<blockquote>
+  <p>There is a follow-up post on the lesser known symmetric and anti-symmetric 
+Kronecker product <a href="/blog/2022/kronecker-sym/">here</a>.</p>
+</blockquote>
+
+<p>Let \(A\in\mathbb{R}^{n_1\times n_2}\) and \(B\in\mathbb{R}^{m_1\times m_2}\) be two matrices. 
+Then, the Kronecker product, denoted `\(\otimes\)’, of \(A\) and \(B\) is in \(\mathbb{R}^{n_1m_1\times n_2m_2}\) and defined as</p>
+
+\[\begin{equation}
+\label{eq:def}
+\begin{split}
+(A\otimes B)_{(ij), (kl)} = A_{ik} B_{jl},\quad 
+&amp;i=1\dots n_1,~ k=1\dots n_2\\
+&amp;j=1\dots m_1,~ l=1\dots m_2,
+\end{split}
+\end{equation}\]
+
+<p>where \((ij)\) and \((kl)\) are the double indices 
+\((ij) = m_1 (i-1) + j\) and \((kl)=m_2(k-1) + l\).</p>
+
+<p>An example for \(n_1=n_2=m_2=2\) and \(m_1=3\) is</p>
+
+<p>\(\left[\begin{array}{c c} 
+A_{11} &amp; A_{12} \\
+A_{21} &amp; A_{22} 
+\end{array}\right]
+\otimes
+\left[\begin{array}{c c} 
+B_{11} &amp; B_{12} \\
+B_{21} &amp; B_{22} \\
+B_{31} &amp; B_{32}
+\end{array}\right]
+=
+\left[\begin{array}{c c | c c} 
+A_{11}B_{11} &amp; A_{11}B_{12} &amp; A_{12}B_{11} &amp; A_{12}B_{12}\\
+A_{11}B_{21} &amp; A_{11}B_{22} &amp; A_{12}B_{21} &amp; A_{12}B_{22} \\
+A_{11}B_{31} &amp; A_{11}B_{32} &amp; A_{12}B_{31} &amp; A_{12}B_{32} \\
+\hline
+A_{21}B_{11} &amp; A_{21}B_{12} &amp; A_{22}B_{11} &amp; A_{22}B_{12}\\
+A_{21}B_{21} &amp; A_{21}B_{22} &amp; A_{22}B_{21} &amp; A_{22}B_{22} \\
+A_{21}B_{31} &amp; A_{21}B_{32} &amp; A_{22}B_{31} &amp; A_{22}B_{32} \\
+\end{array}\right]\).</p>
+
+<p>We observe that the Kronecker product has block structure</p>
+
+\[A\otimes B = 
+\left[\begin{array}{c | c | c | c} 
+A_{11} B &amp; A_{12} B &amp;\cdots &amp; A_{1n_2} B\\
+\hline
+A_{21} B &amp; A_{22} B &amp;\cdots &amp; A_{2n_2} B \\
+\hline
+\vdots &amp; \vdots &amp;\ddots  &amp; \vdots\\
+\hline
+A_{n_1 1} B &amp; A_{n_1 2} B &amp;\cdots  &amp; A_{n_1n_2} B
+\end{array}\right]\]
+
+<p>with \(n_1\times n_2\) blocks where each block is of size \(m_1\times m_2\) and contains 
+the matrix \(B\) multiplied with one of the elements of \(A\). This means, a block-diagonal 
+matrix with \(n\) identical blocks \(B\) can be written as \(I\otimes B\), where \(I\in\mathbb{R}^{n\times n}\)
+is the identity matrix.</p>
+
+<h2 id="kronecker-algebra">Kronecker algebra</h2>
+
+<p>The Kronecker product has some nice algebraic properties which roughly resemble the ones 
+of rank-one matrices. For matrices \(A\), \(B\), \(C\) and \(D\) of appropriate sizes 
+and properties it is</p>
+
+\[\begin{alignat}{2}
+\label{eq:1}
+&amp;\text{transpose}           &amp;(A\otimes B)^{\intercal} &amp;= (A^{\intercal}\otimes B^{\intercal}) \\
+\label{eq:2}
+&amp;\text{inverse}             &amp;(A\otimes B)^{-1} &amp;= A^{-1}\otimes B^{-1} \\
+&amp;\text{factorizing}         &amp;(A\otimes B)(C\otimes D)&amp;= (AC\otimes BD) \\
+&amp;\text{distributive left}\qquad\qquad   &amp;(A\otimes B) + (A\otimes C) &amp;= A\otimes (B + C) \\
+&amp;\text{distributive right}  &amp;(A\otimes B) + (C\otimes B)&amp;= (A+C)\otimes B\\
+\label{eq:6}
+&amp;\text{associative}         &amp;(A\otimes B)\otimes C&amp;=  A\otimes (B\otimes C)
+\end{alignat}\]
+
+<p>where \(A^{\intercal}\) denotes the transpose and \(A^{-1}\) the inverse (should it exist) 
+of the matrix \(A\), and respectively for the other matrices. 
+Proof of all these equalities follow straightforwardly from the definition of the 
+Kronecker product (Eq. \eqref{eq:def}) but can be found in the <a href="#references">references</a> below.</p>
+
+<p>Eqs. \eqref{eq:1}-\eqref{eq:6} especially hold if \(A\), \(B\), \(C\), \(D\) are scalars or 
+vectors (where applicable).</p>
+
+<p>All formulas exploit the factorizing structure of the Kronecker product, which is why one side 
+of the equality may be much cheaper to compute than the other. 
+For example, the left-hand side of Eq. \eqref{eq:2}, 
+requires the inverse of a full \(nm\times nm\) matrix which is \(\mathcal{O}(n^3m^3)\), 
+while the right-hand side only requires the inverse of an \(n\times n\) and \(m\times m\) matrix
+which is \(\mathcal{O}(n^3 + m^3)\).
+Properties like this make the Kronecker product interesting for large scale applications.</p>
+
+<p>In general, the Kronecker product does not commute</p>
+
+\[\begin{equation*}
+A\otimes B \neq B\otimes A.
+\end{equation*}\]
+
+<p>The rank of \(A\otimes B\) is the product of the ranks of \(A\) and \(B\)</p>
+
+\[\operatorname{rk}[A \otimes B ] = \operatorname{rk}[A] \operatorname{rk}[B].\]
+
+<p>Specifically, if \(A\) and \(B\) are square and have full rank, \(A\otimes B\)
+is square and has full rank, too.</p>
+
+<p>For square matrices \(A\in\mathbb{R}^{n\times n}\) and \(B\in\mathbb{R}^{m\times m}\),
+the determinant of their Kronecker product is given by the product of powers of the
+individual determinants</p>
+
+\[\det(A\otimes B) = \det(A)^{m}\det(B)^n.\]
+
+<p>The trace of the Kronecker product is the product of the individual traces</p>
+
+\[\operatorname{tr}[(A\otimes B)]= \operatorname{tr}[A]\operatorname{tr}[B].\]
+
+<h2 id="vector-multiplication">Vector multiplication</h2>
+
+<p>Define the vectorization operation</p>
+
+\[\overrightarrow{\phantom{X}}:\mathbb{R}^{a\times b}\to \mathbb{R}^{ab},\quad
+X\mapsto \overrightarrow{X}\]
+
+<p>as stacking the rows of a matrix into a vector. 
+A consequence of Eq. \eqref{eq:def} is that a Kronecker product applied to a vectorized matrix 
+\(\overrightarrow{X}\) of appropriate size is the vectorized version of two lower-dimensional, 
+cheaper matrix-matrix multiplications</p>
+
+\[\begin{equation}
+\label{eq:vec}
+(A \otimes B ) \overrightarrow{X} = \overrightarrow{AXB^{\intercal}}.
+\end{equation}\]
+
+<p>Eq. \eqref{eq:vec} follows directly from Eq. \eqref{eq:def} and the definition of the 
+vectorization operation.
+Again, due to the factorization property, the right-hand side amounts to 
+multiplying two smaller matrices while the left-hand side amounts to a large matrix-vector
+multiplication.</p>
+
+<p>An alternative definition of the vectorization operation is 
+stacking the columns of a matrix. We then obtain a similar formula 
+\((A \otimes B ) \overrightarrow{X} = \overrightarrow{BXA^{\intercal}}\) where the 
+locations of \(A\) and \(B\) are swapped on the right-hand side. 
+For the remained of this blog post, we will stick with Eq. \eqref{eq:vec} though.</p>
+
+<h2 id="relation-to-the-frobenius-norm">Relation to the Frobenius norm</h2>
+
+<p>Let \(A\in\mathbb{R}^{n_1\times n_2}\) be a matrix. 
+The Frobenius norm \(\|\cdot\|_F: \mathbb{R}^{n_1\times n_2}\to \mathbb{R}_{0,+}\) 
+is a matrix norm defined as</p>
+
+\[\begin{equation}
+\begin{split}
+\|A\|_F^2 
+= \operatorname{tr}[A^{\intercal}A]
+= \sum_{i=1}^{n_1} \sum_{j=1}^{n_2}A_{ij}^2
+&amp;= \|\overrightarrow{A}\|^2\\
+&amp;= \overrightarrow{A}^{\intercal}\overrightarrow{A}\\
+&amp;= \overrightarrow{A}^{\intercal}(I_{n_1}\otimes I_{n_2})\overrightarrow{A},
+\end{split}
+\end{equation}\]
+
+<p>where \(I_{n_1}\) and \(I_{n_2}\) are identity matrices of sizes \(n_1\) and \(n_2\)
+respectively and \(\|\cdot\|\) is the Euclidean norm.</p>
+
+<p>Let \(W\in\mathbb{R}^{n\times n}\) be a positive definite matrix and 
+\(A\in\mathbb{R}^{n\times n}\) be an arbitrary square matrix.
+The weighted Frobenius norm is defined as</p>
+
+\[\begin{equation}
+\begin{split}
+\|A\|_{F, W}^2 
+= \|W^{\frac{1}{2}}AW^{\frac{1}{2}}\|_F^2
+&amp;= \operatorname{tr}[WA^{\intercal}WA]\\
+&amp;= \sum_{i, j, k, l=1}^{n}A_{ji}W_{jk}W_{il}A_{kl}\\
+&amp;= \overrightarrow{A}^{\intercal}(W\otimes W)\overrightarrow{A}.
+\end{split}
+\end{equation}\]
+
+<p>Hence, the weighted square Frobenius norm can be expressed as an inner product weighted
+with a positive definite Kronecker matrix.</p>
+
+<p>We can generalize the weighted Frobenius norm to allow two positive definite weight matrices
+\(W_1\in\mathbb{R}^{n_1\times n_1}\) and \(W_2\in\mathbb{R}^{n_2\times n_2}\)
+and a non-square \(A\in\mathbb{R}^{n_1\times n_2}\) such that</p>
+
+\[\begin{equation*}
+\begin{split}
+\|A\|_{F, W_1, W_2}^2 
+&amp;= \operatorname{tr}[W_2A^{\intercal}W_1A]\\
+&amp;= \overrightarrow{A}^{\intercal}(W_1\otimes W_2)\overrightarrow{A}.
+\end{split}
+\end{equation*}\]
+
+<p>It is mentioned here since used in the <a href="#applications-of-the-kronecker-product">applicattion section</a>.</p>
+
+<h2 id="closest-kronecker-product">Closest Kronecker product</h2>
+
+<p>The solution to the closest Kronecker approximation problem gives some insight into
+the factorization structure of the Kronecker product which is why it is mentioned
+here specifically.</p>
+
+<p>Suppose we are given a large matrix \(C\in\mathbb{R}^{n_1m_1\times n_2m_2}\). 
+The closest Kronecker product \(A^*\otimes B^*\) under the Frobenius norm is given by</p>
+
+\[\begin{equation}
+\label{eq:argmin}
+A^*, B^* = \operatorname*{arg\,min}_{A, B}\|C-A\otimes B\|_F^2.
+\end{equation}\]
+
+<p>There exists a fixed, known permutation 
+\(\mathcal{R}: \mathbb{R}^{n_1m_1\times n_2m_2}\to \mathbb{R}^{n_1n_2\times m_1m_2}\)
+that vectorizes and stacks blocks of \(C\)
+(<a href="#references">[1]</a> Section 6) such that the Kronecker
+product can be written as an outer product of the vectorized matrices \(\overrightarrow{A}\)
+and \(\overrightarrow{B}\) according to 
+\(\mathcal{R}(A\otimes B) = \overrightarrow{A}\overrightarrow{B^{\intercal}}\) .
+Thus, Eq. \eqref{eq:argmin} can be re-phrased as a rank-one approximation problem in an 
+\(n_1n_2\times m_1m_2\) dimensional space</p>
+
+\[\begin{equation*}
+\label{eq:argmin-R}
+\overrightarrow{A^*}, \overrightarrow{B^*} = \operatorname*{arg\,min}_{A, B}\|\mathcal{R}(C)-\overrightarrow{A} \overrightarrow{B}\|_F^2.
+\end{equation*}\]
+
+<p>This directly follows from the definition of the Kronecker product, 
+the definition of \(\mathcal{R}\) and the definition of the Frobenius norm.</p>
+
+<p>This means that the closes Kronecker product to \(C\) 
+under the Frobenius norm as in Eq. \eqref{eq:argmin}, is equivalent to a rank-one matrix approximation in a permuted 
+space defined by \(\mathcal{R}\). It is straightforward to solve rank-one approximations
+using e.g., a singular value decomposition of \(\mathcal{R}(C)\). The resulting vectors 
+\(\overrightarrow{A^*}\) and \(\overrightarrow{B^*}\) can then be re-shaped with the inverse
+vectorization operation in order to obtain the closest Kronecker product 
+\(A^*\otimes B^*\) according to Eq. \eqref{eq:argmin}.</p>
+
+<h2 id="applications-of-the-kronecker-product">Applications of the Kronecker product</h2>
+
+<p>Here are some examples of applications where the Kronecker product naturally shows up.</p>
+
+<h3 id="matrix-normal-distribution">Matrix normal distribution</h3>
+
+<p>The Kronecker product naturally occurs in the vectorized version of the 
+<a href="https://en.wikipedia.org/wiki/Matrix_normal_distribution">matrix-normal distribution</a>.</p>
+
+<p>Let \(X\in\mathbb{R}^{n_1\times n_2}\) be a matrix-valued random variable that follows 
+a matrix normal distribution with density</p>
+
+\[p(X; M, U, V) = \left((2\pi)^{n_1n_2} \det(V)^{n_1}\det(U)^{n_2}\right)^{-\frac{1}{2}}
+\exp{\left(-\frac{1}{2}\operatorname{tr}[V^{-1}(X-M)^{\intercal}U^{-1}(X-M)]\right)},\]
+
+<p>parametrized by a mean matrix \(M\in\mathbb{R}^{n_1\times n_2}\) 
+and two positive definite matrices \(U\in\mathbb{R}^{n_1\times n_1}\) and 
+\(V\in\mathbb{R}^{n_2\times n_2}\).
+Then, its vectorized version follows a 
+<a href="https://en.wikipedia.org/wiki/Multivariate_normal_distribution">multi-variate normal distribution</a>
+with vectorized mean matrix \(\overrightarrow{M}\) and 
+Kronecker covariance \(U\otimes V\)</p>
+
+\[p(\overrightarrow{X};\overrightarrow{M}, U\otimes V).\]
+
+<p>We can see this equivalence by observing that \(\operatorname{tr}[V^{-1}(X-M)^{\intercal}U^{-1}(X-M)]\)
+is linked to the square of the weighted Frobenius norm \(\|X-M\|_{F, U^{-1}, V^{-1}}^2\) and using the factorized 
+version of the determinant of \(U\otimes V\).</p>
+
+<p>In this vectorized form, it is also straightforward to analyze the covariance of the
+matrix-normal distribution. Since</p>
+
+\[\operatorname{Cov}{[X_{ij}, X_{kl}]} = (U\otimes V)_{(ij), (kl)} = U_{ik}V_{jl}\]
+
+<p>we see that the elements of \(U\) encode how the <em>rows</em> of \(X\) covary, while the elements of 
+\(V\) encode how the <em>columns</em> of \(X\) covary. Hence, if e.g., we want to encode independent rows of \(X\),
+we may choose \(U = \operatorname{diag}{(u)}\) for some vector \(u\) or even \(U=I\) which yields</p>
+
+\[\operatorname{Cov}{[X, X']} = I\otimes V,\]
+
+<p>a block-diagonal covariance matrix, with \(V\) as blocks.</p>
+
+<p>The <a href="/blog/2022/kronecker-sym/"><em>symmetric</em> Kronecker product</a> 
+is further linked to the second moment of the 
+<a href="https://en.wikipedia.org/wiki/Wishart_distribution">Wishart distribution</a>
+which is a distribution over symmetric positive-definite matrices.</p>
+
+<h3 id="quasi-newton-methods">Quasi-Newton methods</h3>
+
+<p>Quasi-Newton methods (I may make another blogpost on those some day) 
+are optimizers for deterministic objective functions
+that use a local approximation to the Hessian matrix in order to obtain an approximation
+to the Newton direction (this is somewhat a simplification, but the details do not matter here).
+Let \(f(w)\) be the objective function to be minimized w.r.t. \(w\) and let \(B_t\)
+be the approximation of the Hessian of \(f(w)\) at \(w_t\) and \(B_t^{-1}\) its known inverse.
+Then, For some initial point \(w_0\), the update rule of a quasi-Newton method is</p>
+
+\[w_{t+1} = w_t - \alpha_t B_t^{-1} \nabla f(w_t),\]
+
+<p>where \(\alpha_t\) is the step size found by a line search and 
+\(B_t\) is the analytic solution to the minimization problem</p>
+
+\[B_t = \operatorname*{arg\,min}_B \|B_{t-1} - B\|_{F, W}^2
+\quad\text{ s.t. the secant equation}\quad Bs_t = \Delta y_t\]
+
+<p>with \(s_t = w_t - w_{t-1}\) and \(\Delta y_t = \nabla f(w_t) - \nabla f(w_{t-1})\).
+The choice of the symmetric positive definite weight matrix \(W\) leads to the 
+different instances of quasi-Newton methods; its precise look is not important 
+for the argument here.
+We can already see that the vectorized version of the above equation involves 
+minimization of a square form, weighted with the Kronecker product \(W \otimes W\)</p>
+
+\[\overrightarrow{B}_t = 
+\operatorname*{arg\,min}_{\overrightarrow{B}}
+(\overrightarrow{B} - \overrightarrow{B}_{t-1})^{\intercal}
+(W\otimes W)
+(\overrightarrow{B} - \overrightarrow{B}_{t-1})\]
+
+<p>s.t. the vectorized secant equation that also involves a Kronecker product</p>
+
+\[(I\otimes s_t^{\intercal})\overrightarrow{B} = \Delta y_t.\]
+
+<p>In quasi-Newton methods that enforce symmetry of \(B_t\), we will encounter the 
+<a href="/blog/2022/kronecker-sym/"><em>symmetric</em> Kronecker product</a> 
+product in a similar way.</p>
+
+<h3 id="linear-algebra">Linear algebra</h3>
+
+<p>Kronecker products also show up in the formulation of solvers for linear systems.
+Let \(A\in\mathbb{R}^{n\times n}\) be a matrix and \(b\in\mathbb{R}^{n}\) a vector.
+Linear  solvers solve the linear system \(Ax = b\) for the vector \(x\) given the solution 
+to matrix-vector multiplications of the form \(A\tilde{s}_t = \Delta \tilde{y}_t\), \(t=0, \dots\). 
+Kronecker products show up there naturally, too when vectorizing the equations. 
+In fact, there are connections to quasi-Newton methods for certain types of linear systems,
+hence the similar algebra.
+But this, too, is a topic for another blog post.</p>
+
+<h3 id="deep-learning">Deep learning</h3>
+
+<p>Kronecker products show up in some stochastic optimizers that, similar to quasi-Newton methods
+aim to approximate some kind of desired matrix that defines the metric of the space in which
+the steepest descent is measured. 
+Applying Kronecker products in that context is interesting since i) several quantities 
+lend themselves to block structures or block-wise independence assumption due to the
+neural network architecture, and
+ii) since tensors are a natural representation of weights and gradients in most 
+deep learning code bases. Hence, e.g., left an right matrix-multiplication can be thought of as
+a Kronecker multiplication as in Eq. \eqref{eq:vec}.
+Two recent, but not the first, examples are K-FAC <a href="#references">[4]</a> and Shampoo <a href="#references">[5]</a>, but there are
+many more, also older ones that explore Kronecker structure in the context of stochastic optimization.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] C.F. Van Loan 2000 <em>The ubiquitous Kronecker product</em>, 
+    Journal of Computational and Applied Mathematics 123, pp. 85–100.</p>
+
+<p>[2] C.F. Van Loan and N. Pitsianis 1993 <em>Approximation with Kronecker Products</em>,
+    Linear Algebra for Large Scale and Real Time Applications. Kluwer Publications, pp. 293–314.</p>
+
+<p>[3] M. Mahsereci 2018 <em>Probabilistic Approaches to Stochastic Optimization</em>, PhD thesis, Appendix A.</p>
+
+<p>[4] J. Martens and r. Grosse 2015 <em>Optimizing Neural Networks with Kronecker-factored Approximate Curvature</em>, ArXiv.</p>
+
+<p>[5] V. Gupta et al. 2018 <em>Shampoo: Preconditioned Stochastic Tensor Optimization</em>, ICML.</p>
+
+<p>[6] P. Hennig 2015 <em>Probabilistic Interpretation of Linear Solvers</em>, SIAM.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="machinelearning" /><summary type="html"><![CDATA[The Kronecker product is a tensor product that appears frequently in machine learning and its applications. This post collects some useful properties and some other insights on it.]]></summary></entry><entry><title type="html">Invariant Gaussian Processes</title><link href="https://mmahsereci.github.io/blog/2021/invariant-gp/" rel="alternate" type="text/html" title="Invariant Gaussian Processes" /><published>2021-11-01T00:00:00+00:00</published><updated>2021-11-01T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2021/invariant-gp</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2021/invariant-gp/"><![CDATA[<p>Gaussian processes can be understood as “distributions over functions” providing prior models for
+unknown functions. The kernel which identifies the GP can be used to encode known properties of the function such 
+as smoothness or stationarity. A somewhat more exotic characteristic is <em>invariance to input transformations</em> 
+which we’ll explore here.</p>
+
+<h2 id="what-is-an-invariant-function">What is an invariant function?</h2>
+
+<p>I came across the paper of <a href="https://proceedings.neurips.cc/paper/2018/file/d465f14a648b3d0a1faa6f447e526c60-Paper.pdf">Wilk et al. 2018</a> 
+a while ago which introduces Gaussian processes that are invariant
+under a finite set of input transformations. 
+Let’s first see what an invariant function is: A function \(f:\mathcal{X} \rightarrow \mathbb{R}\) on the domain \(\mathcal{X}\subseteq\mathbb{R}^D\)
+is said to be invariant under a bijective transformation 
+\(T:\mathcal{X}\rightarrow \mathcal{X}\) if 
+\(f(T(x)) = f(x)\) holds for all \(x\) in \(\mathcal{X}\).
+This simply means that the function \(f\) takes the same value at \(x\) and \(T(x)\) for all \(x\).</p>
+
+<blockquote>
+  <p>Simple 1D example: \(f(x) = x^2\) is invariant under flipping the x-axis, i.e., \(f(x) = f(-x)\) with \(T(x) = -x\), 
+and \(x\in\mathbb{R}\).</p>
+</blockquote>
+
+<h3 id="invariance-groups-and-orbits">Invariance groups and orbits</h3>
+
+<p>Consider now a function that is invariant under a finite set of \(J\) transformations \(T_i\), \(i=1, ..., J\).
+As the invariance under each \(T_i\) holds for any input \(x\) (also those that have been transformed), 
+the \(T_i\) must form the group 
+\(G_f:=\{T | f(x) = f(T(x)) \text{ for all } x \in\mathcal{X}\}\). 
+That is, \(G_f\) contains arbitrary concatenations \(T_i\circ T_j\circ \dots\), the identity transform \(T=I\),
+the inverses \(T_i^{-1}\), and the \(T_i\) obey associativity. 
+There may be several groups associated with a function \(f\), depending on which invariances are considered.</p>
+
+<blockquote>
+  <p>For the above example \(f(x) = x^2\), the implied group \(G_f\) only contains \(J=2\)
+transformations \(G_f = \{T_0, T_1\}\) with \(T_0(x)=x\) and \(T_1(x)=-x\). 
+This is because all possible concatenations  \(T_i\circ T_j\circ \dots\) as well as the inverses \(T_i^{-1}\) 
+collapse back to \(T_0\) or \(T_1\) and are thus already in \(G_f\) (Examples: \(T_1^{-1} = T_1\), or \(T_1\circ (T_1 \circ T_1) = T_1\circ T_0 = T_1\) etc).</p>
+</blockquote>
+
+<p>Given \(G_f\), the set \(\mathcal{A}(x):=\{T(x) | \text{ for all } T\in G_f\}\) 
+is called an <em>orbit</em> of \(x\) and is the set of invariant locations induced by \(x\).</p>
+
+<blockquote>
+  <p>In our 1D example \(f(x) = x^2\) with \(G_f\) containing \(T_0\) and \(T_1\), consider an arbitrary point 
+e.g., \(x^* = 0.2\). The orbit of \(x^*\) is then given by \(\mathcal{A}(x^*) = \{T_0(x^*), T_1(x^*)\} = \{0.2, -0.2\}\).</p>
+</blockquote>
+
+<h2 id="modelling-an-invariant-black-box-function">Modelling an invariant black-box function</h2>
+
+<p>Given \(G_f\) and \(\mathcal{A}(x)\), we can now introduce a latent function \(g: \mathcal{X} \rightarrow \mathbb{R}\) such that</p>
+
+\[f(x) = \sum_{\tilde{x}\in \mathcal{A}(x)}g(\tilde{x}).\]
+
+<p>The latent function \(g\) is not necessarily invariant, but the function \(f\) is by construction.
+This is because any point \(\tilde{x}\in \mathcal{A}(x)\) induces the identical set 
+\(\mathcal{A}(\tilde{x}) = \mathcal{A}(x)\), hence \(f(\tilde{x}) = f(x)\) 
+for all \(\tilde{x}\in A(x)\).
+(notice that \(G_f\) includes the identity transform, the trivial invariance for all functions).</p>
+
+<p>We see from the above equation that we do not need to know the form of \(f(x)\) in order to encode the 
+invariance property, simple knowing the set \(G_f\) is enough. In that sense, \(f(x)\) can be a black-box function.</p>
+
+<h3 id="making-it-probabilistic-an-invariant-gaussian-process-prior">Making it probabilistic (An invariant Gaussian process prior)</h3>
+
+<p>If the function \(f\) is unknown, and we want to learn it from a set of function evaluations, we can treat the 
+inference problem probabilistically to account for the uncertainty of value of \(f\) where \(f(x)\) is not observed.
+In certain circumstance, a good choice of models are Gaussian processes (GPs), especially since they let us 
+encode properties of the function leading to sample efficient learning methods.
+In our case, the property we want to encode is the invariance of \(f\) under the group \(G_f\) as defined above. 
+We again follow <a href="https://proceedings.neurips.cc/paper/2018/file/d465f14a648b3d0a1faa6f447e526c60-Paper.pdf">Wilk et al. 2018</a> (Section 4.1).</p>
+
+<p>In essence, the trick is to model the latent function \(g\) as a Gaussian process \(g\sim\mathcal{G}(m_g, k_g)\) with mean function \(m_g\) and 
+kernel function \(k_g\) such that the resulting process on \(f\) obeys the invariance by the above construction.
+It turns out that then, \(f\) is also a Gaussian process \(f\sim\mathcal{G}(m_f, k_f)\), as \(f\) is a linear combination 
+(weighted sum) of jointly Gaussian distributed values \(g\) (and Gaussians are closed under linear transformations). 
+The mean function \(m_f\) and kernel function \(k_f\) can be easily derived:</p>
+
+\[m_f(x) =\sum_{\tilde{x}\in \mathcal{A}(x)}m_g(\tilde{x}),\qquad
+    k_f(x, x') = \sum_{\tilde{x}', \tilde{x}\in \mathcal{A}(x)}  k_g(\tilde{x}, \tilde{x}').\]
+
+<p>GP regression on \(f\) is straightforward, too, as the above equation simply defines another positive definite kernel \(k_f\).
+In essence, we did not transform the distribution of \(g\) itself, we merely correlated function values of \(g\) at invariant locations in input space.</p>
+
+<h2 id="pretty-priors-samples-of-invariant-gps">Pretty Priors: Samples of invariant GPs</h2>
+
+<p>Let’s create some plots. Below we plot 4 x 8 = 32 samples of invariant Gaussian processes with a 2D input domain.
+The samples are from the prior GP not conditions on any data. We can see that the samples obey the invariances encoded.
+This means that the model, if conditioned on function evaluation, needs not learn the invariance property 
+of the function from the data, as it is already encoded in the prior. This will likely lead to sample-efficient algorithms.</p>
+
+<h3 id="point-symmetry">Point-symmetry</h3>
+
+<p>Group \(G_f\) is of size \(J=2\) and contains \(T_0= I\) as well as a projection operator though the origin 
+(flipping all signs) \(T_1 = -1\). This encodes point-symmetry of \(f\) through the origin as can be seen from the 
+prior samples (the origin at \([0, 0]\) is in the center of each plot).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-11-01-invariant-gp/point_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h3 id="axis-symmetry-along-both-axis">Axis-symmetry along both axis</h3>
+
+<p>In order to encode axis-symmetry along both axis, we need to add two additional invariances \(T_2\) and \(T_3\) in addition to \(T_0\) and
+\(T_1\) above (total of \(J=4\) transformations). \(T_2\) and \(T_3\) each flip the sign of one axis, 
+that is \(T_3 = [[-1, 0]; [0, 1]]\) and \(T_3 = [[1, 0]; [0, -1]]\).
+We observe that the samples from this prior observe the axis-symmetries.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-11-01-invariant-gp/flip-point_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h3 id="axis-symmetry-along-one-axis">Axis-symmetry along one axis</h3>
+
+<p>For axis-symmetry along one axis only (say x-axis), we only require \(J=2\) transformations given by \(T_0=I\) and 
+\(T_1 = [[1, 0]; [0, -1]]\). The samples again obey the symmetry.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-11-01-invariant-gp/x-flip_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h3 id="rotations">Rotations</h3>
+
+<p>Lastly, for \(J\)-fold rotational symmetry, the group \(G_f\) contains \(J\)-fold rotation matrices with 
+\(T_i = R(\theta=i\frac{2\pi}{J})\) for \(i=1,\dots,J\) where \(R(\theta)\) is 
+the <a href="https://en.wikipedia.org/wiki/Rotation_matrix">2D rotation matrix</a>. Below we show \(J=5\).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-11-01-invariant-gp/rotations_00_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>Same as above but for \(10\)-fold rotation (\(J=10\)).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-11-01-invariant-gp/rotations_00_n10_a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h2 id="where-is-the-data">Where is the data?</h2>
+
+<p>Nowhere yet. I may write another blogpost showing posterior samples from the invariant GPs. They look quite cool 
+indeed, as the invariant GP seems to “learn” at locations where nothing is observed (this is at and close to points 
+that are invariant to observed points under the model). I may also discuss algorithmic complexity there.</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Wilk et al. 2018 <em>Learning invariances using the marginal likelihood</em>, 
+    Advances in Neural Information Processing Systems 31, pages 9938–9948.</p>
+
+<p>[2] Rasmussen and Williams 2006. <em>Gaussian Processes for Machine Learning.</em> Adaptive Computation and Machine Learning. 
+    MIT Press, Cambridge, MA, USA.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="gaussianprocesses" /><category term="machinelearning" /><summary type="html"><![CDATA[Gaussian processes can be understood as "distributions over functions" providing prior models for unknown functions. The kernel which identifies the GP can be used to encode known properties of the function such as smoothness or stationarity. A somewhat more exotic characteristic is invariance to input transformations which we'll explore here.]]></summary></entry><entry><title type="html">The Bias-Variance Decomposition</title><link href="https://mmahsereci.github.io/blog/2021/bias-variance-decomposition/" rel="alternate" type="text/html" title="The Bias-Variance Decomposition" /><published>2021-10-31T00:00:00+00:00</published><updated>2021-10-31T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2021/bias-variance-decomposition</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2021/bias-variance-decomposition/"><![CDATA[<p>The expected squared error of an estimator can be decomposed into a bias and a variance term.
+In order for the error to be minimal, generally not both, bias and variance, can be minimal.
+This is the bias-variance trade-off.</p>
+
+<h3 id="the-data">The data</h3>
+<p>Consider a dataset</p>
+
+\[\mathcal{D} = \{(x_1,y_1),\dots,(x_n, y_n)\}\]
+
+<p>with inputs \(x\) and targets \(y\). 
+Assume that the targets are generated by the relation</p>
+
+\[\begin{equation}
+\label{eq:y}
+y = f(x) + \epsilon
+\end{equation}\]
+
+<p>where
+\(f(x)\) is a deterministic, but unknown map.</p>
+
+<p>The scalar \(\epsilon\sim p(\epsilon)\) is an additive noise term
+with zero mean \(\operatorname{Exp}[\epsilon]=0\) and finite variance 
+\(\operatorname{Var}[\epsilon]=\sigma^2\). 
+More generally, we can assume some data-generating process \((x, y)\sim p(x, y)\)
+that is obeying Eq. \eqref{eq:y}, and by extension a distribution over datasets
+of size \(N\)</p>
+
+\[\begin{equation}
+\label{eq:D}
+\mathcal{D} \sim p(\mathcal{D}),
+\end{equation}\]
+
+<p>one realization of which is the dataset at hand 
+(\(\mathcal{D}\) hence denotes both, the given dataset and the random variable).</p>
+
+<h3 id="the-estimator">The estimator</h3>
+
+<p>Since the relation \(f\) in Eq. \eqref{eq:y} is unknown, we would like to estimate it from the 
+given dataset \(\mathcal{D}\).</p>
+
+<p>Hence, consider a model \(\hat{f}_{\mathcal{D}}\) that is fitted to \(\mathcal{D}\)
+and can produce a prediction \(\hat{f}_{\mathcal{D}}(x)\) for some given \(x\),
+where \(x\) is not necessarily in the dataset.
+This prediction estimates (guesses, based on data and model assumptions) the unknown value \(f(x)\). 
+The function \(f_{\mathcal{D}}(x)\) is called an <em>estimator</em> for \(f(x)\).</p>
+
+<p>Further, if we take Eq. \eqref{eq:D} seriously and assume that \(\mathcal{D}\) is a 
+random variable, by extension, the estimator \(\hat{f}_{\mathcal{D}}(x)\) 
+is a random variable, too.</p>
+
+<h2 id="what-is-the-bias-of-an-estimator">What is the bias of an estimator?</h2>
+
+<p>The bias of the estimator \(\hat{f}_{\mathcal{D}}(x)\) is defined as the difference between its 
+expectation w.r.t. \(p(\mathcal{D})\) and the ground truth value \(f(x)\)</p>
+
+\[\operatorname{Bias}_{p(\mathcal{D})}{[\hat{f}_{\mathcal{D}}(x)]} 
+= \operatorname{Exp}_{p(\mathcal{D})}[\hat{f}_{\mathcal{D}}(x)] - f(x).\]
+
+<p>The bias thus tells us how much the prediction \(\hat{f}_{\mathcal{D}}(x)\) deviates from the true 
+value \(f(x)\) on average, where the average is taken over all potential datasets
+\(\mathcal{D}\) weighted with the probability they occur.
+If the bias is zero, it means that the model on average yields the correct prediction.
+Keep in mind tough, that the bias is a theoretical construct involving the ground truth \(f(x)\)
+and is generally not tractable.</p>
+
+<p>While the bias tells us about the goodness of the average prediction, 
+it does not tell us how predictions \(\hat{f}_{\mathcal{D}}(x)\) for individual datasets
+may differ from one another. This is encoded in the variance of \(\hat{f}_{\mathcal{D}}(x)\) which we discuss next.</p>
+
+<h2 id="what-is-the-variance-of-an-estimator">What is the variance of an estimator?</h2>
+
+<p>Again assume all the above, and especially \(\mathcal{D}\sim p(\mathcal{D})\).
+The variance of the estimator \(\hat{f}_{\mathcal{D}}(x)\) is defined as</p>
+
+\[\operatorname{Var}_{p(\mathcal{D})}{[\hat{f}_{\mathcal{D}}(x)]} 
+= \operatorname{Exp}_{p(\mathcal{D})}\left[\left(\hat{f}_{\mathcal{D}}(x) 
+- \operatorname{Exp}_{p(\mathcal{D})}[\hat{f}_{\mathcal{D}}(x)]\right)^2\right].\]
+
+<p>Hence, the variance is the expected square deviation of the estimator from its mean.
+While the bias of \(\hat{f}_{\mathcal{D}}(x)\) depends on the ground truth \(f(x)\), the variance does not;
+it simply quantifies the spread of the individual estimators.
+However, like the bias, the variance is usually not tractable either since the
+expectation over \(p(\mathcal{D})\) cannot be computed.</p>
+
+<h2 id="the-bias-variance-decomposition-of-the-expected-squared-error">The bias-variance decomposition of the expected squared error</h2>
+
+<p>The bias and variance each describe one aspect of the estimator \(\hat{f}_{\mathcal{D}}(x)\) 
+and each individually give an incomplete picture of its behavior. 
+But, do they give a complete picture together? The answer is generally no, but there is 
+one interesting exception:</p>
+
+<blockquote>
+  <p>Assuming the data-generation as above, the expected squared error of the estimator \(\hat{f}_{\mathcal{D}}(x)\)
+can be decomposed into its bias squared, its variance and an independent, irreducible error that depends on the observation noise \(\epsilon\).</p>
+</blockquote>
+
+<p>Consider the squared error (square loss)</p>
+
+\[\ell(x, y; \hat{f}_{\mathcal{D}}) = \left(\hat{f}_{\mathcal{D}}(x) - y\right)^2\]
+
+<p>as a measure for the performance of \(\hat{f}_{\mathcal{D}}(x)\) on the pair \((x, y)\).
+The highlighted statement above means that the expected squared error can be decomposed 
+as follows:</p>
+
+\[\begin{equation}
+\label{eq:decomp}
+\begin{split}
+\operatorname{Exp}_{p(\mathcal{D})}[\ell(x, y; \hat{f}_{\mathcal{D}})]
+&amp;= \operatorname{Exp}_{p(\mathcal{D})}\left[\left(\hat{f}_{\mathcal{D}}(x) - y\right)^2\right]\\
+&amp;= \left(\operatorname{Bias}_{p(\mathcal{D})}{[\hat{f}_{\mathcal{D}}(x)(x)]}\right)^2
++ \operatorname{Var}_{p(\mathcal{D})}{[\hat{f}_{\mathcal{D}}(x)(x)]} 
++ \sigma^2,
+\end{split}
+\end{equation}\]
+
+<p>where \(\sigma^2=\operatorname{Var}[\epsilon]\) is the irreducible error.
+This is the bias-variance decomposition of the expected squared error.</p>
+
+<p>The derivation is straightforward and can be done by expanding terms and applying the 
+expectation where possible.</p>
+
+<h3 id="the-bias-variance-trade-off">The bias-variance trade-off</h3>
+
+<p>The expected squared error, as well as all summands in the second line of Eq. \eqref{eq:decomp} are non-negative.
+The usual intuition is that, when varying the estimator \(\hat{f}_{\mathcal{D}}(x)\), if its squared bias
+gets smaller, its variance gets larger and vice versa.
+This means that there is an optimal 
+\(\hat{f}^*_{\mathcal{D}}(x)\) where the expected squared error, but generally neither the squared bias, nor variance is minimal.
+This is the bias-variance trade-off. In formulas, if</p>
+
+\[\begin{equation*}
+\begin{split}
+\hat{f}^*_{\mathcal{D}}(x)
+&amp; = \operatorname*{arg\,min}_{\hat{f}_{\mathcal{D}}(x)}\operatorname{Exp}_{p(\mathcal{D})}\left[\left(\hat{f}_{\mathcal{D}}(x) - y\right)^2\right]\\
+\end{split}
+\end{equation*}\]
+
+<p>then in general</p>
+
+\[\begin{equation*}
+\begin{split}
+\hat{f}^*_{\mathcal{D}}(x)
+&amp;\neq \operatorname*{arg\,min}_{\hat{f}_{\mathcal{D}}(x)}\left(\operatorname{Bias}_{p(\mathcal{D})}{[\hat{f}_{\mathcal{D}}(x)(x)]}\right)^2\\
+\hat{f}^*_{\mathcal{D}}(x)
+&amp;\neq \operatorname*{arg\,min}_{\hat{f}_{\mathcal{D}}(x)}\operatorname{Var}_{p(\mathcal{D})}{[\hat{f}_{\mathcal{D}}(x)(x)]}.
+\end{split}
+\end{equation*}\]
+
+<p>Varying the estimator here may mean to use a different model for \(\hat{f}_{\mathcal{D}}\)
+or a different fitting procedure, or more generally to vary the deterministic mechanism that
+retrieves \(\hat{f}_{\mathcal{D}}\) from \(\mathcal{D}\).
+The irreducible error \(\sigma^2\) does not play a role as it is a constant
+w.r.t. \(\hat{f}_{\mathcal{D}}\).</p>
+
+<p>The above (in)equalities suggest that, at least under the square loss (and possibly elsewhere, too), a non-zero bias 
+of an estimator is not a bad thing if one is interested in its predictive performance.</p>
+
+<h2 id="illustrative-example">Illustrative example</h2>
+
+<p>The bias-variance trade-off is often explained with the
+expressiveness of the model \(\hat{f}_{\mathcal{D}}\) and its flexibility to fit the data. 
+For instance, a simple model such as linear regression with a small amount of features
+may yield similar predictions no matter the dataset \(\mathcal{D}\) in which case its variance is
+low, but its bias is large as it never can fully express the ground truth \(f(x)\). 
+An expressive model on the other hand—let’s say linear regression with many features—may 
+be able to represent \(f(x)\) and even “patterns” in \(\mathcal{D}\) that are due to the noise term \(\epsilon\). 
+In this case, the bias may be low, but the variance may be high.
+The latter is often associated with “overfitting” (model is too flexible with the data) and the 
+former with “underfitting” (model is too rigid), although underfitting is a less well-defined term.</p>
+
+<p>As an illustrative example, consider the function</p>
+
+\[\begin{equation}
+\label{eq:g}
+g(x, K) = w^{\intercal} \Phi(x) = \sum_{k=1}^{2K+1}w_k\Phi_k(x)
+\end{equation}\]
+
+<p>where \(\Phi(x) = [1, \sin(x), \cos(x), \sin(2x), \cos(2x), \dots, \sin(Kx), \cos(Kx)]\in\mathbb{R}^{2K+1}\) are
+some Fourier features and \(w=[w_1, w_2, \dots, w_{2K+1}]\in\mathbb{R}^{2K+1}\)
+are some fixed parameters.</p>
+
+<h3 id="the-ground-truth-function">The ground truth function</h3>
+
+<p>As ground truth function, we use \(K=3\), that is \(f(x):=g(x, K=3)\) and some fixed parameters \(w\).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+
+<span class="k">def</span> <span class="nf">_features_fourier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">Computes K Fourier features for x.</span><span class="sh">"""</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">zeros</span><span class="p">([</span><span class="n">x</span><span class="p">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nf">int</span><span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="mi">2</span> <span class="o">*</span> <span class="n">K</span><span class="p">)])</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">xi</span> <span class="ow">in</span> <span class="nf">enumerate</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+        <span class="n">features_i</span> <span class="o">=</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">]</span>        
+        <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nf">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">K</span><span class="o">+</span><span class="mi">1</span><span class="p">):</span>
+            <span class="n">features_i</span> <span class="o">=</span> <span class="n">features_i</span> <span class="o">+</span> <span class="p">[</span><span class="n">np</span><span class="p">.</span><span class="nf">sin</span><span class="p">(</span><span class="n">k</span> <span class="o">*</span> <span class="n">xi</span><span class="p">),</span> <span class="n">np</span><span class="p">.</span><span class="nf">cos</span><span class="p">(</span><span class="n">k</span><span class="o">*</span><span class="n">xi</span><span class="p">)]</span>
+        <span class="n">features</span><span class="p">[</span><span class="n">i</span><span class="p">,</span> <span class="p">:]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">(</span><span class="n">features_i</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">features</span>
+
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">x</span><span class="p">):</span>
+    <span class="sh">"""</span><span class="s">The ground truth function.</span><span class="sh">"""</span>
+    <span class="c1"># Fourier features for K=3
+</span>    <span class="n">ff</span> <span class="o">=</span> <span class="nf">_features_fourier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+    <span class="c1"># 2*K + 1 fixed parameters w
+</span>    <span class="n">w</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">array</span><span class="p">([</span> <span class="mf">0.49671415</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.1382643</span> <span class="p">,</span>  <span class="mf">0.64768854</span><span class="p">,</span>  <span class="mf">1.52302986</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23415337</span><span class="p">,</span> <span class="o">-</span><span class="mf">0.23413696</span><span class="p">,</span>  <span class="mf">1.57921282</span><span class="p">])</span>
+    <span class="k">return</span> <span class="n">ff</span> <span class="o">@</span> <span class="n">w</span>
+</code></pre></div></div>
+
+<p>The resulting ground truth function \(f(x)\) is plotted below on the x-range \([0, 10]\).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-10-31-bias-variance-decomposition/00.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h3 id="the-data-1">The data</h3>
+
+<p>We know the data must obey Eq. \eqref{eq:y} with an \(\epsilon\) that has zero mean 
+and finite variance \(\operatorname{Var}[\epsilon]=\sigma^2\). 
+Hence, we choose to produce each dataset according to:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">sample_dataset</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">sigma</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="p">)</span>
+    <span class="n">F</span> <span class="o">=</span> <span class="nf">f</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">Y</span> <span class="o">=</span> <span class="n">F</span> <span class="o">+</span> <span class="n">sigma</span> <span class="o">*</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">randn</span><span class="p">(</span><span class="n">N</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span>
+
+<span class="n">N</span> <span class="o">=</span> <span class="mi">50</span>
+<span class="n">sigma</span> <span class="o">=</span> <span class="mf">0.8</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">F</span> <span class="o">=</span> <span class="nf">sample_dataset</span><span class="p">(</span><span class="n">N</span><span class="p">,</span> <span class="n">sigma</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>Each dataset is of size \(N=50\) in this example. 
+Since we want to illustrate the intractable bias of an estimator we also return the unperturbed 
+ground truth values \(f(x)\) (stored in the array F) which we would not know in practice. 
+Similarly, \(\sigma\) may or may not be known in practice.
+One example of a dataset is plotted below (blue dots scattered) with the ground truth function as dotted line.
+The datapoints do not exactly lie on top of the function due to the noise term \(\epsilon\).
+A good estimator should avoid fitting those “wiggles” and rather
+smooth them out to fit the dotted line more closely.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-10-31-bias-variance-decomposition/00data.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>Further, we denote the set of nodes, observations and ground truth values as 
+\(X=[x_1,\dots,x_N]\in\mathbb{R}^{N}\),
+\(Y=[y_1,\dots,y_N]\in\mathbb{R}^{N}\) and
+\(F=[f(x_1),\dots,f(x_N)]\in\mathbb{R}^{N}\) respectively.
+The feature matrix is denoted as \(\Phi(X)\in\mathbb{R}^{N\times (2K + 1)}\)
+where \([\Phi(X)]_{ik} = \Phi_k(x_i)\) with \(i=1,\dots,N\) and \(k=1,\dots, (2K+1)\).</p>
+
+<h3 id="estimators-with-increasing-complexity">Estimators with increasing complexity</h3>
+
+<p>For our illustrative purposes we create 14 estimators with increasing complexity 
+that have the functional form as in Eq. \eqref{eq:g} with \(K\) ranging from 0 to 13. 
+The estimators are then fitted to the data via least squares. That is, the  \(w\) parameters 
+are the minimizers of the empirical square loss</p>
+
+\[\hat{w} 
+= \operatorname*{arg\,min}_{w} \sum_{(x, y)\in\mathcal{D}}\left(y - w^{\intercal}\Phi(x)\right)^2\]
+
+<p>which admits an analytic solution \(\hat{w} = [\Phi(X)^{\intercal}\Phi(X)]^{-1}\Phi(X)^{\intercal}Y\).
+To make the dependence on \(K\) explicit, we write</p>
+
+\[\begin{equation}
+\label{eq:fhat}
+\begin{split}
+\hat{w}(K) &amp;= [\Phi(X, K)^{\intercal}\Phi(X, K)]^{-1}\Phi(X, K)^{\intercal}Y \in \mathbb{R}^{2K+1}\\
+\hat{f}_{\mathcal{D}}(x, K) &amp;= \hat{w}(K)^{\intercal}\Phi(x, K).
+\end{split}
+\end{equation}\]
+
+<p>This means, our 13 estimators are the functions 
+\(\hat{f}_{\mathcal{D}}(x, K=0), \hat{f}_{\mathcal{D}}(x, K=1),\dots,\hat{f}_{\mathcal{D}}(x, K=13)\)
+with increasing complexity.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">def</span> <span class="nf">_solve_linear_least_squares</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="p">.</span><span class="n">linalg</span><span class="p">.</span><span class="nf">lstsq</span><span class="p">(</span><span class="n">features</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">compute_weights</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Phi</span><span class="p">):</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="nc">Phi</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+    <span class="n">gram</span> <span class="o">=</span> <span class="n">features</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">features</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">features</span><span class="p">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Y</span>
+    <span class="k">return</span> <span class="nf">_solve_linear_least_squares</span><span class="p">(</span><span class="n">gram</span><span class="p">,</span> <span class="n">b</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">fhat_from_weights</span><span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">w</span><span class="p">,</span> <span class="n">Phi</span><span class="p">):</span>
+    <span class="n">features</span> <span class="o">=</span> <span class="nc">Phi</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">features</span> <span class="o">@</span> <span class="n">w</span>    
+
+<span class="c1"># Example of fitting the estimator with K = 5 to the data X, Y
+</span><span class="n">K</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="n">Phi</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nf">_features_fourier</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">K</span><span class="p">)</span>
+<span class="n">w_hat</span> <span class="o">=</span> <span class="nf">compute_weights</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">,</span> <span class="n">Phi</span><span class="p">)</span>
+<span class="n">fhat</span> <span class="o">=</span> <span class="k">lambda</span> <span class="n">x</span><span class="p">:</span> <span class="nf">fhat_from_weights</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">w_hat</span><span class="p">,</span> <span class="n">Phi</span><span class="p">)</span>
+
+<span class="c1"># evaluate on random test point
+</span><span class="n">x_test</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">atleast_1d</span><span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">10</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
+<span class="n">f_hat_at_x_test</span> <span class="o">=</span> <span class="nf">fhat</span><span class="p">(</span><span class="n">x_test</span><span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="estimation-of-bias-and-variance">Estimation of bias and variance</h3>
+
+<p>Recall that the bias and the variance of an estimator are generally not tractable.
+For each of the 14 estimators, we thus approximate those two quantities by computing the expectations
+over \(p(\mathcal{D})\) with Monte Carlo using \(10^3\) samples. This means, for each estimator, 
+we draw \(10^3\) datasets of size \(N=50\), we fit the estimator to each dataset with
+Eq. \eqref{eq:fhat}. This yields \(10^3\) predictions on a test point which we
+choose randomly to be \(x\approx 8.96\). The results are then used to approximate the expectations 
+required to compute the bias and the variance term.</p>
+
+<p>The plot below shows the squared bias, the variance, the expected loss and \(\sigma^2\) versus
+\(K\) of the estimators which is a proxy for the model complexity.
+The “ground truth model”, meaning the estimator which uses the same \(K\) as the ground
+truth function \(f\) is marked with a vertical dotted line at \(K=3\).
+Unsurprisingly, it also happens to be the best estimator as it exhibits the minimal expected error 
+on the test point. As expected, neither its variance, nor its squared bias is minimal
+when compared to all other estimators.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-10-31-bias-variance-decomposition/05.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>The behavior of the estimators can be understood by looking at individual fits.
+The following plots shows fits of all 14 estimators to one of the datasets of size \(N=50\).
+The estimator with minimal expected squared error (with \(K=3\)) is shown in orange.
+It is apparent that less complex estimators with a lower \(K\) are too rigid to fit
+the underlying function well which explains the large bias and low variance term, while
+the more complex models even fit to the noise term \(\epsilon\) which explains their large variance. 
+The winning model with \(K=3\) has just the right complexity to explain the signal, but 
+smooth out the perturbations \(\epsilon\).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-10-31-bias-variance-decomposition/01.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>It should be noted that the intuition presented here may not be applicable to all estimators out there, especially
+if the model is a poor representation of the ground truth, no matter its complexity.
+Additionally, there may be other effects at play that are less well understood. 
+For instance, there is some empirical evidence in deep learning that heavily over-parameterized deep networks,
+which are very flexible estimators, may still yield a meaningful bias-variance trade-off (e.g., <a href="#references">[1]</a>).</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Nakkiran et al. 2020 <em>Deep Double Descent: Where Bigger Models and More Data Hurt</em>, ICLR.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="statistics" /><category term="machinelearning" /><summary type="html"><![CDATA[The expected squared error of an estimator can be decomposed into a bias and a variance term. In order for the error to be minimal, generally not both, bias and variance, can be minimal. This is the bias-variance trade-off.]]></summary></entry><entry><title type="html">Dataset Shifts</title><link href="https://mmahsereci.github.io/blog/2021/distribution-shifts/" rel="alternate" type="text/html" title="Dataset Shifts" /><published>2021-10-30T00:00:00+00:00</published><updated>2021-10-30T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2021/distribution-shifts</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2021/distribution-shifts/"><![CDATA[<p>Distinguishing data-distributions is a central topic of statistics. There exist several approaches 
+to categorize data-distribution shift, often with particular emphasis on the difference between the 
+training and test distribution. 
+Here, I collect some thoughts on the issue.</p>
+
+<p>The term <em>dataset shift</em> was probably coined by <a href="#references">Storkey 2009</a> and means that the training and 
+test datasets in a supervised learning problem differ not solely due to the randomness of the data sample, 
+but also due to the test and 
+training data-distribution having different sample space and/or probability of events. 
+Thus, dataset shifts occur when models are fitted to training data that does not reflect the data-distribution they 
+encounter once deployed.
+Two of the most frequent reasons for dataset shift are:</p>
+
+<ul>
+  <li><em>Sample selection bias</em>: Samples may be discarded from the training with a certain, possibly unknown probability.</li>
+  <li><em>Changing environments</em>: The mechanism that produces the data changes between collecting 
+the training data and deployment.</li>
+</ul>
+
+<p>Specific instances of dataset shift where categorised by <a href="#references">Moreno-Torres et al. 2012</a> in a thorough review.
+Probably the most well-known shift is the <em>covariate shift</em> where the marginal distribution of the inputs changes, but the conditional 
+distribution of the targets given the inputs stays unchanged. 
+We’ll now explore the shift types based on which marginal or conditional distribution is acted upon.</p>
+
+<h2 id="the-4-types-of-dataset-shift">The 4 types of dataset shift</h2>
+
+<p>Consider a supervised prediction problem (classification or regression) where a relation between inputs 
+\(x\) and targets \(y\) needs to be learned. Denote the available dataset at training time as 
+\(\mathcal{D}_{tr} :=\{(x_n, y_n)\}_{n=1}^N\) with elements assumed to be iid draws from a data-distribution 
+\((x_n, y_n)\sim P_{tr}(x, y)\). 
+Denote the dataset which will be accesible at deployment time as \(\mathcal{D}_{ts}=\{(x_m, y_m)\}_{m=1}^{M}\) with 
+\((x_m, y_m)\sim P_{ts}(x, y)\).</p>
+
+<p>In machine learning, the distributions at training and deployment time \(P_{tr}\) and \(P_{ts}\) respectively are 
+often implicitly assumed to be 
+identical, in which case we can assess generalisation performance at training time already, e.g., by splitting off 
+a test set from \(\mathcal{D}_{tr}\) and witholding it during training.
+In practical applications, the implicit assumption of \(P_{tr}\equiv P_{ts}\) may be violated, and the distribution 
+\(P_{ts}\) at deployment time may be arbitrarily different to the distribution \(P_{tr}\) at fitting time. 
+This ‘difference in data-distribution’ is referred to as <em>dataset shift</em>. There are 
+<em>4 types of shifts</em> which each describe a special case where one distribution of the data-generating process 
+stays fixed, and the other one changes. The following table summarises those shifts.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>name</th>
+      <th style="text-align: center">causal direction</th>
+      <th style="text-align: center">    marginal probability      </th>
+      <th style="text-align: right">     conditional probability</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>covariate shift</td>
+      <td style="text-align: center">\(X\rightarrow Y\)</td>
+      <td style="text-align: center">\(P_{tr}(x)\not\equiv P_{ts}(x)\)</td>
+      <td style="text-align: right">\(P_{tr}(y\vert x)\equiv P_{ts}(y\vert x)\)</td>
+    </tr>
+    <tr>
+      <td>concept shift i</td>
+      <td style="text-align: center">\(X\rightarrow Y\)</td>
+      <td style="text-align: center">\(P_{tr}(x)\equiv P_{ts}(x)\)</td>
+      <td style="text-align: right">\(P_{tr}(y\vert x)\not\equiv P_{ts}(y\vert x)\)</td>
+    </tr>
+    <tr>
+      <td>prior probability shift</td>
+      <td style="text-align: center">\(Y\rightarrow X\)</td>
+      <td style="text-align: center">\(P_{tr}(y)\not\equiv P_{ts}(y)\)</td>
+      <td style="text-align: right">\(P_{tr}(x\vert y)\equiv P_{ts}(x\vert y)\)</td>
+    </tr>
+    <tr>
+      <td>concept shift ii</td>
+      <td style="text-align: center">\(Y\rightarrow X\)</td>
+      <td style="text-align: center">\(P_{tr}(y)\equiv P_{ts}(y)\)</td>
+      <td style="text-align: right">\(P_{tr}(x\vert y)\not\equiv P_{ts}(x\vert y)\)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />
+Two of the shifts (covariate and prior probability shift) act on one of the marginal distributions each, 
+while the other two (concept shift i and ii) act on one of the conditional distributions while the ‘other’ 
+distribution completing the joint stays the same for all types.</p>
+
+<p>The shifts include the causal direction of the data generation in their definitions. 
+Dataset shift is thus an intervention into the system, where either the generation of inputs \(x\) via \(P(x)\) 
+(forward direction \(X\rightarrow Y\)), the generation of the targets \(y\) via \(P(y)\) 
+(inverse direction \(Y\rightarrow X\)), or the mechanisms \(P(y|x)\) and \(P(x|y)\) that create the targets and inputs 
+respectively, are being altered.
+The causal relation ensures that if one of the 4 distributions is intervened on—one of the 2 marginals 
+\(P(x)\) and \(P(y)\), or one of the 2 conditionals \(P(x|y)\) and \(P(y|x)\)—the other relevant distribution 
+completing the joint does not change.</p>
+
+<p>This also means that the 4 shift types do not cover the entirety of possible dataset shifts as there are more causal 
+structures in practice than the ones considered above.
+The dataset shifts that fall under the 4 types in practice are probably just a small sub-set of 
+possible dataset shifts one might encounter as practitioner; and, unless we know the ground truth, it’s probably really 
+hard to find out what the causal relation between \(x\) and \(y\) is.</p>
+
+<p>Granted there is quite a bit of confusion about naming in the dataset shift literature, 
+even authors assigning the same name to opposing 
+concepts, but nevertheless (or rather therefore) it is beneficial to be clear on definitions.
+The ones above are taken from <a href="#references">Moreno-Torres et al. 2012</a>.</p>
+
+<h4 id="the-colloquial-use-of-the-term-covariate-shift">The colloquial use of the term ‘covariate shift’</h4>
+
+<p>This is a bit of a tangent (skip to the next section if you like), 
+but did you ever read in a machine learning paper that it addresses covariate shift? 
+Probably that’s not what they are doing.
+As we’ve just seen, covariate shift is the change of the marginal distribution \(P(x)\) of features \(x\) assuming the causal 
+relation \(X\rightarrow Y\), and \(P(y|x)\) stays unchanged when the intervention (shift) occurs.
+The covariate shifted dataset follows the generative process \(x\sim P_{ts}(x)\), \(y\sim P(y|x)\) while the 
+original dataset follows \(x\sim P_{tr}(x)\), \(y\sim P(y|x)\).
+Quite frequently, any  statistical change in the marginal distribution \(P(x)\) of features is coined as 
+covarite shift, disregarding the distribution \(P(y|x)\).</p>
+
+<p>Hence, the term ‘covariate shift’ is often used colloquially in the machine learning literature when in fact, ‘any’
+dataset shift is meant, and the actual shift is not specified, and sometimes not well understood.</p>
+
+<p><em>Example MNIST:</em>
+The causal direction of data-generation for MNIST is inverse (\(Y\) causes \(X\)). Printed forms were handed to 
+volunteers (<a href="https://www.nist.gov/srd/nist-special-database-19">example</a> of a filled form). The forms contained boxes 
+in which the volunteers were supposed to draw pre-defined number-characters. 
+Thus, the labels \(y\sim P(y)\) were generated first by printing and distributing the forms. Then, the features 
+\(x\sim P(x|y)\) were produces by the volunteers, digitalisation and post-processing.<br />
+It is common practice in deep learning to “shift” datasets by transforming the features \(x\).
+But, for this shifted/transformed image \(\tilde{x}\) derived from \(x\), it is not possible to attach a label that 
+follows the original data generating process because there is no such process.
+Strictly speaking, transforms on the features \(x\) for MNIST fall under concept shift of type ii as the 
+transformation changes the process underlying 
+\(P(x|y)\) given some \(y\), while the process underlying \(P(y)\) stays intact.</p>
+
+<h2 id="how-does-dataset-shift-look-like">How does dataset shift look like?</h2>
+
+<h4 id="each-type-of-dataset-shift-can-have-different-appearances">Each type of dataset shift can have different appearances</h4>
+<p>Let’s assume the dataset shift we are considering falls into one of the 4 shift type categories as defined above.
+The definitions merely state which of the 4 
+distributions \(P(x)\), \(P(y|x)\), \(P(y)\) and \(P(x|y)\) changes based on the intervention on the underlying 
+data generating process. The definitions do not state how this change will look like.</p>
+
+<p>Thus, dataset shift, even of the same type, can have wildly different appearance.
+Common realizations are drifting distributions where the dataset shift happens gradually over time, abrupt changes 
+in the distribution where the data generating process is shifted at discrete points in time, 
+or periodic shifts where the data generating process returns to one of it’s states cyclically.
+Thus, simply by looking at the data, we may not know the dataset shift; but also, and perhaps more importantly,
+how a practitioner handles dataset shift may depend on the appearance rather than the type, or possibly on
+their combination.</p>
+
+<h4 id="each-type-of-dataset-shift-can-have-different-root-causes">Each type of dataset shift can have different root causes</h4>
+
+<p>The different appearances can be explained by the root causes of the dataset 
+shift, i.e., the reason why the dataset shift happens. There are two common root causes. The first one is:</p>
+
+<ul>
+  <li><em>Changes in the environment</em>.</li>
+</ul>
+
+<p>Changes in the environment can lead to gradual, cyclic, or abrupt changes and can occur for any dataset shift type. 
+The root cause ist not equivalent to the shift types. 
+The types explain which distribution is affected but not why it is affected.
+Thus, the root cause tells us why the shift happens, the type tells us which distribution is intervened on, and the 
+appearance tells use what the shift looks like.</p>
+
+<p>In addition to changing environments, a second common root cause is:</p>
+
+<ul>
+  <li><em>Sample selection bias</em>.</li>
+</ul>
+
+<p>Roughly, sample selection bias means that there is a mechanism that reduces the probability of a sample being included 
+in the dataset.
+The training distribution may not be represented well if datapoints are selected not according to \((x,y) \sim P_{tr}(x,y)\) but 
+according to \((x,y) \sim P_{tr}(x,y|s=1)\) where \(s\) is a binary selection variable and \(Q(s = 1|x, y)\) is the 
+probability of accepting \((x, y)\) into the training dataset. Sample selection bias is zero if \(Q(s = 1|x, y) = 1\) 
+(see <a href="#references">Quionero-Candela et al. 2009</a>, Section 3.2 for formulas and conditional distributions).</p>
+
+<p>Unwanted sample selection bias can occur for example when the environment where the training was 
+collected does not capture all aspects of the test environment. An example is training data that consists of 
+measurements of a vehicle in a wind-tunnel. The wind-tunnel cannot produce certain wind configurations \(x\) that 
+appear in the real world where it is tested. For those configurations \(Q(s = 1|x, y) = 0\).</p>
+
+<p>There is a lot more to say about sample selection bias, and this may be a topic for another blog post, but for now, 
+we only need to remember that it may induce dataset shift.</p>
+
+<h2 id="whats-the-conclusion">What’s the conclusion?</h2>
+
+<p>Does dataset shift matter? In real world applications, it’s probably hard to know for sure what dataset shift type occurs, but even if we did 
+know does that information provide any benefit? I guess it’s not entirely clear, but here are some thoughts 
+(which should be taken with a grain of salt, as this is my current take only):</p>
+
+<ul>
+  <li>
+    <p><em>The type of shift often shouldn’t matter:</em> A predictive model probably does not care
+a lot if the statistical change in \(P(x)\) was causes by covariate shift, inverse concept shift, prior probability 
+shift, or some undefined shift. All that matters is that the input of the learner changes in 
+some way such that the pattern in \(P(y|x)\), and hence the learned representation, is different now. This could be due to exploring a different domain 
+of \(x\), which can be caused by several shift types, or because the mechanism connecting \(x\) with \(y\) 
+changed. So what really matters is that the learner either i) sees a lot of data from all possible scenarios, 
+or ii) somehow understands that it deals with a new scenario. The former is hard to do by default. 
+How the latter can be achieved is an open question
+as it is not straightforward to estimate if and in what way a shift implies that the learned patterns do not apply anymore. 
+Hence, the machine learning field has worked on data-driven approaches such as meta-learning or continual learning, 
+where the jury is still out if they are applicable and robust in practice. Bayesian models are promising as well.</p>
+  </li>
+  <li>
+    <p><em>The type of shift should matter:</em> It is often not clear
+or easily interpretable how a trained machine learning model reacts to dataset shift. Hence, if we want to 
+use models in the real world, we should care. For example artificial shifts in benchmark datasets are 
+often ad-hoc and definitions are not provided or incorporated in the analysis. Sometimes there are even discrepancies 
+between shifts used in toy-examples that are meant to build intuition and so-called real world applications 
+which makes interpretation of experimental results even harder.</p>
+  </li>
+</ul>
+
+<p>One approach supposed to combat dataset shift is meta-learning I may do a blog post on it at some point :)</p>
+
+<h2 id="references">References</h2>
+
+<p>[1] Storkey A.J. 2009 <em>When Training and Test Sets are Different: Characterising Learning Transfer</em>,
+    in <em>Dataset Shift in Machine Learning</em> MIT Press, pages 3-28.</p>
+
+<p>[2] Moreno-Torres et al. 2012 <em>A unifying view on dataset shift in classification</em>, 
+    Pattern Recognition 45, pages 521–530.</p>
+
+<p>[3] Quionero-Candela et al. 2009 <em>Dataset Shift in Machine Learning</em>,
+    The MIT Press.</p>
+
+<p><br /></p>
+
+<hr />
+
+<h2 id="appendix-some-further-observations">Appendix: Some further observations</h2>
+
+<p>You scrolled too far! But since you’re here, this is a somewhat random collection of thoughts
+that did not quite make it into the blog post above, so bear with me.</p>
+
+<h4 id="is-dataset-shift-a-reliable-indicator-for-change-in-performance">Is dataset shift a reliable indicator for change in performance?</h4>
+
+<p>We are getting into the wild territory of applied research here. But let’s just roll with it for now.
+What if I deployed a performant model, do I need to worry about dataset shift? The answer is probably yes, but it is not so simple.
+Consider for instance a supervised prediction problem and  a machine learning model trained on a dataset 
+\(\mathcal{D}_{tr}=\{(x, y)_n\}_{n=1}^N\) with elements i.i.d. draws from some data distribution 
+\((x, y)\sim P_{tr}(x, y)\) 
+(\(\mathcal{D}_{tr}\) might be split up in a train/validation/test split during training). 
+Consider a dataset shift at deployment time such that \(\mathcal{D}_{ts} = \{(x, y)_m\}_{m=1}^M\) 
+with \((x, y)_m\sim P_{ts}(x, y)\) and \(P_{ts}(x, y)\neq P_{tr}(x, y)\).
+Also, suppose we have access to a metric or score \(S(\mathcal{D}_{tr}, \mathcal{D}_{ts})\) that quantifies 
+reliably the dataset shift between training 
+and deployment time (we leave aside the issue for now that it is unclear how to define this score).
+Is this score a good indicator for predictive model performance on the shifted dataset? 
+This question is important as score metrics could be used to inform re-training decisions, coresets, or other 
+learning parameters of an already trained model.
+The fast answer is that it’s not so easy to say. We won’t go into too much detail in this blog post appendix, 
+but here are some reasons:</p>
+
+<p><em>Feature importance:</em> Consider e.g., covariate shift. If an unimportant feature shifts, the generalisation 
+will not be affected much. If an important features shifts, the generalisation performance will drop. A shift score 
+would give the same signal. Likewise, if an important features shifts only a litte this may impact performance 
+disproportionately high, which is not reflected in the value of the score.</p>
+
+<p><em>Shift type:</em> During deployment, often only \(P(x)\) is available for a new dataset, and the targets \(y\) are missing.
+Hence, the score \(S\) needs to be computed on \(P_{ts}(x)\) only.
+Covariate shift, inverse concept shift and to some degree also prior probability shift all 
+will have a detectable effect on the statistics of \(P_{ts}(x)\). If targets \(y\) are 
+not available in a new dataset however, and forward concept shift occurs (\(P(y|x)\) is intervened on), then no 
+shift will be detected, but generalisation performance will drop. This scenario is quite realistic: For example 
+users may start to like or not like a feature anymore due to some outer influence which affects \(P(y|x)\) only.</p>
+
+<p><em>Model assumptions:</em> There is an interplay between dataset, shift appearance, and machine learning model. 
+A relatively small shift may have a larger effect on generalisation performance, e.g., swapping pixels in an image, than 
+a larger shift that keeps the smooth structure of an image intact. 
+An example are neural networks that encode prior assumptions 
+about what patters they expect to see such as the design of filters in convolutional neural networks. 
+If this assumption is broken by the shift, even small 
+shifts can have a large effect on performance, and likewise large shifts can have less effect if those assumptions are not violated.</p>
+
+<p>The above list is by no means complete.</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="machinelearning" /><category term="statistics" /><summary type="html"><![CDATA[Distinguishing data-distributions is a central topic of statistics. There exist several approaches to categorize data-distribution shift, often with particular emphasis on the difference between the training and test distribution. Here, I collect some thoughts on the issue.]]></summary></entry><entry><title type="html">The Standard Error</title><link href="https://mmahsereci.github.io/blog/2021/std/" rel="alternate" type="text/html" title="The Standard Error" /><published>2021-08-31T00:00:00+00:00</published><updated>2021-08-31T00:00:00+00:00</updated><id>https://mmahsereci.github.io/blog/2021/std</id><content type="html" xml:base="https://mmahsereci.github.io/blog/2021/std/"><![CDATA[<p>The law of large numbers (<a href="/blog/2021/lln/">previous post</a>) 
+can be combined with the standard error (SE) in order to
+not only get an estimate of a parameter, but also a notion of the robustness of said estimate. Thus, the standard error
+lets us know how confident we can be about our estimation.</p>
+
+<p>In the <a href="/blog/2021/lln/">previous post</a>, we learned that, by the law of large numbers (LLN), the sample mean 
+\(\bar{x}_n\) tends to the population mean \(\mu\) in some sense for large enough \(n\) 
+(see <a href="/blog/2021/lln/">previous post</a> for notation). 
+We have also empirically observed (for fair coin tosses with \(\mu=0.5\)) that the sample size \(n\) needs not 
+be overly large (roughly \(&gt; 100\)) in order to yield a somewhat relivable estimate of the coin-flip-parameter \(\mu\).</p>
+
+<p>Similarly, we have observed that the statistic \(\bar{x}_n\) by definition is a random number, as it is the average of
+random coin tosses. For any finite \(n\) the statistic \(\bar{x}_n\) thus exhibits a certain variability which means 
+that it’s value might be different if we repeat the experiment and toss the coin another \(n\) times 
+(and then compute \(\bar{x}_n\) from the new coin tosses/ the new sample). 
+The standard error \(\sigma_n\) quantifies this variability. In particular the SE has the following form</p>
+
+\[SE[\bar{x}_n] = \frac{\sigma}{\sqrt{n}},\]
+
+<p>where \(\sigma := \operatorname{Std}[x]\) is the standard deviation of the random variable \(x\) that represents 
+a single coin toss. It is apparent that the SE drops proportional to one over the squareroot of \(n\), that is
+\(SE[\bar{x}_n] \propto n^{-\frac{1}{2}}\). This behavior is called the <em>squareroot law</em>.</p>
+
+<h4 id="how-wrong-can-it-be-the-most--important-characteristic-of-the-se">How wrong can it be? The most (?) important characteristic of the SE</h4>
+
+<p>In addition to the squareroot law, we observe that the SE is independent of the population size 
+as it only depends on the population variance \(\sigma^2\) and the sample size \(n\).
+This is surprising but also very useful as it means that a low variability of the statistic 
+\(\bar{x}_n\) for a large population can be achieved with a similar sample size as for a small population.
+As example, let’s consider two countries, one of them small, and one of them large in population, and
+(for the sake of argument) both currently having the same approval rate \(\mu\) of their presidents
+(in this particular example, this implies same \(\sigma\)).
+The SE formula now states that in order to obtain the same expected precision on the statistic \(\bar{x}_n\) representing 
+the approval rate of each president, the survey conducted in the large country requires the identical (relatively small) sample size \(n\) 
+as the survey conducted in the small country.
+In other words, each survey simply needs to select a few hundred to a few thousand random voters to obtain
+a statistic of good enough representative power, no matter the size of the country.
+There are of course practical limitations to consider (some are briefly mentioned below), 
+but this astonishing characteristic of the SE holds in theory and has proven successful in practice as well. 
+Let’s have a closer look at the SE formula now, and introduce some notation. 
+Then, we’ll empirically observe the behavior of the SE on the example of coin tosses.</p>
+
+<h4 id="the-standard-error-formula">The Standard Error Formula</h4>
+
+<p>Let \(\zeta_1, \dots, \zeta_k\) be uncorrelated (not necessarily independent or identically 
+distributed) random variables, that is 
+\(\operatorname{Cov}[\zeta_j, \zeta_l] = 0\) if \(j\neq l\) and \(j, l=1,\dots, l\) 
+with corresponding variances \(\sigma^2_{\zeta_j}:=\operatorname{Var}[\zeta_j]\), \(j=1,\dots, k\).
+Then, <a href="https://en.wikipedia.org/wiki/Variance#Sum_of_uncorrelated_variables_(Bienaym%C3%A9_formula)">Bienaymé’s formula</a> 
+states that the variance of the sum \(S_k^{\zeta} :=\sum_{j=1}^k \zeta_j\) is equal to the 
+sum of the variances of the \(\zeta\)s, that is \(\operatorname{Var}[S_k^{\zeta}] = \sum_{j=1}^k \sigma^2_{\zeta_j}\).</p>
+
+<p>In our example, the single coin tosses \(x_i\) comprising the sample are uncorrelated as they are independent, and, 
+as they are identically distributed, all have same variance \(\sigma^2\). 
+Hence, the variance of their sum \(S_{n}^x:=\sum_{i=1}^n x_n\) is \(n\) times the variance of \(x\) that is
+\(\operatorname{Var}[S_n^x] = \sum_{i=1}^n \operatorname{Var}[x_i] = \sum_{i=1}^n \sigma^2 = n\sigma^2\). 
+The SE of \(\bar{x}_n\) which is equal to its 
+standard deviation is thus</p>
+
+\[SE[\bar{x}_n] 
+= SE\left[\frac{S_n^x}{n}\right]  
+= \frac{1}{n} SE[S_n^x] 
+= \frac{1}{n}\sqrt{\operatorname{Var}[S_n^x]} = \frac{1}{n} \sqrt{\sigma^2 n} = \frac{\sigma}{\sqrt{n}},\]
+
+<p>which (equality of leftmost and rightmost term) is the formula stated above. 
+We’ll illustrate the SE again with the example of fair coin tosses.</p>
+
+<h3 id="tossing-coins-again">Tossing Coins Again</h3>
+
+<p>A single fair coin toss \(x\) follows a Bernoulli distribution with parameter \(\mu=0.5\). 
+We know that Bernoulli random numbers have variance \(\sigma^2 = \mu(1-\mu)\). 
+Hence, we can compute the statistic \(\bar{x}_n\) and the SE as
+\(SE[\bar{x}_n] = \frac{\sqrt{\mu(1-\mu)}}{\sqrt{n}} = \frac{0.5}{\sqrt{n}}\).</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="n">numpy</span> <span class="k">as</span> <span class="n">np</span>
+<span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+
+<span class="c1"># fair coin
+</span><span class="n">mu</span> <span class="o">=</span> <span class="mf">0.5</span>
+
+<span class="c1"># Bernoulli samples: 1 means heads, 0 means tails
+</span><span class="n">n_samples</span> <span class="o">=</span> <span class="nf">int</span><span class="p">(</span><span class="mf">1e4</span><span class="p">)</span>
+<span class="n">samples</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="nf">rand</span><span class="p">(</span><span class="n">n_samples</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">mu</span><span class="p">)</span>
+
+<span class="c1"># Compute mean statistic and its standard error
+</span><span class="n">S</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">cumsum</span><span class="p">(</span><span class="n">samples</span><span class="p">)</span>
+<span class="n">n</span> <span class="o">=</span>  <span class="n">np</span><span class="p">.</span><span class="nf">arange</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">n_samples</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span>
+<span class="n">means</span> <span class="o">=</span> <span class="n">S</span> <span class="o">/</span> <span class="n">n</span>
+<span class="n">standard_errors</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">mu</span> <span class="o">*</span> <span class="p">(</span><span class="mi">1</span> <span class="o">-</span> <span class="n">mu</span><span class="p">))</span> <span class="o">/</span> <span class="n">np</span><span class="p">.</span><span class="nf">sqrt</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>First we plot \(\bar{x}_n\) versus the number of samples \(n\) (blue solid). 
+The horizontal gray line indicates the ground truth \(\mu=0.5\).
+We observe that \(\bar{x}_n\) approaches \(\mu\) for larger \(n\); this is due to the law of large numbers (LLN).
+The x-axis is in log-scale on all plots.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-08-31-std/00.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>Now we plot both \(\bar{x}_n\) (solid blue) and the interval \(\bar{x}_n\pm \frac{0.5}{\sqrt{n}}\) (dashed blue). 
+We observe that the area between the dashed lines most of the time (for most \(n\)) but not every time 
+encloses the true parameter \(\mu\). We also observe that the interval shrinks the larger \(n\) according to
+the squareroot law.</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-08-31-std/02.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>The plot below is a zoomed in version of the above plot for samples sizes between \(n=400,\dots,900\). 
+It is better visible here that not all intervals enclose \(\mu\).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-08-31-std/02a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>To illustrate the decay of the SE, we also plot the standalone \(SE[\bar{x}_n] = \frac{0.5}{\sqrt{n}}\) 
+on a linear y-scale,</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-08-31-std/03.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<p>and on a logarithmic y-scale. In the logarithmic plot we can better observe the linear decay 
+\(\log SE[\bar{x}_n] \propto -\frac{1}{2}\log n\) with slope \(-\frac{1}{2}\).</p>
+
+<div style="text-align:center">
+  <img src="/assets/posts/2021-08-31-std/03a.png" style="width:90%; padding-top: 10px; padding-bottom: 10px;" />
+</div>
+
+<h3 id="the-catch-again">The Catch Again</h3>
+
+<p>Besides, requiring truly random numbers which (as mentioned in the <a href="/blog/2021/lln/">previous post</a>) are hard to obtain, the SE
+formula has two major drawbacks.</p>
+
+<p>First, the decay rate of the SE \(n^{-\frac{1}{2}}\) is very slow. It means that e.g., 4 times the sample size
+will only half the standard error, 100 times the sample size will reduce the SE by 1/10th, and \(10^4\) times the 
+sample size will only reduce the SE by a factor of 100 etc. 
+It is apparent that the sample size required to obtain small SEs explodes pretty fast.
+Therefore, it is very hard to obtain high precision estimates with
+this method. The root cause of this is the underlying random sampling mechanism.
+However, for rough but still reliable estimates, the statistic \(\bar{x}_n\) together with its SE 
+is an incredibly valuable tool. With some further assumptions on the form of \(p(\bar{x}_n)\) that are
+often justified in practice, one can even use the SE to obtain confidence intervals. 
+But this is a topic for another post :)</p>
+
+<p>Second, it requires us to know the population variance \(\sigma^2\) which in practice is
+usually not accessible (to compute it we would require access to the whole population which is precisely not what we want).
+In the example above, this did not matter as we had access to the ground truth values \(\sigma^2\) and \(\mu\).
+This is usually not the case.
+Generally, how this is handled is via the <em>boostrap principle</em>, where either i) \(\sigma^2\) is being estimated 
+from the sample, or ii) the SE is being estimated via boostrap sampling. 
+But this, too, is a topic for another post :)</p>]]></content><author><name>mmahsereci</name></author><category term="techblog" /><category term="statistics" /><summary type="html"><![CDATA[The law of large numbers can be combined with the standard error (SE) in order to not only get an estimate of a parameter, but also a notation of robustness of the estimate. The standard error lets us know how confident we can be about the estimate.]]></summary></entry></feed>
