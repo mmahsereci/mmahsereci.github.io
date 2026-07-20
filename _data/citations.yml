@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-08'
+  last_updated: '2026-07-20'
 papers:
   krBt_aIAAAAJ:2osOgNQ5qMEC:
     citations: 0
@@ -42,7 +42,7 @@ papers:
     title: 'ProbNum: probabilistic numerics in python,(2021)'
     year: Unknown Year
   krBt_aIAAAAJ:QIV2ME_5wuYC:
-    citations: 11
+    citations: 13
     title: A dictionary of closed-form kernel mean embeddings
     year: '2025'
   krBt_aIAAAAJ:ULOm3_A8WrAC:
@@ -90,11 +90,11 @@ papers:
     title: 'Comparing Scale Parameter Estimators for Gaussian Process Interpolation with the Brownian Motion Prior: Leave-One-Out Cross Validation and Maximum Likelihood'
     year: '2025'
   krBt_aIAAAAJ:qjMakFHDy7sC:
-    citations: 176
+    citations: 177
     title: Early stopping without a validation set
     year: '2017'
   krBt_aIAAAAJ:qxL8FJ1GzNcC:
-    citations: 6
+    citations: 7
     title: 'Comparing Scale Parameter Estimators for Gaussian Process Regression: Cross Validation and Maximum Likelihood'
     year: '2023'
   krBt_aIAAAAJ:u-x6o8ySG0sC:
