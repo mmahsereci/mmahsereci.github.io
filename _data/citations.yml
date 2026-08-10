@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-07-20'
+  last_updated: '2026-08-10'
 papers:
   krBt_aIAAAAJ:2osOgNQ5qMEC:
     citations: 0
@@ -22,7 +22,7 @@ papers:
     title: Connecting Parameter Magnitudes and Hessian Eigenspaces at Scale using Sketched Methods
     year: '2025'
   krBt_aIAAAAJ:9yKSN-GCB0IC:
-    citations: 43
+    citations: 44
     title: Active Multi-Information Source Bayesian Quadrature
     year: '2019'
   krBt_aIAAAAJ:IjCSPb-OGe4C:
@@ -34,7 +34,7 @@ papers:
     title: A Fourier State Space Model for Bayesian ODE Filters
     year: '2020'
   krBt_aIAAAAJ:L8Ckcad2t8MC:
-    citations: 2
+    citations: 3
     title: 'Bayesian Quadrature: Gaussian Processes for Integration'
     year: '2026'
   krBt_aIAAAAJ:M3ejUd6NZC8C:
@@ -42,7 +42,7 @@ papers:
     title: 'ProbNum: probabilistic numerics in python,(2021)'
     year: Unknown Year
   krBt_aIAAAAJ:QIV2ME_5wuYC:
-    citations: 13
+    citations: 12
     title: A dictionary of closed-form kernel mean embeddings
     year: '2025'
   krBt_aIAAAAJ:ULOm3_A8WrAC:
@@ -74,7 +74,7 @@ papers:
     title: 'Emukit: A Python toolkit for decision making under uncertainty'
     year: '2023'
   krBt_aIAAAAJ:d1gkVwhDpl0C:
-    citations: 6
+    citations: 7
     title: Spectral analysis of PG 1034+ 001, the exciting star of Hewett 1
     year: '2012'
   krBt_aIAAAAJ:dhFuZR0502QC:
@@ -82,26 +82,26 @@ papers:
     title: Early stopping without a validation set. arXiv 2017
     year: Unknown Year
   krBt_aIAAAAJ:kNdYIx-mwKoC:
-    citations: 157
+    citations: 156
     title: Emulation of physical processes with emukit
     year: '2019'
   krBt_aIAAAAJ:mVmsd5A6BfQC:
-    citations: 5
+    citations: 6
     title: 'Comparing Scale Parameter Estimators for Gaussian Process Interpolation with the Brownian Motion Prior: Leave-One-Out Cross Validation and Maximum Likelihood'
     year: '2025'
   krBt_aIAAAAJ:qjMakFHDy7sC:
-    citations: 177
+    citations: 175
     title: Early stopping without a validation set
     year: '2017'
   krBt_aIAAAAJ:qxL8FJ1GzNcC:
-    citations: 7
+    citations: 8
     title: 'Comparing Scale Parameter Estimators for Gaussian Process Regression: Cross Validation and Maximum Likelihood'
     year: '2023'
   krBt_aIAAAAJ:u-x6o8ySG0sC:
-    citations: 166
+    citations: 165
     title: Probabilistic line searches for stochastic optimization
     year: '2017'
   krBt_aIAAAAJ:u5HHmVD_uO8C:
-    citations: 4
+    citations: 3
     title: Automating stochastic optimization with gradient variance estimates
     year: '2017'
