@@ -20,7 +20,7 @@ latest_posts:
   enabled: false
 ---
 
-I am a research scientist, currently leading the Prediction Modelling area at Yahoo DSP,
+I am a machine learning scientist, currently leading the Prediction Modelling area at Yahoo DSP,
 driving real-time bidding models in Ads-Tech from research through to production at scale.
 
 Previously, I have been a postdoctoral researcher at the
@@ -30,6 +30,8 @@ University of T&uuml;bingen,
 and a Machine Learning Scientist at Amazon Web Services (AWS) in Berlin and
 Amazon Retail (AMZN) in Cambridge. I graduated from
 the Max-Planck Institute for Intelligent Systems (MPI) T&uuml;bingen.
+
+I am a physicist by training. 
 
 My research interests include
 real-time bidding and Ads-Tech,
