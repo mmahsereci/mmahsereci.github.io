@@ -1,5 +1,5 @@
 metadata:
-  last_updated: '2026-08-10'
+  last_updated: '2026-08-21'
 papers:
   krBt_aIAAAAJ:2osOgNQ5qMEC:
     citations: 0
@@ -70,7 +70,7 @@ papers:
     title: Probabilistic numerical methods-from theory to implementation (Dagstuhl Seminar 21432)
     year: '2022'
   krBt_aIAAAAJ:aqlVkmm33-oC:
-    citations: 42
+    citations: 43
     title: 'Emukit: A Python toolkit for decision making under uncertainty'
     year: '2023'
   krBt_aIAAAAJ:d1gkVwhDpl0C:
@@ -82,7 +82,7 @@ papers:
     title: Early stopping without a validation set. arXiv 2017
     year: Unknown Year
   krBt_aIAAAAJ:kNdYIx-mwKoC:
-    citations: 156
+    citations: 157
     title: Emulation of physical processes with emukit
     year: '2019'
   krBt_aIAAAAJ:mVmsd5A6BfQC:
@@ -94,7 +94,7 @@ papers:
     title: Early stopping without a validation set
     year: '2017'
   krBt_aIAAAAJ:qxL8FJ1GzNcC:
-    citations: 8
+    citations: 9
     title: 'Comparing Scale Parameter Estimators for Gaussian Process Regression: Cross Validation and Maximum Likelihood'
     year: '2023'
   krBt_aIAAAAJ:u-x6o8ySG0sC:
