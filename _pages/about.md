@@ -23,13 +23,18 @@ latest_posts:
 I am a machine learning scientist, currently leading the Prediction Modelling area at Yahoo DSP,
 driving real-time bidding models in Ads-Tech from research through to production at scale.
 
-Previously, I have been a postdoctoral researcher at the
+Previously, I have been a Machine Learning Scientist at Amazon Web Services (AWS) in Berlin and
+Amazon Retail (AMZN) in Cambridge and a postdoctoral researcher at the
 <a href="https://uni-tuebingen.de/fakultaeten/mathematisch-naturwissenschaftliche-fakultaet/fachbereiche/informatik/lehrstuehle/methoden-des-maschinellen-lernens/personen/">
-University of T&uuml;bingen,
+University of T&uuml;bingen
 </a>
-and a Machine Learning Scientist at Amazon Web Services (AWS) in Berlin and
-Amazon Retail (AMZN) in Cambridge. I graduated from
-the Max-Planck Institute for Intelligent Systems (MPI) T&uuml;bingen.
+.
+I graduated from the 
+<a href="https://is.mpg.de/en">
+Max-Planck Institute for Intelligent Systems
+</a>
+(MPI) T&uuml;bingen 
+on stochastic optimization methods for neural networks.
 
 I am a physicist by training. 
 
