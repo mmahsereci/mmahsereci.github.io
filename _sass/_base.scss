@@ -1526,3 +1526,16 @@ figure.cover {
 mjx-container[jax="CHTML"][display="true"] {
   overflow-x: auto;
 }
+
+// Collapsible hints on the exercises page
+details.hint {
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  border-left: 3px solid var(--global-theme-color);
+  background-color: var(--global-code-bg-color);
+
+  summary {
+    cursor: pointer;
+    color: var(--global-theme-color);
+  }
+}
